@@ -1,3 +1,5 @@
+import UI from "./ui.mjs";
+
 class App
 {
 	/**
@@ -70,6 +72,17 @@ class App
 		}
 
 		return result;
+	}
+
+	showModal()
+	{
+		let body = "";
+
+		UI.showModal({
+			title: "Spell Check",
+			subtitle: "Remaining words in today’s puzzle.",
+			body: body,
+		});
 	}
 }
 

@@ -22,5 +22,3 @@ if( !window.spellcheckUi )
 {
 	window.spellcheckUi = UI;
 }
-
-UI.showModal({title: "The Modal Title", body: "<p>Modal body</p>" });
