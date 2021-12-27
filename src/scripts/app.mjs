@@ -4,14 +4,14 @@ class App
 {
 	/**
 	 * @param {Object} [options]
-	 * @param {Object} [options.grid]
+	 * @param {string} [options.grid] - String representation of today's grid
 	 */
 	constructor({ grid } = {})
 	{
 		this.grid = App.parseGrid( grid );
 	}
 
-	async getGrid( url )
+	async fetchGrid( url )
 	{
 		try
 		{
@@ -24,6 +24,30 @@ class App
 		{
 			// ...
 		}
+	}
+
+	/**
+	 * @param {Array} [words=[]}
+	 */
+	gridRemaining( words=[] )
+	{
+		let gridRemaining = {};
+		Object.keys( this.grid ).forEach( gridLetter =>
+		{
+			gridRemaining[gridLetter] = Object.assign( {}, this.grid[gridLetter] );
+		});
+
+		words.forEach( word =>
+		{
+			let letter = word[0].toUpperCase();
+			let length = word.length;
+			if( gridRemaining[letter] && gridRemaining[letter][length] )
+			{
+				gridRemaining[letter][length]--;
+			}
+		});
+
+		return gridRemaining;
 	}
 
 	/**

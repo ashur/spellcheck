@@ -4,7 +4,7 @@ import App from "../src/scripts/app.mjs";
 
 describe( "App", () =>
 {
-	let validGrid = `         4	  5	  6	  7	  8	  9	 11	  Σ
+	let validGrid = () => `         4	  5	  6	  7	  8	  9	 11	  Σ
 C:	  1	  2	  -	  1	  -	  -	  -	 4
 E:	  -	  1	  2	  1	  -	  -	  -	  4
 I:	  -	  1	  4	  1	  -	  3	  1	 10
@@ -18,10 +18,37 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 	{
 		it( "should be set by constructor", () =>
 		{
-			let app = new App( { grid: validGrid } );
+			let app = new App( { grid: validGrid() } );
 
 			assert.isObject( app.grid );
 			assert.hasAllKeys( app.grid, ["C", "E", "I", "N", "T", "V", "Z"] );
+		});
+	});
+
+	describe( ".gridRemaining()", () =>
+	{
+		it( "should return an object identical to .grid if words array is empty", () =>
+		{
+			let app = new App( { grid: validGrid() } );
+			let gridRemaining = app.gridRemaining([]);
+
+			assert.isObject( gridRemaining );
+			assert.deepEqual( gridRemaining, app.grid );
+
+			assert.equal( gridRemaining["C"][4], app.grid["C"][4] );
+			assert.equal( gridRemaining["T"][4], app.grid["T"][4] );
+		});
+
+		it( "should subtract from .grid totals for each word length", () =>
+		{
+			let app = new App( { grid: validGrid() } );
+			let gridRemaining = app.gridRemaining([
+				"cart",
+				"tort",
+			]);
+
+			assert.equal( gridRemaining["C"][4], app.grid["C"][4] - 1, "Remaining 4-letter C words" );
+			assert.equal( gridRemaining["T"][4], app.grid["T"][4] - 1, "Remaining 4-letter T words" );
 		});
 	});
 
@@ -43,7 +70,7 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 
 		it( "should be return object with grid letters as keys", () =>
 		{
-			let parseResult = App.parseGrid( validGrid );
+			let parseResult = App.parseGrid( validGrid() );
 
 			assert.isObject( parseResult );
 			assert.hasAllKeys( parseResult, ["C", "E", "I", "N", "T", "V", "Z"] );
