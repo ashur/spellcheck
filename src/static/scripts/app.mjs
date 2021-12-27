@@ -9,6 +9,21 @@ class App
 		this.grid = App.parseGrid( grid );
 	}
 
+	async getGrid( url )
+	{
+		try
+		{
+			let html = await fetch( url );
+			console.log( html );
+
+			return html;
+		}
+		catch( error )
+		{
+			// ...
+		}
+	}
+
 	/**
 	 * @param {string}
 	 * @returns {Object}

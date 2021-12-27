@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "eleventy",
+    "build": "eleventy && npm run build:js",
+    "build:js": "esbuild src/static/scripts/bookmarklet.mjs --bundle --outfile=dist/bookmarklet.js",
     "dev": "onchange -i 'src/**/*.mjs' 'test/**/*.mjs' -- npm run test",
+    "serve": "eleventy --serve",
     "test": "mocha test/**/*.mjs"
   },
   "keywords": [],
@@ -18,6 +20,8 @@
     "onchange": "^7.1.0"
   },
   "dependencies": {
-    "@11ty/eleventy": "^0.12.1"
+    "@11ty/eleventy": "^0.12.1",
+    "esbuild": "^0.14.8",
+    "rollup": "^2.62.0"
   }
 }
