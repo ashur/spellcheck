@@ -37,6 +37,7 @@ let UI = {
 		stylesheet.type = "text/css"
 		stylesheet.innerText = styles;
 
+		console.log( "🎨 Adding styles" );
 		document.head.appendChild( stylesheet );
 	},
 
