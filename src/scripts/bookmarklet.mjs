@@ -13,6 +13,8 @@ V:	  3	  -	  -	  -	  -	  -	  -	 3
 Z:	  3	  -	  -	  -	  -	  -	  -	  3
 Σ:	 12	  6	  6	  4	  1	  3	  1	 33`;
 
+	UI.addStyles();
+
 	window.spellcheckApp = new App({
 		grid: grid
 	});
@@ -22,3 +24,5 @@ if( !window.spellcheckUi )
 {
 	window.spellcheckUi = UI;
 }
+
+window.spellcheckApp.showModal();
