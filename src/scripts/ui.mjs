@@ -5,6 +5,40 @@ let hideModal = () =>
 };
 
 let UI = {
+	addStyles: () =>
+	{
+		let styles = `
+			.sb-modal-wrapper--inverted {
+				filter: invert(1);
+			}
+			.sb-modal-table td, .sb-modal-table th {
+				text-align: center;
+			}
+			.sb-modal-table th {
+				font-weight: bold;
+				min-width: 2em;
+			}
+			.sb-modal-wrapper--inverted .sb-input-bright {
+				filter: invert(1);
+				font-weight: bold;
+			}
+			.sb-modal-wrapper--inverted a {
+				color: inherit;
+				text-decoration: underline;
+			}
+
+			.sb-modal-content .sb-modal-body .sb-modal-message.sc-modal-reminder {
+				font-size: 0.875em;
+				margin-top: 3em;
+			}`;
+
+		let stylesheet = document.createElement( "style" );
+		stylesheet.type = "text/css"
+		stylesheet.innerText = styles;
+
+		document.head.appendChild( stylesheet );
+	},
+
 	showModal: ({title, subtitle, body} = {}) =>
 	{
 		let modalHeader = `<h3 class="sb-modal-title">${title}</h3>`;
