@@ -1,6 +1,7 @@
 let hideModal = () =>
 {
 	document.querySelector( ".sb-modal-system" ).classList.remove( "sb-modal-open" );
+	document.querySelector( ".sb-modal-wrapper" ).classList.remove( "sb-modal-wrapper--inverted" );
 	document.querySelector( ".sb-modal-wrapper" ).innerHTML = "";
 };
 
@@ -63,6 +64,7 @@ let UI = {
 		</div>`
 
 		document.querySelector( ".sb-modal-system" ).classList.add( "sb-modal-open" );
+		document.querySelector( ".sb-modal-wrapper" ).classList.add( "sb-modal-wrapper--inverted" );
 		document.querySelector( ".sb-modal-wrapper" ).innerHTML = modalWrapper;
 		document.querySelector( ".sb-modal-close" ).addEventListener( "click", hideModal );
 	},
