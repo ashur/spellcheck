@@ -69,27 +69,28 @@ class App
 			.split( "\n" )
 			.map( row => row.replace( /\s+/g, "\t" ).split( "\t" ) );
 
-		// Validate parse results
-		if( gridRows.length !== 9 )
+		if( gridRows.length < 3)
 		{
-			throw new Error( "Invalid grid string: Unexpected row count" );
+			throw new Error( `Invalid grid string: Expecting 3 or more lines, found ${gridRows.length}` );
 		}
 
-		gridRows.forEach( gridRow =>
+		gridRows.forEach( (gridRow, index) =>
 		{
-			if( gridRow.length !== 9 )
+			let expectedColummns = gridRows[0].length;
+			if( gridRow.length !== expectedColummns )
 			{
-				throw new Error( "Invalid grid string: Unexpected column count" );
+				throw new Error( `Invalid grid string: Expecting ${expectedColummns} columns on line ${index+1}, found ${gridRow.length}` );
 			}
 		});
 
-		let wordLengths = gridRows[0].slice( 1, 8 );
+		let letterCount = gridRows.length - 1;
+		let wordLengths = gridRows[0].slice( 1, gridRows[0].length - 1 );
 		result.wordLengths = wordLengths.map( wordLength => parseInt( wordLength ) );
 
-		for( let l=1; l<8; l++ )
+		for( let l=1; l<letterCount; l++ )
 		{
 			let letter = gridRows[l][0].replace( ":", "" ).toUpperCase();
-			let letterCounts = gridRows[l].slice( 1, 8 );
+			let letterCounts = gridRows[l].slice( 1, gridRows[0].length - 1 );
 
 			if( !result.distributions[letter] )
 			{

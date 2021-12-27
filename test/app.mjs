@@ -55,18 +55,23 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 
 	describe( ".parseGrid()", () =>
 	{
-		it( "should throw an Error if grid string doesn't produce 9 rows", () =>
+		it( "should throw an Error if grid string doesn't produce 3 or more rows", () =>
 		{
-			let fn = () => new App( { grid: "invalid grid" } );
+			let oneRow = () => new App( { grid: "invalid grid" } );
+			let twoRows = () => new App( { grid: "invalid\ngrid" } );
 
-			assert.throws( fn, "Invalid grid string: Unexpected row count" );
+			assert.throws( oneRow, "Invalid grid string: Expecting 3 or more lines, found 1" );
+			assert.throws( twoRows, "Invalid grid string: Expecting 3 or more lines, found 2" );
 		});
 
-		it( "should throw an Error if grid string doesn't produce 9 columns", () =>
+		it( "should throw an Error if any row has a different column count", () =>
 		{
-			let fn = () => new App( { grid: "\t1\t2\t3\t4\t5\t6\t7\t8\nA\nB\nC\nD\nE\nF\nG\nH" } );
+			let grid = `		 4	  5	  6	  7	  8	  9	 11	  Σ
+C:	  1	  2
+E:	  -	  1	  2	  1	  -	  -	  -	  4`
+			let fn = () => new App( { grid: grid } );
 
-			assert.throws( fn, "Invalid grid string: Unexpected column count" );
+			assert.throws( fn, "Invalid grid string: Expecting 9 columns on line 2, found 3" );
 		});
 
 		it( "should contain .distributions property that uses grid letters as keys", () =>
