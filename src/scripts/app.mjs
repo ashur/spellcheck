@@ -31,19 +31,23 @@ class App
 	 */
 	gridRemaining( words=[] )
 	{
-		let gridRemaining = {};
-		Object.keys( this.grid ).forEach( gridLetter =>
+		let gridRemaining = {
+			distributions: {},
+			wordLengths: this.grid.wordLengths,
+		};
+
+		Object.keys( this.grid.distributions ).forEach( letter =>
 		{
-			gridRemaining[gridLetter] = Object.assign( {}, this.grid[gridLetter] );
+			gridRemaining.distributions[letter] = Object.assign( {}, this.grid.distributions[letter] );
 		});
 
 		words.forEach( word =>
 		{
 			let letter = word[0].toUpperCase();
 			let length = word.length;
-			if( gridRemaining[letter] && gridRemaining[letter][length] )
+			if( gridRemaining.distributions[letter] && gridRemaining.distributions[letter][length] )
 			{
-				gridRemaining[letter][length]--;
+				gridRemaining.distributions[letter][length]--;
 			}
 		});
 
@@ -56,7 +60,10 @@ class App
 	 */
 	static parseGrid( grid )
 	{
-		let result = {};
+		let result = {
+			distributions: {},
+			wordLengths: 0,
+		};
 
 		let gridRows = grid
 			.split( "\n" )
@@ -77,21 +84,22 @@ class App
 		});
 
 		let wordLengths = gridRows[0].slice( 1, 8 );
+		result.wordLengths = wordLengths.map( wordLength => parseInt( wordLength ) );
 
 		for( let l=1; l<8; l++ )
 		{
 			let letter = gridRows[l][0].replace( ":", "" ).toUpperCase();
 			let letterCounts = gridRows[l].slice( 1, 8 );
 
-			if( !result[letter] )
+			if( !result.distributions[letter] )
 			{
-				result[letter] = {};
+				result.distributions[letter] = {};
 			}
 
 			letterCounts.forEach( (value, index) =>
 			{
 				let letterCount = value === "-" ? 0 : parseInt( value );
-				result[letter][wordLengths[index]] = letterCount;
+				result.distributions[letter][wordLengths[index]] = letterCount;
 			});
 		}
 

@@ -21,7 +21,8 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 			let app = new App( { grid: validGrid() } );
 
 			assert.isObject( app.grid );
-			assert.hasAllKeys( app.grid, ["C", "E", "I", "N", "T", "V", "Z"] );
+			assert.hasAllKeys( app.grid, ["wordLengths", "distributions"] );
+			assert.hasAllKeys( app.grid.distributions, ["C", "E", "I", "N", "T", "V", "Z"] );
 		});
 	});
 
@@ -35,8 +36,8 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 			assert.isObject( gridRemaining );
 			assert.deepEqual( gridRemaining, app.grid );
 
-			assert.equal( gridRemaining["C"][4], app.grid["C"][4] );
-			assert.equal( gridRemaining["T"][4], app.grid["T"][4] );
+			assert.equal( gridRemaining.distributions["C"][4], app.grid.distributions["C"][4] );
+			assert.equal( gridRemaining.distributions["T"][4], app.grid.distributions["T"][4] );
 		});
 
 		it( "should subtract from .grid totals for each word length", () =>
@@ -47,8 +48,8 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 				"tort",
 			]);
 
-			assert.equal( gridRemaining["C"][4], app.grid["C"][4] - 1, "Remaining 4-letter C words" );
-			assert.equal( gridRemaining["T"][4], app.grid["T"][4] - 1, "Remaining 4-letter T words" );
+			assert.equal( gridRemaining.distributions["C"][4], app.grid.distributions["C"][4] - 1, "Remaining 4-letter C words" );
+			assert.equal( gridRemaining.distributions["T"][4], app.grid.distributions["T"][4] - 1, "Remaining 4-letter T words" );
 		});
 	});
 
@@ -68,28 +69,36 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 			assert.throws( fn, "Invalid grid string: Unexpected column count" );
 		});
 
-		it( "should be return object with grid letters as keys", () =>
+		it( "should contain .distributions property that uses grid letters as keys", () =>
 		{
 			let parseResult = App.parseGrid( validGrid() );
 
 			assert.isObject( parseResult );
-			assert.hasAllKeys( parseResult, ["C", "E", "I", "N", "T", "V", "Z"] );
+			assert.hasAllKeys( parseResult, ["wordLengths", "distributions"] );
 
-			assert.equal( parseResult["C"][4], 1 );
-			assert.equal( parseResult["C"][5], 2 );
-			assert.equal( parseResult["C"][6], 0 );
-			assert.equal( parseResult["C"][7], 1 );
-			assert.equal( parseResult["C"][8], 0 );
-			assert.equal( parseResult["C"][9], 0 );
-			assert.equal( parseResult["C"][11], 0 );
+			assert.hasAllKeys( parseResult.distributions, ["C", "E", "I", "N", "T", "V", "Z"] );
 
-			assert.equal( parseResult["I"][4], 0 );
-			assert.equal( parseResult["I"][5], 1 );
-			assert.equal( parseResult["I"][6], 4 );
-			assert.equal( parseResult["I"][7], 1 );
-			assert.equal( parseResult["I"][8], 0 );
-			assert.equal( parseResult["I"][9], 3 );
-			assert.equal( parseResult["I"][11], 1 );
+			assert.equal( parseResult.distributions["C"][4], 1 );
+			assert.equal( parseResult.distributions["C"][5], 2 );
+			assert.equal( parseResult.distributions["C"][6], 0 );
+			assert.equal( parseResult.distributions["C"][7], 1 );
+			assert.equal( parseResult.distributions["C"][8], 0 );
+			assert.equal( parseResult.distributions["C"][9], 0 );
+			assert.equal( parseResult.distributions["C"][11], 0 );
+
+			assert.equal( parseResult.distributions["I"][4], 0 );
+			assert.equal( parseResult.distributions["I"][5], 1 );
+			assert.equal( parseResult.distributions["I"][6], 4 );
+			assert.equal( parseResult.distributions["I"][7], 1 );
+			assert.equal( parseResult.distributions["I"][8], 0 );
+			assert.equal( parseResult.distributions["I"][9], 3 );
+			assert.equal( parseResult.distributions["I"][11], 1 );
+		});
+
+		it( "should be include .wordLengths property", () =>
+		{
+			let parseResult = App.parseGrid( validGrid() );
+			assert.deepEqual( parseResult.wordLengths, [4,5,6,7,8,9,11] );
 		});
 	});
 });
