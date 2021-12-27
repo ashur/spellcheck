@@ -1,10 +1,10 @@
-let UI = {
-	hideModal()
-	{
-		document.querySelector( ".sb-modal-system" ).classList.remove( "sb-modal-open" );
-		document.querySelector( ".sb-modal-wrapper" ).innerHTML = "";
-	},
+let hideModal = () =>
+{
+	document.querySelector( ".sb-modal-system" ).classList.remove( "sb-modal-open" );
+	document.querySelector( ".sb-modal-wrapper" ).innerHTML = "";
+};
 
+let UI = {
 	showModal: ({title, subtitle, body} = {}) =>
 	{
 		let modalHeader = `<h3 class="sb-modal-title">${title}</h3>`;
@@ -30,7 +30,7 @@ let UI = {
 
 		document.querySelector( ".sb-modal-system" ).classList.add( "sb-modal-open" );
 		document.querySelector( ".sb-modal-wrapper" ).innerHTML = modalWrapper;
-		document.querySelector( ".sb-modal-close" ).addEventListener( "click", this.hideModal );
+		document.querySelector( ".sb-modal-close" ).addEventListener( "click", hideModal );
 	},
 }
 
