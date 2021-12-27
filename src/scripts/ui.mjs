@@ -1,8 +1,18 @@
+let handleKeydown = (event) =>
+{
+	if( event.key === "Escape" )
+	{
+		hideModal();
+	}
+};
+
 let hideModal = () =>
 {
 	document.querySelector( ".sb-modal-system" ).classList.remove( "sb-modal-open" );
 	document.querySelector( ".sb-modal-wrapper" ).classList.remove( "sb-modal-wrapper--inverted" );
 	document.querySelector( ".sb-modal-wrapper" ).innerHTML = "";
+
+	document.removeEventListener( "keydown", handleKeydown );
 };
 
 let UI = {
@@ -68,6 +78,8 @@ let UI = {
 		document.querySelector( ".sb-modal-wrapper" ).classList.add( "sb-modal-wrapper--inverted" );
 		document.querySelector( ".sb-modal-wrapper" ).innerHTML = modalWrapper;
 		document.querySelector( ".sb-modal-close" ).addEventListener( "click", hideModal );
+
+		document.addEventListener( "keydown", handleKeydown );
 	},
 }
 
