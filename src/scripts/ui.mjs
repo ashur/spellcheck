@@ -70,6 +70,8 @@ let UI = {
 				</div>
 				<div class="sb-modal-body">
 					${body}
+
+					<p class="sb-modal-message sc-modal-reminder">Just a reminder, Spell Check isn’t affiliated with or endorsed by the New York Times.</p>
 				</div>
 			</div>
 		</div>`
