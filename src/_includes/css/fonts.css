@@ -1,20 +1,11 @@
 @font-face {
-	font-family: "tiempos-headline";
-	src: url( "/fonts/tiempos-headline-light.woff2" );
-	font-weight: 300;
-	font-display: swap;
+	font-family:"futura-pt";
+	src:url("https://use.typekit.net/af/309dfe/000000000000000000010091/27/l?primer=81a69539b194230396845be9681d114557adfb35f4cccc679c164afb4aa47365&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/309dfe/000000000000000000010091/27/d?primer=81a69539b194230396845be9681d114557adfb35f4cccc679c164afb4aa47365&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/309dfe/000000000000000000010091/27/a?primer=81a69539b194230396845be9681d114557adfb35f4cccc679c164afb4aa47365&fvd=n7&v=3") format("opentype");
+	font-display:swap;font-style:normal;font-weight:700;
 }
 
 @font-face {
-	font-family: "soehne";
-	src: url( "/fonts/soehne-buch.woff2" );
-	font-display: swap;
-	font-weight: 400;
-}
-
-@font-face {
-	font-family: "soehne";
-	src: url( "/fonts/soehne-halbfett.woff2" );
-	font-display: swap;
-	font-weight: 700;
+	font-family:"mrs-eaves";
+	src:url("https://use.typekit.net/af/feb931/00000000000000007735b2fd/30/l?primer=81a69539b194230396845be9681d114557adfb35f4cccc679c164afb4aa47365&fvd=i7&v=3") format("woff2"),url("https://use.typekit.net/af/feb931/00000000000000007735b2fd/30/d?primer=81a69539b194230396845be9681d114557adfb35f4cccc679c164afb4aa47365&fvd=i7&v=3") format("woff"),url("https://use.typekit.net/af/feb931/00000000000000007735b2fd/30/a?primer=81a69539b194230396845be9681d114557adfb35f4cccc679c164afb4aa47365&fvd=i7&v=3") format("opentype");
+	font-display:swap;font-style:italic;font-weight:700;
 }
