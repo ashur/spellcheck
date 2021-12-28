@@ -1,0 +1,29 @@
+.header {
+	margin-top: calc( var(--page-margin) * var(--ratio-0) );
+}
+
+.header__category {
+	color: var(--color-category);
+	font-family: var(--font-category);
+	font-size: calc( var(--font-size) / var(--ratio) );
+	letter-spacing: 3px;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.header__heading {
+	font-size: calc( var(--font-size) * var(--ratio--1) );
+}
+
+.header__title {
+	font-family: var(--font-heading);
+	font-size: calc( var(--font-size) * var(--ratio-2) );
+	letter-spacing: -2px;
+	line-height: 1;
+}
+
+picture {
+	background: var(--color-gray-light);
+	width: 100%;
+	padding-bottom: calc( 675 / 1200 * 100% );
+}
