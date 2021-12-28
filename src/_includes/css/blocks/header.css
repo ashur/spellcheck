@@ -21,9 +21,3 @@
 	letter-spacing: -2px;
 	line-height: 1;
 }
-
-picture {
-	background: var(--color-gray-light);
-	width: 100%;
-	padding-bottom: calc( 675 / 1200 * 100% );
-}

@@ -7,4 +7,40 @@ permalink: /index.html
 		<h1 class="[][][ header__title ]">{{ metadata.site.title }}</h1>
 		<p class="[][][ header__heading ]">Check your progress in the <span class="[][ nowrap ][]">New York Times</span> <a href="https://www.nytimes.com/puzzles/spelling-bee" class="[][ nowrap ][]">Spelling Bee</a> using just a few clicks or taps, without leaving the puzzle.</p>
 	</header>
+
+	<main>
+		<picture>
+			<source
+				srcset="/images/desktop@2x.avif"
+				media="(orientation:landscape)"
+				type="image/avif"
+			/>
+			<source
+				srcset="/images/desktop@2x.jpg"
+				media="(orientation:landscape)"
+				type="image/jpeg"
+			/>
+			<source
+				srcset="/images/desktop@2x.webp"
+				media="(orientation:landscape)"
+				type="image/webp"
+			/>
+
+			<source
+				srcset="/images/mobile@2x.avif"
+				media="(orientation:portrait)"
+				type="image/avif"
+			/>
+			<source
+				srcset="/images/mobile@2x.jpg"
+				media="(orientation:portrait)"
+				type="image/jpeg"
+			/>
+
+			<img
+				alt="Spelling Bee puzzle with Spell Check visible. A grid shows the number of remaining words for each letter and word length."
+				src="/images/mobile@2x.jpg"
+			/>
+		</picture>
+	</main>
 </div>
