@@ -1,0 +1,20 @@
+@font-face {
+	font-family: "tiempos-headline";
+	src: url( "/fonts/tiempos-headline-light.woff2" );
+	font-weight: 300;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "soehne";
+	src: url( "/fonts/soehne-buch.woff2" );
+	font-display: swap;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "soehne";
+	src: url( "/fonts/soehne-halbfett.woff2" );
+	font-display: swap;
+	font-weight: 700;
+}

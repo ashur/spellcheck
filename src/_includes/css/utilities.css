@@ -1,0 +1,14 @@
+.font-heading {
+	font-family: var( --font-heading );
+}
+
+.measure {
+	max-width: var( --measure );
+}
+
+.no-underline {
+	text-decoration: none;
+}
+	.no-underline:hover {
+		text-decoration: underline;
+	}

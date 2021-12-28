@@ -1,0 +1,62 @@
+:root {
+	--ratio: 1.5;
+	--ratio-0: var( --ratio );
+	--ratio-1: calc( var( --ratio-0 ) * var( --ratio ) );
+	--ratio-2: calc( var( --ratio-1 ) * var( --ratio ) );
+	--ratio-3: calc( var( --ratio-2 ) * var( --ratio ) );
+
+	--size--4: calc( var( --size--3 ) / var( --ratio ) );
+	--size--3: calc( var( --size--2 ) / var( --ratio ) );
+	--size--2: calc( var( --size--1 ) / var( --ratio ) );
+	--size--1: calc( var( --size-0 ) / var( --ratio ) );
+	--size-0: 1rem;
+	--size-1: calc( var( --size-0 ) * var( --ratio ) );
+	--size-2: calc( var( --size-1 ) * var( --ratio ) );
+	--size-3: calc( var( --size-2 ) * var( --ratio ) );
+	--size-4: calc( var( --size-3 ) * var( --ratio ) );
+	--size-5: calc( var( --size-4 ) * var( --ratio ) );
+	--size-6: calc( var( --size-5 ) * var( --ratio ) );
+
+	--font-size: var( --size-0 );
+	--font-size-sm: calc( var( --size-0 ) * 0.875 );
+
+	/* Composition */
+	--measure: 64ch;
+	--page-margin: clamp( var( --size-0 ), 8vw, var( --size-4 ) );
+
+	--box-padding: var( --page-margin );
+	--container-size: 1400px;
+
+	--stack-sm-size: calc( var( --font-size ) / var( --ratio-2 ) );
+	--stack-size: calc( var( --font-size ) * var( --ratio ) );
+	--stack-lg-size: calc( var( --font-size ) * var( --ratio-2 ) );
+
+	/* Fonts */
+	--font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	--font-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", serif;
+
+	--font-body: Georgia, var(--font-serif);
+	--font-category: futura-pt, var(--font-sans);
+	--font-heading: mrs-eaves, var(--font-serif);
+
+	/* Colors */
+	--color-gray-light: #dcdcdc;
+	--color-green: #00ae4c;
+
+	--color-background: #fff;
+	--color-border: var(--color-gray-light);
+	--color-category: var(--color-green);
+	--color-text: #000;
+}
+
+body {
+	font-family: var(--font-body);
+}
+
+a {
+	color: currentcolor;
+}
+
+a:hover {
+	text-decoration: underline;
+}
