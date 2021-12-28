@@ -19,9 +19,12 @@ import UI from "./ui.mjs";
 
 			console.log( "⬇️ Fetching today’s grid" );
 			let remoteGrid = await App.fetchGrid( hintsLink.href );
+
 			window.spellcheckApp = new App({
 				grid: remoteGrid
 			});
+
+			window.spellcheckApp.showGridModal();
 		}
 		catch( error )
 		{
@@ -30,11 +33,13 @@ import UI from "./ui.mjs";
 			App.showErrorModal( "Spell Check was unable to fetch today’s grid.", error.message );
 		}
 	}
+	else
+	{
+		window.spellcheckApp.showGridModal();
+	}
 
 	if( !window.spellcheckUi )
 	{
 		window.spellcheckUi = UI;
 	}
-
-	window.spellcheckApp.showGridModal();
 })();
