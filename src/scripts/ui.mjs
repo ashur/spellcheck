@@ -8,8 +8,7 @@ let handleKeydown = (event) =>
 
 let hideModal = () =>
 {
-	document.querySelector( ".sb-modal-system" ).classList.remove( "sb-modal-open" );
-	document.querySelector( ".sb-modal-wrapper" ).classList.remove( "sb-modal-wrapper--inverted" );
+	document.querySelector( ".sb-modal-system" ).classList.remove( "sb-modal-open", "spellcheck" );
 	document.querySelector( ".sb-modal-wrapper" ).innerHTML = "";
 
 	document.removeEventListener( "keydown", handleKeydown );
@@ -19,25 +18,23 @@ let UI = {
 	addStyles: () =>
 	{
 		let styles = `
-		.sb-modal-wrapper--inverted {
-			filter: invert(1);
-		}
-		.sb-modal-table td, .sb-modal-table th {
+		.spellcheck .sb-modal-table td,
+		.spellcheck .sb-modal-table th {
 			text-align: center;
 			height: 2em;
 			vertical-align: middle;
 		}
-		.sb-modal-table tr + tr {
+		.spellcheck .sb-modal-table tr + tr {
 			border-top: solid #dcdcdc 1px;
 		}
-		.sb-modal-table th {
+		.spellcheck .sb-modal-table th {
 			font-weight: bold;
 			min-width: 2em;
 		}
-		.sb-modal-table td {
+		.spellcheck .sb-modal-table td {
 			font-size: 1.125em;
 		}
-		.sb-modal-table td .checked {
+		.spellcheck .sb-modal-table td .checked {
 			border: solid #00ae4c;
 			border-width: 0 3px 3px 0;
 			display: inline-block;
@@ -46,26 +43,21 @@ let UI = {
 			transform: rotate(45deg) translate(-3px, -3px);
 			width: 8.5px;
 		}
-		.sb-modal-wrapper--inverted .sb-input-bright {
-			filter: invert(1);
-			font-weight: bold;
-		}
-		.sb-modal-wrapper a {
+		.spellcheck.sb-modal-wrapper a {
 			color: #2860d8;
 			text-decoration: underline;
 		}
-
-		.sb-modal-content .sb-modal-body .sb-modal-message.sc-modal-reminder {
+		.spellcheck .sb-modal-content .sb-modal-body .sb-modal-message.sc-modal-reminder {
 			border: 1px solid #dcdcdc;
 			border-radius: 6px;
 			font-size: 0.875em;
 			margin-top: 3em;
 			padding: 1em;
 		}
-		.sb-modal-wrapper details {
+		.spellcheck .sb-modal-wrapper details {
 			font-size: 0.875em;
 		}
-		.sc-details {
+		.spellcheck .sc-details {
 			font-family: monospace;
 		}
 		`;
@@ -103,8 +95,7 @@ let UI = {
 			</div>
 		</div>`
 
-		document.querySelector( ".sb-modal-system" ).classList.add( "sb-modal-open" );
-		// document.querySelector( ".sb-modal-wrapper" ).classList.add( "sb-modal-wrapper--inverted" );
+		document.querySelector( ".sb-modal-system" ).classList.add( "sb-modal-open", "spellcheck" );
 		document.querySelector( ".sb-modal-wrapper" ).innerHTML = modalWrapper;
 		document.querySelector( ".sb-modal-close" ).addEventListener( "click", hideModal );
 
