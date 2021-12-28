@@ -4,11 +4,11 @@ class App
 {
 	/**
 	 * @param {Object} [options]
-	 * @param {string} [options.grid] - String representation of today's grid
+	 * @param {Object} [options.grid]
 	 */
 	constructor({ grid } = {})
 	{
-		this.grid = App.parseGrid( grid );
+		this.grid = grid;
 	}
 
 	async fetchGrid( url )
@@ -55,17 +55,23 @@ class App
 	}
 
 	/**
-	 * @param {string}
+	 * @param {string} gridString
 	 * @returns {Object}
 	 */
-	static parseGrid( grid )
+	static parseGrid( gridString )
 	{
 		let result = {
 			distributions: {},
 			wordLengths: 0,
 		};
 
-		let gridRows = grid
+		// Insert newlines if they're missing — ex., when fetched with `fetch()`
+		if( !gridString.includes( "\n" ) )
+		{
+			gridString = gridString.replace( /(.\:)/g, "\n$&" );
+		}
+
+		let gridRows = gridString
 			.split( "\n" )
 			.map( row => row.replace( /\s+/g, "\t" ).split( "\t" ) );
 

@@ -18,7 +18,8 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 	{
 		it( "should be set by constructor", () =>
 		{
-			let app = new App( { grid: validGrid() } );
+			let grid = App.parseGrid( validGrid() );
+			let app = new App( { grid: grid } );
 
 			assert.isObject( app.grid );
 			assert.hasAllKeys( app.grid, ["wordLengths", "distributions"] );
@@ -30,7 +31,9 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 	{
 		it( "should return an object identical to .grid if words array is empty", () =>
 		{
-			let app = new App( { grid: validGrid() } );
+			let app = new App({
+				grid: App.parseGrid( validGrid() )
+			});
 			let gridRemaining = app.gridRemaining([]);
 
 			assert.isObject( gridRemaining );
@@ -42,7 +45,9 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 
 		it( "should subtract from .grid totals for each word length", () =>
 		{
-			let app = new App( { grid: validGrid() } );
+			let app = new App({
+				grid: App.parseGrid( validGrid() )
+			});
 			let gridRemaining = app.gridRemaining([
 				"cart",
 				"tort",
@@ -57,8 +62,8 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 	{
 		it( "should throw an Error if grid string doesn't produce 3 or more rows", () =>
 		{
-			let oneRow = () => new App( { grid: "invalid grid" } );
-			let twoRows = () => new App( { grid: "invalid\ngrid" } );
+			let oneRow = () => App.parseGrid( "invalid grid" );
+			let twoRows = () => App.parseGrid( "invalid\ngrid" );
 
 			assert.throws( oneRow, "Invalid grid string: Expecting 3 or more lines, found 1" );
 			assert.throws( twoRows, "Invalid grid string: Expecting 3 or more lines, found 2" );
@@ -69,7 +74,7 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 			let grid = `		 4	  5	  6	  7	  8	  9	 11	  Σ
 C:	  1	  2
 E:	  -	  1	  2	  1	  -	  -	  -	  4`
-			let fn = () => new App( { grid: grid } );
+			let fn = () => App.parseGrid( grid );
 
 			assert.throws( fn, "Invalid grid string: Expecting 9 columns on line 2, found 3" );
 		});
@@ -104,6 +109,17 @@ E:	  -	  1	  2	  1	  -	  -	  -	  4`
 		{
 			let parseResult = App.parseGrid( validGrid() );
 			assert.deepEqual( parseResult.wordLengths, [4,5,6,7,8,9,11] );
+		});
+
+		it( "should support a format without newlines", () =>
+		{
+			let weirdGrid = `          4\t  5\t  6\t  7\t  8\t  9\t  ΣA:\t  3\t  4\t  2\t  1\t  -\t  -\t 10G:\t  4\t  3\t  2\t  2\t  -\t  -\t 11L:\t  3\t  1\t  -\t  -\t  1\t  -\t  5M:    7\t  8\t  3\t  -\t  -\t  1\t 19R:\t  2\t  1\t  -\t  -\t  -\t  -\t  3Σ:\t 19\t 17\t  7\t  3\t  1\t  1\t 48`;
+
+			let parseResult = App.parseGrid( weirdGrid );
+
+			assert.isObject( parseResult );
+			assert.hasAllKeys( parseResult, ["wordLengths", "distributions"] );
+			assert.hasAllKeys( parseResult.distributions, ["A", "G", "L", "M", "R"] );
 		});
 	});
 });
