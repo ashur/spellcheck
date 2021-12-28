@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- 🎈🐀 -->
+	<meta name="generator" content="eleventy">
+
+	<title>{% if title %}{{ title }} | {{ metadata.site.title }}{% else %}{{ metadata.site.title }} | {{ metadata.site.description }}{% endif %}</title>
+
+	<meta name="title" content="{{ metadata.site.title }}">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ metadata.env.url }}">
+	<meta property="og:title" content="{{ metadata.site.title }}">
+	<meta property="og:description" content="{{ metadata.site.description }}">
+
+	{% set style %}
+		{% include "css/reset.css" %}
+		{% include "css/fonts.css" %}
+		{% include "css/global.css" %}
+		{% include "css/composition.css" %}
+		{% include "css/utilities.css" %}
+		{% include "css/blocks.css" %}
+	{% endset %}
+	<style>
+		{{ style | safe }}
+	</style>
+
+	<link rel="stylesheet" href="https://use.typekit.net/ucp1lpb.css">
+</head>
+<body>
+	{{ content | safe }}
+</body>
+</html>
