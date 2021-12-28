@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "eleventy && npm run build:js",
-    "build:js": "esbuild src/scripts/bookmarklet.mjs --bundle --outfile=dist/bookmarklet.js",
+    "build:js": "./scripts/build-js.sh",
     "dev": "concurrently \"npm:watch:*\"",
     "serve": "eleventy --serve",
     "test": "mocha test",
