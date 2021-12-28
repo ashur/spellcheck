@@ -17,7 +17,7 @@ import UI from "./ui.mjs";
 				window.spellcheckApp.showErrorModal( "Spell Check was unable to locate today’s grid.", `Could not locate "Today’s Hints" menu item` );
 			}
 
-			console.log( "⬇️ Fetching today’s grid" );
+			console.log( "⬇️ Spell Check: Fetching today’s grid" );
 			let remoteGrid = await App.fetchGrid( hintsLink.href );
 
 			window.spellcheckApp = new App({
