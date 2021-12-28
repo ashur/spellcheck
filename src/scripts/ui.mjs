@@ -72,6 +72,12 @@ let UI = {
 
 	showModal: ({title, subtitle, body} = {}) =>
 	{
+		if( !document.querySelector( "#js-hook-pz-moment__game.on-stage" ) )
+		{
+			console.log( "🙈 Spell Check: Puzzle is not currently visible" );
+			return;
+		}
+
 		let modalHeader = `<h3 class="sb-modal-title">${title}</h3>`;
 		if( subtitle )
 		{
