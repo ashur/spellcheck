@@ -21,6 +21,8 @@
 	--font-size: var( --size-0 );
 	--font-size-sm: calc( var( --size-0 ) * 0.875 );
 
+	--border-radius: 6px;
+
 	/* Composition */
 	--measure: 64ch;
 	--page-margin: clamp( var( --size-0 ), 8vw, var( --size-4 ) );
@@ -28,6 +30,7 @@
 	--box-padding: var( --page-margin );
 	--container-size: 56ch;
 
+	--stack-xs-size: calc( var( --font-size ) / var( --ratio-1 ) );
 	--stack-sm-size: calc( var( --font-size ) / var( --ratio-0 ) );
 	--stack-size: calc( var( --font-size ) * var( --ratio-1 ) );
 	--stack-lg-size: calc( var( --font-size ) * var( --ratio-2 ) );
@@ -57,8 +60,13 @@
 }
 
 body {
+	--page-margin-y: calc( var(--page-margin) * var(--ratio-0) );
+
 	font-family: var(--font-body);
 	font-size: var(--font-size);
+	margin-bottom: var(--page-margin-y);
+	margin-top: var(--page-margin-y);
+	margin-block: var(--page-margin-y);
 }
 
 a {
@@ -71,7 +79,7 @@ a:hover {
 
 @media (min-width: 552px) {
 	img {
-		border-radius: 6px;
+		border-radius: var(--border-radius);
 		box-shadow: 0 0 0 1px var(--color-border);
 	}
 }

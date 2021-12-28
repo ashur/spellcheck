@@ -13,6 +13,10 @@
 	max-width: var( --container-size );
 }
 
+.stack-xs > * + * {
+	margin-top: var( --stack-xs-size );
+}
+
 .stack-sm > * + * {
 	margin-top: var( --stack-sm-size );
 }

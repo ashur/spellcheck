@@ -1,0 +1,24 @@
+.install__bookmarklet {
+	background-color: #eee;
+	border-radius: var(--border-radius);
+	cursor: grab;
+	font-family: var(--font-category);
+	letter-spacing: 1px;
+	padding-block: var(--size--4);
+	padding-inline: var(--size--2);
+	text-decoration: none;
+	text-transform: uppercase;
+}
+	.install__bookmarklet:hover {
+		text-decoration: none;
+	}
+
+.install__details summary {
+	cursor: pointer;
+}
+
+.install__steps {
+	font-size: 0.875em;
+	margin-block-start: var(--stack-sm-size);
+	margin-block-end: var(--stack-size);
+}

@@ -1,1 +1,4 @@
 {% include "css/blocks/header.css" %}
+{% include "css/blocks/install.css" %}
+{% include "css/blocks/reminder.css" %}
+{% include "css/blocks/section.css" %}

@@ -1,7 +1,3 @@
-.header {
-	margin-top: calc( var(--page-margin) * var(--ratio-0) );
-}
-
 .header__category {
 	color: var(--color-category);
 	font-family: var(--font-category);
