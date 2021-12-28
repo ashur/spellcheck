@@ -69,11 +69,9 @@ a:hover {
 	text-decoration: underline;
 }
 
-img {
-	box-shadow: 0 0 0 1px var(--color-border);
-}
-	@media (min-width: 552px) {
-		img {
-			border-radius: 6px;
-		}
+@media (min-width: 552px) {
+	img {
+		border-radius: 6px;
+		box-shadow: 0 0 0 1px var(--color-border);
 	}
+}
