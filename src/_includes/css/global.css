@@ -1,4 +1,5 @@
 :root {
+	--ratio--1: calc( var( --ratio-0 ) / var( --ratio ) );
 	--ratio: 1.5;
 	--ratio-0: var( --ratio );
 	--ratio-1: calc( var( --ratio-0 ) * var( --ratio ) );
@@ -25,10 +26,10 @@
 	--page-margin: clamp( var( --size-0 ), 8vw, var( --size-4 ) );
 
 	--box-padding: var( --page-margin );
-	--container-size: 1400px;
+	--container-size: 56ch;
 
-	--stack-sm-size: calc( var( --font-size ) / var( --ratio-2 ) );
-	--stack-size: calc( var( --font-size ) * var( --ratio ) );
+	--stack-sm-size: calc( var( --font-size ) / var( --ratio-0 ) );
+	--stack-size: calc( var( --font-size ) * var( --ratio-1 ) );
 	--stack-lg-size: calc( var( --font-size ) * var( --ratio-2 ) );
 
 	/* Fonts */
@@ -36,8 +37,14 @@
 	--font-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", serif;
 
 	--font-body: Georgia, var(--font-serif);
-	--font-category: futura-pt, var(--font-sans);
-	--font-heading: mrs-eaves, var(--font-serif);
+	--font-category: "futura-pt", var(--font-sans);
+	--font-heading: "mrs-eaves", var(--font-serif);
+
+	--font-size: clamp(
+		var( --size-0 ),
+		calc( var( --size--2 ) + 1vw ),
+		var( --size-1 )
+	);
 
 	/* Colors */
 	--color-gray-light: #dcdcdc;
@@ -51,6 +58,7 @@
 
 body {
 	font-family: var(--font-body);
+	font-size: var(--font-size);
 }
 
 a {
