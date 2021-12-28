@@ -1,0 +1,6 @@
+{
+  "apexskier.eslint.config.fixOnSave" : "Enable",
+  "index.ignored_file_patterns" : [
+    "package-lock.json"
+  ]
+}
