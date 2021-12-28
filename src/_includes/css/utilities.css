@@ -2,6 +2,12 @@
 	font-family: var( --font-heading );
 }
 
+.inset {
+	margin-inline: var( --page-margin );
+	margin-left: var( --page-margin );
+	margin-right: var( --page-margin );
+}
+
 .measure {
 	max-width: var( --measure );
 }
@@ -12,3 +18,7 @@
 	.no-underline:hover {
 		text-decoration: underline;
 	}
+
+.nowrap {
+	white-space: nowrap;
+}
