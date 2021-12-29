@@ -1,4 +1,6 @@
 .header__caption {
+	color: var(--color-gray-dark);
+	line-height: 1.25;
 	padding-left: var(--stack-sm-size);
 	padding-right: var(--stack-sm-size);
 }
