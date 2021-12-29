@@ -16,11 +16,13 @@
 	<meta property="og:url" content="{{ metadata.env.url }}">
 	<meta property="og:title" content="{{ metadata.site.title }}">
 	<meta property="og:description" content="{{ metadata.site.description }}">
+	<meta property="og:image" content="{{ metadata.env.url }}/images/social.jpg">
 
-	<meta property="twitter:card" content="summary">
-	<meta property="twitter:url" content="https://spellcheck.fun/">
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="{{ metadata.env.url }}">
 	<meta property="twitter:title" content="Spell Check">
 	<meta property="twitter:description" content="{{ metadata.site.description }}">
+	<meta property="twitter:image" content="{{ metadata.env.url }}/images/social.jpg">
 
 	{% set style %}
 		{% include "css/reset.css" %}
