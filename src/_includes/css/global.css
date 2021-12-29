@@ -36,11 +36,11 @@
 	--stack-lg-size: calc( var( --font-size ) * var( --ratio-2 ) );
 
 	/* Fonts */
-	--font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-	--font-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", serif;
+	--font-sans: "franklin-gothic-urw", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	--font-serif: Georgia, Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", serif;
 
-	--font-body: Georgia, var(--font-serif);
-	--font-category: "futura-pt", var(--font-sans);
+	--font-body: var(--font-sans);
+	--font-category: var(--font-sans);
 	--font-heading: "mrs-eaves", var(--font-serif);
 
 	--font-size: clamp(
