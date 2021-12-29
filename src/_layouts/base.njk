@@ -10,10 +10,17 @@
 	<title>{{ title if title else metadata.site.title }}</title>
 
 	<meta name="title" content="{{ metadata.site.title }}">
+	<meta name="description" content="{{ metadata.site.description }}">
+
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="{{ metadata.env.url }}">
 	<meta property="og:title" content="{{ metadata.site.title }}">
 	<meta property="og:description" content="{{ metadata.site.description }}">
+
+	<meta property="twitter:card" content="summary">
+	<meta property="twitter:url" content="https://spellcheck.fun/">
+	<meta property="twitter:title" content="Spell Check">
+	<meta property="twitter:description" content="{{ metadata.site.description }}">
 
 	{% set style %}
 		{% include "css/reset.css" %}
