@@ -1,3 +1,14 @@
+.header__caption {
+	padding-left: var(--stack-sm-size);
+	padding-right: var(--stack-sm-size);
+}
+@media (min-width: 526px) {
+	.header__caption {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
 .header__category {
 	color: var(--color-category);
 	font-family: var(--font-category);

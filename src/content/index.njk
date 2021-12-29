@@ -1,47 +1,59 @@
 ---
 permalink: /index.html
 ---
-<div class="[ container stack ][][]">
-	<header class="[ stack-sm ][ inset ][ header ]">
-		<p class="[][][ header__category ]">A bookmarklet</p>
-		<h1 class="[][][ header__title ]">{{ metadata.site.title }}</h1>
-		<p class="[][][ header__heading ]">Check your progress in the <span class="[][ nowrap ][]">New York Times</span> <a href="https://nytimes.com/puzzles/spelling-bee" class="[][ nowrap ][]">Spelling Bee</a> without leaving the puzzle.</p>
+<div class="[ container stack-lg ][][]">
+	<header class="[ stack ][][ header ]">
+		<div class="[ stack-sm ][ inset ][]">
+			<p class="[][][ header__category ]">A bookmarklet</p>
+			<h1 class="[][][ header__title ]">{{ metadata.site.title }}</h1>
+			<p class="[][][ header__heading ]">Check your progress in the <span class="[][ nowrap ][]">New York Times</span> <a href="https://nytimes.com/puzzles/spelling-bee" class="[][ nowrap ][]">Spelling Bee</a> without leaving the puzzle.</p>
+		</div>
+
+		<figure class="[ stack-sm ][][]">
+			<picture>
+				<source
+					srcset="/images/desktop@2x.avif"
+					media="(orientation:landscape)"
+					type="image/avif"
+				/>
+				<source
+					srcset="/images/desktop@2x.jpg"
+					media="(orientation:landscape)"
+					type="image/jpeg"
+				/>
+				<source
+					srcset="/images/desktop@2x.webp"
+					media="(orientation:landscape)"
+					type="image/webp"
+				/>
+
+				<source
+					srcset="/images/mobile@2x.avif"
+					media="(orientation:portrait)"
+					type="image/avif"
+				/>
+				<source
+					srcset="/images/mobile@2x.webp"
+					media="(orientation:portrait)"
+					type="image/webp"
+				/>
+				<source
+					srcset="/images/mobile@2x.jpg"
+					media="(orientation:portrait)"
+					type="image/jpeg"
+				/>
+
+				<img
+					alt="Spelling Bee puzzle with Spell Check visible."
+					src="/images/desktop@2x.jpg"
+				/>
+			</picture>
+
+			<figcaption
+				class="[][ font-sans font-sm inset ][ header__caption ]"
+			>The {{ metadata.site.title }} grid shows the number of words remaining for the day’s puzzle.</figcaption>
+		</figure>
 	</header>
-
-	<main class="[ stack-lg ][][]">
-		<picture>
-			<source
-				srcset="/images/desktop@2x.avif"
-				media="(orientation:landscape)"
-				type="image/avif"
-			/>
-			<source
-				srcset="/images/desktop@2x.jpg"
-				media="(orientation:landscape)"
-				type="image/jpeg"
-			/>
-			<source
-				srcset="/images/desktop@2x.webp"
-				media="(orientation:landscape)"
-				type="image/webp"
-			/>
-
-			<source
-				srcset="/images/mobile@2x.avif"
-				media="(orientation:portrait)"
-				type="image/avif"
-			/>
-			<source
-				srcset="/images/mobile@2x.jpg"
-				media="(orientation:portrait)"
-				type="image/jpeg"
-			/>
-
-			<img
-				alt="Spelling Bee puzzle with Spell Check visible. A grid shows the number of remaining words for each letter and word length."
-				src="/images/mobile@2x.jpg"
-			/>
-		</picture>
 
 		<section
 			class="[ stack-sm ][ inset ][ section ]"
