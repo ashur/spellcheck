@@ -1,10 +1,10 @@
-.section {
-
-}
-
 .section__heading {
 	font-family: var(--font-heading);
 	font-size: calc( var(--font-size) * var(--ratio-1) );
 	letter-spacing: -1px;
 	line-height: 1;
+}
+
+.section__subheading {
+	margin-top: calc( var(--stack-sm-size) * var(--ratio-1) );
 }

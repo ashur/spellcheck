@@ -1,0 +1,12 @@
+.usage__check::after {
+	--size: 1.125em;
+
+	content: "";
+	border: solid #00ae4c;
+	border-width: 0 4px 4px 0;
+	display: inline-block;
+	height: var(--size);
+	margin-left: 0.625em;
+	transform: rotate(45deg) translate(0, 0);
+	width: calc( var(--size) / 2 );
+}
