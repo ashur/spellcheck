@@ -47,7 +47,8 @@
 .install__content {
 	border: solid var(--color-black) 3px;
 	border-top: none;
-	padding: calc( var(--padding-y) * var(--ratio-0) ) var( --padding-x );
+	font-size: var(--font-size-sm);
+	padding: calc( var(--padding-y) * var(--ratio-0) ) calc( var( --padding-x ) * var(--ratio-0) );
 }
 	.install__content[hidden=""] {
 		display: none;
