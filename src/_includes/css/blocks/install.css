@@ -47,7 +47,7 @@
 .install__content {
 	border: solid var(--color-black) 3px;
 	border-top: none;
-	padding: var(--padding-y) var( --padding-x );
+	padding: calc( var(--padding-y) * var(--ratio-0) ) var( --padding-x );
 }
 	.install__content[hidden=""] {
 		display: none;
@@ -55,6 +55,7 @@
 
 .install__heading {
 	font-size: inherit;
+	font-weight: normal;
 	line-height: 1;
 }
 
