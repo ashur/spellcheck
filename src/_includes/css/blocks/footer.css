@@ -1,0 +1,18 @@
+.footer {
+	border-top: solid var(--color-border) 1px;
+	font-size: var(--font-size-sm);
+	padding-left: var(--page-margin);
+	padding-right: var(--page-margin);
+	padding-top: var(--size-2);
+}
+
+.footer__heading {
+	font-size: inherit;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.footer__links {
+	list-style: none;
+	padding: 0;
+}
