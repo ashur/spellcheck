@@ -1,5 +1,9 @@
-.font-heading {
-	font-family: var( --font-heading );
+.font-sans {
+	font-family: var(--font-sans);
+}
+
+.font-sm {
+	font-size: var(--font-size-sm);
 }
 
 .inset {
