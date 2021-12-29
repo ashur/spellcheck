@@ -35,7 +35,7 @@ let UI = {
 			font-size: 1.125em;
 		}
 		.spellcheck .sb-modal-table td .checked {
-			border: solid #00ae4c;
+			border: solid #009340;
 			border-width: 0 3px 3px 0;
 			display: inline-block;
 			height: 17px;
