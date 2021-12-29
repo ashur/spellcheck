@@ -24,7 +24,7 @@
 		{% include "css/blocks.css" %}
 	{% endset %}
 	<style>
-		{{ style | safe }}
+		{{ style | cssmin | safe }}
 	</style>
 </head>
 <body>
