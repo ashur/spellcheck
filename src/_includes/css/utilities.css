@@ -1,3 +1,11 @@
+.accordion {
+	list-style: none;
+	padding: 0;
+}
+	.accordion [aria-hidden="true"] {
+		display: none;
+	}
+
 .font-sans {
 	font-family: var(--font-sans);
 }

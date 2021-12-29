@@ -93,50 +93,78 @@ permalink: /index.html
 		</section>
 
 		<section
-			class="[ stack-sm ][ inset ][ section ]"
+			class="[ stack ][ inset ][ section ]"
 			id="install"
 		>
 			<header class="[ stack-xs ][][]">
 				<h2 class="[][][ section__heading ]">Installation</h2>
-				<p>{{ metadata.site.title }} is supported by most modern web browsers, including those listed below.</p>
+				<p>{{ metadata.site.title }} is supported by most modern web browsers and operating systems, including those listed below.</p>
 			</header>
 
-			<div class="[ stack-xs ][][ install__categories ]">
-				<article class="[][][ install__category ]">
+			<ul
+				aria-label="Accordion Control Button Group"
+				class="[ stack-xs ][ accordion ][ install__categories ]"
+			>
+				<li class="[][][ install__category ]">
 					<h3 class="[][][ install__heading ]">
-						<button class="install__button" aria-expanded="false" aria-controls="install-android">
-							<strong>Android</strong> (Chrome)
+						<button
+							aria-controls="install-android"
+							aria-expanded="false"
+							class="install__button"
+						>
+							<span><strong>Android</strong> (Chrome)</span>
 						</button>
 					</h3>
-					<div id="install-android" class="install__content" hidden="">
+					<div
+						aria-hidden="true"
+						class="[][][ install__content ]"
+						id="install-android"
+					>
 
 					</div>
-				</article>
+				</li>
 
-				<article class="[][][ install__category ]">
+				<li class="[][][ install__category ]">
 					<h3 class="[][][ install__heading ]">
-						<button class="install__button" aria-expanded="false" aria-controls="install-ios">
-							<strong>iOS</strong> (Safari)
+						<button
+							aria-controls="install-ios"
+							aria-expanded="false"
+							class="install__button"
+						>
+							<span><strong>iOS</strong> (Safari)</span>
 						</button>
 					</h3>
-					<div id="install-ios" class="install__content" hidden="">
+					<div
+						aria-hidden="true"
+						id="install-ios"
+						class="[][][ install__content ]"
+					>
 
 					</div>
-				</article>
+				</li>
 
-				<article class="[][][ install__category ]">
+				<li class="[][][ install__category ]">
 					<h3 class="[][][ install__heading ]">
-						<button class="install__button" aria-expanded="true" aria-controls="install-desktop">
-							<strong>Desktop</strong> (Chrome, Firefox, Safari)
+						<button
+							aria-controls="install-desktop"
+							aria-expanded="false"
+							class="install__button"
+						>
+							<span><strong>Desktop</strong> (Chrome, Firefox, Safari)</span>
 						</button>
 					</h3>
-					<div id="install-desktop" class="install__content">
+					<div
+						aria-hidden="true"
+						class="[][][ install__content ]"
+						id="install-desktop"
+					>
 						<ol class="[ stack-xs ][][ install__steps ]">
 							<li>Open your browser’s bookmarks toolbar</li>
 							<li>Click and drag this <a class="[][][ install__bookmarklet ]" href="#">{{ metadata.site.title }}</a> bookmarklet to the toolbar</li>
 						</ol>
 					</div>
-				</article>
+				</li>
+			</ul>
 		</section>
 	</main>
 
@@ -150,5 +178,27 @@ permalink: /index.html
 </div>
 
 <script>
+	(() =>
+	{
+		document.querySelectorAll( ".accordion [aria-controls]" )
+			.forEach( button =>
+			{
+				button.addEventListener( "click", () =>
+				{
+					let isExpanded = button.getAttribute( "aria-expanded" ) === "true";
+					let content = document.getElementById( button.getAttribute("aria-controls") );
 
+					if( isExpanded )
+					{
+						content.setAttribute( "aria-hidden", "true" );
+						button.setAttribute( "aria-expanded", "false" );
+					}
+					else
+					{
+						content.setAttribute( "aria-hidden", "false" );
+						button.setAttribute( "aria-expanded", "true" );
+					}
+				});
+			});
+	})();
 </script>
