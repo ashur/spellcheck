@@ -11,6 +11,9 @@
 	margin-left: var( --page-margin );
 	margin-right: var( --page-margin );
 }
+	.inset picture {
+		margin: calc( var(--stack-sm-size) * 1.5) 0;
+	}
 
 .measure {
 	max-width: var( --measure );
