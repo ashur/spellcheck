@@ -96,7 +96,7 @@ let UI = {
 				<div class="sb-modal-body">
 					${body}
 
-					<p class="sb-modal-message sc-modal-reminder">Just a reminder, Spell Check isn’t affiliated with or endorsed by the <span style="white-space: nowrap">New York Times</span>. <a href="#">More info</a></p>
+					<p class="sb-modal-message sc-modal-reminder">Just a reminder, Spell Check isn’t affiliated with or endorsed by the <span style="white-space: nowrap">New York Times</span>. <a href="https://spellcheck.fun">More info</a></p>
 				</div>
 			</div>
 		</div>`
