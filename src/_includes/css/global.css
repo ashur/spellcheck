@@ -50,13 +50,16 @@
 	);
 
 	/* Colors */
+	--color-black: #000;
 	--color-gray-light: #dcdcdc;
 	--color-green: #009340;
 
 	--color-background: #fff;
 	--color-border: var(--color-gray-light);
+	--color-button: #ededed;
+	--color-button--hover: var(--color-gray-light);
 	--color-category: var(--color-green);
-	--color-text: #000;
+	--color-text: var(--color-black);
 }
 
 body {
