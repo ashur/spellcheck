@@ -49,6 +49,9 @@
 	border-top: none;
 	padding: var(--padding-y) var( --padding-x );
 }
+	.install__content[hidden=""] {
+		display: none;
+	}
 
 .install__heading {
 	font-size: inherit;
