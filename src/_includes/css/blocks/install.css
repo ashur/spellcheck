@@ -1,24 +1,64 @@
 .install__bookmarklet {
-	background-color: #eee;
+	background-color: var(--color-button);
 	border-radius: var(--border-radius);
 	cursor: grab;
 	font-family: var(--font-category);
-	letter-spacing: 1px;
-	padding-block: var(--size--4);
-	padding-inline: var(--size--2);
+	font-weight: bold;
+	padding: var(--size--4) var(--size--2);
 	text-decoration: none;
-	text-transform: uppercase;
 }
 	.install__bookmarklet:hover {
 		text-decoration: none;
 	}
 
-.install__details summary {
+.install__button {
+	--background-color: var(--color-button);
+	--color: var(--color-text);
+
+	background-color: var(--background-color);
+	border: none;
+	color: var(--color);
 	cursor: pointer;
+	margin: 0;
+	padding: var(--padding-y) var(--padding-x);
+	text-align: left;
+	width: 100%;
+}
+	.install__button[aria-expanded="true"] {
+		--background-color: var(--color-text);
+		--color-button--hover: var(--color-text);
+		--color: var(--color-background);
+	}
+
+	.install__button:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 4px var(--color-green);
+	}
+
+	.install__button:hover {
+		background-color: var(--color-button--hover);
+	}
+
+.install__category {
+	--padding-x: 1.0em;
+	--padding-y: 0.75em;
+}
+
+.install__content {
+	border: solid var(--color-black) 3px;
+	border-top: none;
+	padding: var(--padding-y) var( --padding-x );
+}
+
+.install__heading {
+	font-size: inherit;
+	line-height: 1;
 }
 
 .install__steps {
-	font-size: 0.875em;
-	margin-block-start: var(--stack-sm-size);
-	margin-block-end: var(--stack-size);
+	padding-left: calc( var( --padding-x ) + 0.5em );
+}
+
+.install__steps li::marker {
+	font-weight: bold;
 }

@@ -93,13 +93,50 @@ permalink: /index.html
 		</section>
 
 		<section
-			class="[ stack ][ inset ][ section ]"
+			class="[ stack-sm ][ inset ][ section ]"
 			id="install"
 		>
 			<header class="[ stack-xs ][][]">
 				<h2 class="[][][ section__heading ]">Installation</h2>
 				<p>{{ metadata.site.title }} is supported by most modern web browsers, including those listed below.</p>
 			</header>
+
+			<div class="[ stack-xs ][][ install__categories ]">
+				<article class="[][][ install__category ]">
+					<h3 class="[][][ install__heading ]">
+						<button class="install__button" aria-expanded="false" aria-controls="install-android">
+							Android (Chrome)
+						</button>
+					</h3>
+					<div id="install-android" class="install__content">
+
+					</div>
+				</article>
+
+				<article class="[][][ install__category ]">
+					<h3 class="[][][ install__heading ]">
+						<button class="install__button" aria-expanded="false" aria-controls="install-ios">
+							iOS (Safari)
+						</button>
+					</h3>
+					<div id="install-ios" class="install__content">
+
+					</div>
+				</article>
+
+				<article class="[][][ install__category ]">
+					<h3 class="[][][ install__heading ]">
+						<button class="install__button" aria-expanded="true" aria-controls="install-desktop">
+							Desktop (Chrome, Firefox, Safari)
+						</button>
+					</h3>
+					<div id="install-desktop" class="install__content">
+						<ol class="[ stack-xs ][][ install__steps ]">
+							<li>Open your browser’s bookmarks toolbar</li>
+							<li>Click and drag this <a class="[][][ install__bookmarklet ]" href="#">{{ metadata.site.title }}</a> bookmarklet to the toolbar</li>
+						</ol>
+					</div>
+				</article>
 		</section>
 	</main>
 
