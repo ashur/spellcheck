@@ -8,17 +8,9 @@ module.exports = css =>
 {
 	if( css && process.env.NODE_ENV === "production" )
 	{
-		let options = {
-			level: {
-				2: {
-					all: true,
-				},
-			},
-		};
-
 		console.log( "🗜 Minifying CSS" );
 
-		return new CleanCSS( options )
+		return new CleanCSS( {} )
 			.minify( css ).styles;
 	}
 
