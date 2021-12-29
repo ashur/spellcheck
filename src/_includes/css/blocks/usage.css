@@ -2,7 +2,7 @@
 	--size: 1.125em;
 
 	content: "";
-	border: solid #00ae4c;
+	border: solid var(--color-green);
 	border-width: 0 4px 4px 0;
 	display: inline-block;
 	height: var(--size);
