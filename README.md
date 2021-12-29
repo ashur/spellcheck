@@ -2,8 +2,6 @@
 
 Check your progress in the New York Times [Spelling Bee] without leaving the puzzle.
 
-> 🎈🐀 Built with [Eleventy]
-
 ## Installation
 
 > 💡 These are instructions for installing the source for the Spell Check website. For help installing the bookmarklet, please see [Spell Check].
@@ -38,6 +36,10 @@ To build the bookmarklet script independently of the site, run:
 ```
 npm run build:js
 ```
+
+---
+
+🎈🐀 Built with [Eleventy]
 
 [Eleventy]: https://11ty.dev
 [Spell Check]: https://spellcheck.fun
