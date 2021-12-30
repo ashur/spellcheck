@@ -2,6 +2,10 @@
 
 Check your progress in the New York Times [Spelling Bee] without leaving the puzzle.
 
+## Bookmarklet Source
+
+If you're interested in viewing the source of the bookmarklet itself, please see [init.mjs](https://github.com/ashur/spellcheck/blob/main/src/scripts/init.mjs)
+
 ## Installation
 
 > 💡 These are instructions for installing the source for the Spell Check website. For help installing the bookmarklet, please see [Spell Check].
