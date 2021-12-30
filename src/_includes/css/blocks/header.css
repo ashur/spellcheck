@@ -1,3 +1,15 @@
+.header > picture {
+	margin-left: var(--page-margin);
+	margin-right: var(--page-margin);
+}
+
+@media (min-width: 552px) {
+	.header > picture {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
 .header__caption {
 	color: var(--color-gray-dark);
 	line-height: 1.25;

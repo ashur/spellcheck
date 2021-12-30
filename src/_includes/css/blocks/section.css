@@ -8,3 +8,19 @@
 .section__subheading {
 	margin-top: calc( var(--stack-sm-size) * var(--ratio-1) );
 }
+
+.section.inset > picture {
+	margin: calc( var(--stack-sm-size) * 1.5) 0;
+}
+
+.section > picture {
+	margin-left: var(--page-margin);
+	margin-right: var(--page-margin);
+}
+
+@media (min-width: 552px) {
+	.section > picture {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
