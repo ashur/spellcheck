@@ -204,8 +204,8 @@ class App
 	 */
 	showGridModal()
 	{
-		let {words} = JSON.parse( localStorage.getItem( "sb-today" ) );
-		let gridRemaining = this.gridRemaining( words );
+		let {words} = JSON.parse( localStorage.getItem( "sb-today" ) || "{}" );
+		let gridRemaining = this.gridRemaining( words || [] );
 
 		let wordLengths = this.grid.wordLengths
 			.map( wordLength =>
