@@ -64,7 +64,7 @@
 	border: solid var(--color-black) 3px;
 	border-top: none;
 	font-size: var(--font-size-sm);
-	padding: calc( var(--padding-y) * var(--ratio-0) ) calc( var( --padding-x ) * var(--ratio-0) );
+	padding: calc( var(--padding-y) * var(--ratio--1) ) calc( var( --padding-x ) * var(--ratio--1) );
 }
 
 .install__copy {
