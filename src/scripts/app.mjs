@@ -185,7 +185,7 @@ class App
 			.map( line => `<p class="sb-modal-message">${line}</p>` )
 			.join( "\n" );
 
-		body += `<p class="sb-modal-message">Please click or tap the Spell Check bookmarklet to try again, or <a href="#">report the issue</a>.</p>`;
+		body += `<p class="sb-modal-message">Please click or tap the Spell Check bookmarklet to try again, or <a href="https://twitter.com/ashur">report the issue</a>.</p>`;
 
 		if( details )
 		{
