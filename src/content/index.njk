@@ -2,245 +2,200 @@
 permalink: /index.html
 ---
 {%- from "components/picture.njk" import picture -%}
+<div class="[ stack ][][]">
+	<picture>
+		<source
+			srcset="/images/desktop@2x.avif"
+			media="(orientation:landscape)"
+			type="image/avif"
+		/>
+		<source
+			srcset="/images/desktop@2x.jpg"
+			media="(orientation:landscape)"
+			type="image/jpeg"
+		/>
+		<source
+			srcset="/images/desktop@2x.webp"
+			media="(orientation:landscape)"
+			type="image/webp"
+		/>
 
-<div class="[ container stack-lg ][][]">
-	<header class="[ stack ][][ header ]">
-		<div class="[ stack-sm ][ inset ][]">
-			<p class="[][][ header__category ]">A bookmarklet</p>
-			<h1 class="[][][ header__title ]">{{ metadata.site.title }}</h1>
-			<p class="[][][ header__heading ]">Check your progress in the <span class="[][ nowrap ][]">New York Times</span> <a href="https://nytimes.com/puzzles/spelling-bee" class="[][ nowrap ][]">Spelling Bee</a> without leaving the puzzle.</p>
-		</div>
+		<source
+			srcset="/images/mobile@2x.avif"
+			media="(orientation:portrait)"
+			type="image/avif"
+		/>
+		<source
+			srcset="/images/mobile@2x.webp"
+			media="(orientation:portrait)"
+			type="image/webp"
+		/>
+		<source
+			srcset="/images/mobile@2x.jpg"
+			media="(orientation:portrait)"
+			type="image/jpeg"
+		/>
 
-		<picture>
-			<source
-				srcset="/images/desktop@2x.avif"
-				media="(orientation:landscape)"
-				type="image/avif"
-			/>
-			<source
-				srcset="/images/desktop@2x.jpg"
-				media="(orientation:landscape)"
-				type="image/jpeg"
-			/>
-			<source
-				srcset="/images/desktop@2x.webp"
-				media="(orientation:landscape)"
-				type="image/webp"
-			/>
+		<img
+			alt="Spelling Bee puzzle with Spell Check visible."
+			src="/images/desktop@2x.jpg"
+		/>
+	</picture>
 
-			<source
-				srcset="/images/mobile@2x.avif"
-				media="(orientation:portrait)"
-				type="image/avif"
-			/>
-			<source
-				srcset="/images/mobile@2x.webp"
-				media="(orientation:portrait)"
-				type="image/webp"
-			/>
-			<source
-				srcset="/images/mobile@2x.jpg"
-				media="(orientation:portrait)"
-				type="image/jpeg"
-			/>
-
-			<img
-				alt="Spelling Bee puzzle with Spell Check visible."
-				src="/images/desktop@2x.jpg"
-			/>
-		</picture>
-
-		<div class="[ stack-sm ][ inset ][]">
-			<p>Whether you’re new to the Spelling Bee or an old pro, sometimes it’s nice to peek at how close you are to the finish line.</p>
-			<p>Spell Check makes it quick and easy to see how many words you have left in today’s puzzle.</p>
-		</div>
-	</header>
-
-	<aside class="[ stack-xs ][][ reminder ]">
-		<h2 class="[][][ reminder__heading ]">Please Note</h2>
-		<p><span class="[][ nowrap ][]">{{ metadata.site.title }}</span> is made and maintained by <a href="https://ashur.cab/rera">Ashur Cabrera</a>, and is not affiliated with or endorsed by the <span class="[][ nowrap ][]">New York Times</span>.</p>
-	</aside>
-
-	<main class="[ stack-lg ][][]">
-		<section
-			class="[ stack-sm ][ inset ][ section ]"
-			id="usage"
-		>
-			<h2 class="[][][ section__heading ]">How it works</h2>
-			<p>After <a href="#install">installing</a> the {{ metadata.site.title }} bookmarklet, open the <a href="https://nytimes.com/puzzles/spelling-bee">Spelling Bee</a> in your web browser.</p>
-			<p>Any time you need a hint or want to see your progress, click or tap the bookmarklet. No need to switch tabs to check a different page: {{ metadata.site.title }} will appear right in front of your puzzle.</p>
-
-			<h3 class="[][][ section__subheading ]">Reading the grid</h3>
-			<p>The {{ metadata.site.title }} grid shows the number of words remaining for each letter.</p>
-			<p>For example, a <strong>2</strong> in the <strong>7</strong> column of row <strong>G</strong> means two more 7-letter words that start with “G” are left.</p>
-
-			{{ picture(
-				{
-					alt: "Spell Check grid showing two remaining 7-letter words that begin with G.",
-					src: "/images/grid-highlight@2x.jpg",
-					height: 543,
-					width: 1168
-				}
-			) }}
-
-			<p class="[][][ usage__check ]">When you’ve found every accepted solution for a given letter and length, a green checkmark lets you know there are no words left to uncover</p>
-		</section>
-
-		<section
-			class="[ stack ][ inset ][ section ]"
-			id="install"
-		>
-			<header class="[ stack-xs ][][]">
-				<h2 class="[][][ section__heading ]">Get started</h2>
-				<p>{{ metadata.site.title }} is supported by most modern web browsers and operating systems, including those listed below.</p>
-			</header>
-
-			<ul
-				aria-label="Accordion Control Button Group"
-				class="[ stack-xs ][ accordion ][ install__categories ]"
-			>
-				<li class="[][][ install__category ]">
-					<h3 class="[][][ install__heading ]">
-						<button
-							aria-controls="install-android"
-							aria-expanded="false"
-							class="install__button"
-						>
-							<span><strong>Android</strong> (Chrome)</span>
-						</button>
-					</h3>
-					<div
-						aria-hidden="true"
-						class="[ stack-sm ][][ install__content ]"
-						id="install-android"
-					>
-						<ol class="[ stack-xs ][][ install__steps ]">
-							<li>Copy the bookmarklet below</li>
-							<li>Tap Chrome’s overflow button, located on the right side of the toolbar</li>
-							<li>Tap the star icon to create a new bookmark</li>
-							<li>Tap <strong>Edit</strong> in the “Bookmarked” alert that briefly appears above Chrome’s toolbar</li>
-							<li>Delete the original URL</li>
-							<li>Paste the bookmarklet from step 1</li>
-							<li>Tap the back button to save your changes</li>
-						</ol>
-
-						<div class="[ stack-sm ][][]">
-							<h4>Using bookmarklets in Chrome</h4>
-
-							<ol class="[ stack-xs ][][ install__steps ]">
-								<li>Tap Chrome’s URL bar</li>
-								<li>Begin typing “spellcheck”</li>
-								<li>Tap the bookmarklet in the search results</li>
-							</ol>
-
-							{{ picture(
-								{
-									alt: "The Chrome URL bar with 'spell check' partially entered, and the bookmarklet visible in the results",
-									src: "/images/android@2x.jpg",
-									height: 543,
-									width: 1170
-								}
-							) }}
-						</div>
-					</div>
-				</li>
-
-				<li class="[][][ install__category ]">
-					<h3 class="[][][ install__heading ]">
-						<button
-							aria-controls="install-desktop"
-							aria-expanded="false"
-							class="install__button"
-						>
-							<span><strong>Desktop</strong> (Chrome, Firefox, Safari)</span>
-						</button>
-					</h3>
-					<div
-						aria-hidden="true"
-						class="[][][ install__content ]"
-						id="install-desktop"
-					>
-						<ol class="[ stack-xs ][][ install__steps ]">
-							<li>Open your browser’s bookmarks toolbar</li>
-							<li>Click and drag this <a class="[][][ install__bookmarklet ]" href="{{ bookmarklet | safe }}">{{ metadata.site.title }}</a> to the toolbar</li>
-						</ol>
-					</div>
-				</li>
-
-				<li class="[][][ install__category ]">
-					<h3 class="[][][ install__heading ]">
-						<button
-							aria-controls="install-ios"
-							aria-expanded="false"
-							class="install__button"
-						>
-							<span><strong>iOS</strong> (Safari)</span>
-						</button>
-					</h3>
-					<div
-						aria-hidden="true"
-						id="install-ios"
-						class="[ stack ][][ install__content ]"
-					>
-						<ol class="[ stack-xs ][][ install__steps ]">
-							<li>Copy the bookmarklet below</li>
-							<li>Tap the Share icon in Safari’s toolbar</li>
-							<li>Tap <strong>Add Bookmark</strong></li>
-							<li>Tap <strong>Save</strong></li>
-							<li>Tap the Bookmarks icon in Safari’s toolbar</li>
-							<li>Tap <strong>Edit</strong></li>
-							<li>Tap the <strong>Spell Check</strong> bookmark</li>
-							<li>Delete the original URL</li>
-							<li>Paste the bookmarklet from step 1</li>
-							<li>Tap <strong>Done</strong> three times to save your changes</li>
-						</ol>
-					</div>
-				</li>
-			</ul>
-
-			<div class="[ stack-xs ][][ install__copy ]">
-				<label for=""bookmarklet-ios">Bookmarklet</label>
-				<input
-					id="bookmarklet-ios"
-					onfocus="this.select()"
-					type="text"
-					value="{{ bookmarklet | safe }}"
-				>
-			</div>
-		</section>
-	</main>
-
-	<footer class="[ stack-sm ][][ footer ]">
-		<h2 class="[][][ footer__heading ]">{{ metadata.site.title }}</h2>
-		<ul class="[ stack-sm ][][ footer__links ]">
-			<li><a class="[][ no-underline ][]" href="https://twitter.com/ashur">Report an issue</a></li>
-			<li><a class="[][ no-underline ][]" href="https://github.com/ashur/spellcheck">View source</a></li>
-		</ul>
-	</footer>
+	<div class="[ stack-sm ][ inset ][]">
+		<p>Whether you’re new to the Spelling Bee or an old pro, sometimes it’s nice to peek at how close you are to the finish line.</p>
+		<p>Spell Check makes it quick and easy to see how many words you have left in today’s puzzle.</p>
+	</div>
 </div>
 
-<script>
-	(() =>
-	{
-		document.querySelectorAll( ".accordion [aria-controls]" )
-			.forEach( button =>
-			{
-				button.addEventListener( "click", () =>
-				{
-					let isExpanded = button.getAttribute( "aria-expanded" ) === "true";
-					let content = document.getElementById( button.getAttribute("aria-controls") );
+<aside class="[ stack-xs ][][ reminder ]">
+	<h2 class="[][][ reminder__heading ]">Please Note</h2>
+	<p><span class="[][ nowrap ][]">{{ metadata.site.title }}</span> is made and maintained by <a href="https://ashur.cab/rera">Ashur Cabrera</a>, and is not affiliated with or endorsed by the <span class="[][ nowrap ][]">New York Times</span>.</p>
+</aside>
 
-					if( isExpanded )
-					{
-						content.setAttribute( "aria-hidden", "true" );
-						button.setAttribute( "aria-expanded", "false" );
-					}
-					else
-					{
-						content.setAttribute( "aria-hidden", "false" );
-						button.setAttribute( "aria-expanded", "true" );
-					}
-				});
-			});
-	})();
-</script>
+<section
+	class="[ stack-sm ][ inset ][ section ]"
+	id="usage"
+>
+	<h2 class="[][][ section__heading ]">How it works</h2>
+	<p>After <a href="#install">installing</a> the {{ metadata.site.title }} bookmarklet, open the <a href="https://nytimes.com/puzzles/spelling-bee">Spelling Bee</a> in your web browser.</p>
+	<p>Any time you need a hint or want to see your progress, click or tap the bookmarklet. No need to switch tabs to check a different page: {{ metadata.site.title }} will appear right in front of your puzzle.</p>
+
+	<h3 class="[][][ section__subheading ]">Reading the grid</h3>
+	<p>The {{ metadata.site.title }} grid shows the number of words remaining for each letter.</p>
+	<p>For example, a <strong>2</strong> in the <strong>7</strong> column of row <strong>G</strong> means two more 7-letter words that start with “G” are left.</p>
+
+	{{ picture(
+		{
+			alt: "Spell Check grid showing two remaining 7-letter words that begin with G.",
+			src: "/images/grid-highlight@2x.jpg",
+			height: 543,
+			width: 1168
+		}
+	) }}
+
+	<p class="[][][ usage__check ]">When you’ve found every accepted solution for a given letter and length, a green checkmark lets you know there are no words left to uncover</p>
+</section>
+
+<section
+	class="[ stack ][ inset ][ section ]"
+	id="install"
+>
+	<header class="[ stack-xs ][][]">
+		<h2 class="[][][ section__heading ]">Get started</h2>
+		<p>{{ metadata.site.title }} is supported by most modern web browsers and operating systems, including those listed below.</p>
+	</header>
+
+	<ul
+		aria-label="Accordion Control Button Group"
+		class="[ stack-xs ][ accordion ][ install__categories ]"
+	>
+		<li class="[][][ install__category ]">
+			<h3 class="[][][ install__heading ]">
+				<button
+					aria-controls="install-android"
+					aria-expanded="false"
+					class="install__button"
+				>
+					<span><strong>Android</strong> (Chrome)</span>
+				</button>
+			</h3>
+			<div
+				aria-hidden="true"
+				class="[ stack-sm ][][ install__content ]"
+				id="install-android"
+			>
+				<ol class="[ stack-xs ][][ install__steps ]">
+					<li>Copy the bookmarklet below</li>
+					<li>Tap Chrome’s overflow button, located on the right side of the toolbar</li>
+					<li>Tap the star icon to create a new bookmark</li>
+					<li>Tap <strong>Edit</strong> in the “Bookmarked” alert that briefly appears above Chrome’s toolbar</li>
+					<li>Delete the original URL</li>
+					<li>Paste the bookmarklet from step 1</li>
+					<li>Tap the back button to save your changes</li>
+				</ol>
+
+				<div class="[ stack-sm ][][]">
+					<h4>Using bookmarklets in Chrome</h4>
+
+					<ol class="[ stack-xs ][][ install__steps ]">
+						<li>Tap Chrome’s URL bar</li>
+						<li>Begin typing “spellcheck”</li>
+						<li>Tap the bookmarklet in the search results</li>
+					</ol>
+
+					{{ picture(
+						{
+							alt: "The Chrome URL bar with 'spell check' partially entered, and the bookmarklet visible in the results",
+							src: "/images/android@2x.jpg",
+							height: 543,
+							width: 1170
+						}
+					) }}
+				</div>
+			</div>
+		</li>
+
+		<li class="[][][ install__category ]">
+			<h3 class="[][][ install__heading ]">
+				<button
+					aria-controls="install-desktop"
+					aria-expanded="false"
+					class="install__button"
+				>
+					<span><strong>Desktop</strong> (Chrome, Firefox, Safari)</span>
+				</button>
+			</h3>
+			<div
+				aria-hidden="true"
+				class="[][][ install__content ]"
+				id="install-desktop"
+			>
+				<ol class="[ stack-xs ][][ install__steps ]">
+					<li>Open your browser’s bookmarks toolbar</li>
+					<li>Click and drag this <a class="[][][ install__bookmarklet ]" href="{{ bookmarklet | safe }}">{{ metadata.site.title }}</a> to the toolbar</li>
+				</ol>
+			</div>
+		</li>
+
+		<li class="[][][ install__category ]">
+			<h3 class="[][][ install__heading ]">
+				<button
+					aria-controls="install-ios"
+					aria-expanded="false"
+					class="install__button"
+				>
+					<span><strong>iOS</strong> (Safari)</span>
+				</button>
+			</h3>
+			<div
+				aria-hidden="true"
+				id="install-ios"
+				class="[ stack ][][ install__content ]"
+			>
+				<ol class="[ stack-xs ][][ install__steps ]">
+					<li>Copy the bookmarklet below</li>
+					<li>Tap the Share icon in Safari’s toolbar</li>
+					<li>Tap <strong>Add Bookmark</strong></li>
+					<li>Tap <strong>Save</strong></li>
+					<li>Tap the Bookmarks icon in Safari’s toolbar</li>
+					<li>Tap <strong>Edit</strong></li>
+					<li>Tap the <strong>Spell Check</strong> bookmark</li>
+					<li>Delete the original URL</li>
+					<li>Paste the bookmarklet from step 1</li>
+					<li>Tap <strong>Done</strong> three times to save your changes</li>
+				</ol>
+			</div>
+		</li>
+	</ul>
+
+	<div class="[ stack-xs ][][ install__copy ]">
+		<label for=""bookmarklet-ios">Bookmarklet</label>
+		<input
+			id="bookmarklet-ios"
+			onfocus="this.select()"
+			type="text"
+			value="{{ bookmarklet | safe }}"
+		>
+	</div>
+</section>
