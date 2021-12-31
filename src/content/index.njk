@@ -1,6 +1,8 @@
 ---
 permalink: /index.html
 ---
+{%- from "components/picture.njk" import picture -%}
+
 <div class="[ container stack-lg ][][]">
 	<header class="[ stack ][][ header ]">
 		<div class="[ stack-sm ][ inset ][]">
@@ -71,23 +73,16 @@ permalink: /index.html
 			<h3 class="[][][ section__subheading ]">Reading the grid</h3>
 			<p>The {{ metadata.site.title }} grid shows the number of words remaining for each letter.</p>
 			<p>For example, a <strong>2</strong> in the <strong>7</strong> column of row <strong>G</strong> means two more 7-letter words that start with “G” are left.</p>
-			<picture>
-				<source
-					srcset="/images/grid-highlight@2x.avif"
-					type="image/avif"
-				/>
-				<source
-					srcset="/images/grid-highlight@2x.webp"
-					type="image/webp"
-				/>
-				<img
-					alt="Spell Check grid showing two remaining 7-letter words that begin with G."
-					height="780"
-					loading="lazy"
-					src="/images/grid-highlight@2x.jpg"
-					width="651"
-				/>
-			</picture>
+
+			{{ picture(
+				{
+					alt: "Spell Check grid showing two remaining 7-letter words that begin with G.",
+					src: "/images/grid-highlight@2x.jpg",
+					height: 543,
+					width: 1168
+				}
+			) }}
+
 			<p class="[][][ usage__check ]">When you’ve found every accepted solution for a given letter and length, a green checkmark lets you know there are no words left to uncover</p>
 		</section>
 
@@ -138,23 +133,14 @@ permalink: /index.html
 								<li>Tap the bookmarklet in the search results</li>
 							</ol>
 
-							<picture>
-								<source
-									srcset="/images/android@2x.avif"
-									type="image/avif"
-								/>
-								<source
-									srcset="/images/android@2x.webp"
-									type="image/webp"
-								/>
-								<img
-									alt="The Chrome URL bar with 'spell check' partially entered, and the bookmarklet visible in the results"
-									height="1170"
-									loading="lazy"
-									src="/images/android@2x.jpg"
-									width="543"
-								/>
-							</picture>
+							{{ picture(
+								{
+									alt: "The Chrome URL bar with 'spell check' partially entered, and the bookmarklet visible in the results",
+									src: "/images/android@2x.jpg",
+									height: 543,
+									width: 1170
+								}
+							) }}
 						</div>
 					</div>
 				</li>

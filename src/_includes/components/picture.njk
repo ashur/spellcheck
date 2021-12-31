@@ -1,0 +1,25 @@
+{#
+ # @param {Object} props
+ # @prop {string} alt
+ # @prop {string} src
+ # @prop {number} height
+ # @prop {number} width
+ #}
+{% macro picture( props ) %}
+<picture>
+	<source
+		srcset="{{ props.src | replace( ".jpg", ".avif" ) }}"
+		type="image/avif"
+	/>
+	<source
+		srcset="{{ props.src | replace( ".jpg", ".webp" ) }}"
+		type="image/webp"
+	/>
+	<img
+		alt="{{ props.alt }}"
+		height="{{ props.height }}"
+		src="{{ props.src }}"
+		width="{{ props.width }}"
+	/>
+</picture>
+{% endmacro %}
