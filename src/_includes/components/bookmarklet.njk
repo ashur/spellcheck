@@ -1,0 +1,9 @@
+{% macro bookmarklet() %}
+<input
+	class="[][][ install__bookmarklet ]"
+	id="bookmarklet-ios"
+	onfocus="this.select()"
+	type="text"
+	value="{{ bookmarkletContent | safe }}"
+>
+{% endmacro %}
