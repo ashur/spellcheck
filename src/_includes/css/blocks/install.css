@@ -120,11 +120,31 @@
 }
 
 .install__steps {
-	padding-left: calc( var(--font-size) * var(--ratio-0) );
+	border-left: solid var(--color-border) 1px;
+	counter-reset: list;
+	list-style: none;
+	margin-left: 1em;
+	padding-left: var(--size-2);
 }
 
-.install__steps li::marker {
+.install__steps li {
+	counter-increment: list;
+	position: relative;
+}
+
+.install__steps li::before {
+	background-color: var(--color-text);
+	border-radius: 50%;
+	color: var(--color-background);
+	content: counter(list);
 	font-weight: bold;
+	line-height: 1;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+	position: absolute;
+	text-align: center;
+	transform: translateX( calc( -1 * var(--size-2) - 1.025em ) ) translateY( -0.25em );
+	width: 2em;
 }
 
 .install__steps li picture {
