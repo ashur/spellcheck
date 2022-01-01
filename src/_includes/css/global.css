@@ -21,11 +21,13 @@
 	--border-radius: 6px;
 
 	/* Composition */
-	--measure: 64ch;
+	--measure: 56ch;
 	--page-margin: clamp( var( --size-0 ), 8vw, var( --size-4 ) );
 
 	--box-padding: var( --page-margin );
-	--container-size: 56ch;
+	--container-size: 96ch;
+
+	--inset-size: var(--page-margin);
 
 	--stack-xs-size: calc( var( --font-size ) / var( --ratio-1 ) );
 	--stack-sm-size: calc( var( --font-size ) / var( --ratio-0 ) );
@@ -40,12 +42,18 @@
 	--font-category: var(--font-sans);
 	--font-heading: "mrs-eaves", var(--font-serif);
 
-	--font-size: clamp(
-		var( --size-0 ),
+	--font-size-sm: var(--size-0);
+	--font-size: var(--size-0);
+	--font-size-md: clamp(
+		calc( var( --size-0 ) * 1.125 ),
 		calc( var( --size--2 ) + 1vw ),
 		var( --size-1 )
 	);
-	--font-size-sm: min( var(--size-0), var(--font-size) );
+	--font-size-lg: clamp(
+		var( --size-3 ),
+		calc( var( --size-2 ) + 5vw ),
+		calc( var( --size-3 ) * 1.5 )
+	);
 
 	/* Colors */
 	--color-black: #000;
@@ -79,6 +87,10 @@ a:hover {
 }
 
 img {
-	border-radius: var(--border-radius);
 	box-shadow: 0 0 0 1px var(--color-border);
+}
+@media (min-width: 902px) {
+	img {
+		border-radius: var(--border-radius);
+	}
 }

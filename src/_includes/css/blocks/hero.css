@@ -1,0 +1,12 @@
+.hero__image {
+	margin-left: var(--inset-size);
+	margin-right: var(--inset-size);
+}
+
+@media (min-width: 902px) {
+	.hero__image {
+		margin-left: 0;
+		margin-right: 0;
+		max-width: initial;
+	}
+}

@@ -1,21 +1,10 @@
-.header > picture {
-	margin-left: var(--page-margin);
-	margin-right: var(--page-margin);
-}
-
-@media (min-width: 552px) {
-	.header > picture {
-		margin-left: 0;
-		margin-right: 0;
-	}
-}
-
 .header__caption {
 	color: var(--color-gray-dark);
 	line-height: 1.25;
 	padding-left: var(--stack-sm-size);
 	padding-right: var(--stack-sm-size);
 }
+
 @media (min-width: 526px) {
 	.header__caption {
 		padding-left: 0;
@@ -28,18 +17,18 @@
 	font-family: var(--font-category);
 	font-size: var(--font-size-sm);
 	font-weight: bold;
-	letter-spacing: 1px;
+	letter-spacing: 0.0625em;
 	line-height: 1;
 	text-transform: uppercase;
 }
 
 .header__heading {
-	font-size: calc( var(--font-size) * var(--ratio--1) );
+	font-size: var(--font-size-md);
 }
 
 .header__title {
 	font-family: var(--font-heading);
-	font-size: calc( var(--font-size) * var(--ratio-2) );
+	font-size: var(--font-size-lg);
 	letter-spacing: -2px;
 	line-height: 1;
 }

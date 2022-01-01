@@ -14,12 +14,6 @@
 	font-size: var(--font-size-sm);
 }
 
-.inset {
-	margin-inline: var( --page-margin );
-	margin-left: var( --page-margin );
-	margin-right: var( --page-margin );
-}
-
 .measure {
 	max-width: var( --measure );
 }

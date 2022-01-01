@@ -2,10 +2,13 @@
 layout: base.njk
 ---
 <div class="[ container stack-lg ][][]">
-	<header class="[ stack ][][ header ]">
-		<div class="[ stack-sm ][ inset ][]">
+	<header class="[ center inset stack ][ measure ][ header ]">
+		<div class="[ stack-sm ][][]">
 			<p class="[][][ header__category ]">A bookmarklet</p>
-			<h1 class="[][][ header__title ]">{{ metadata.site.title }}</h1>
+			{% set titleTag = "h1" if page.url === "/" else "p" -%}
+			<{{ titleTag }} class="[][][ header__title ]">
+				<a class="[][ no-underline ][]" href="/">{{ metadata.site.title }}</a>
+			</{{ titleTag }}>
 			<p class="[][][ header__heading ]">Check your progress in the <span class="[][ nowrap ][]">New York Times</span> <a href="https://nytimes.com/puzzles/spelling-bee" class="[][ nowrap ][]">Spelling Bee</a> without leaving the puzzle.</p>
 		</div>
 	</header>
@@ -14,11 +17,13 @@ layout: base.njk
 		{{ content | safe }}
 	</main>
 
-	<footer class="[ stack-sm ][][ footer ]">
-		<h2 class="[][][ footer__heading ]">{{ metadata.site.title }}</h2>
-		<ul class="[ stack-sm ][][ footer__links ]">
-			<li><a class="[][ no-underline ][]" href="https://twitter.com/ashur">Report an issue</a></li>
-			<li><a class="[][ no-underline ][]" href="https://github.com/ashur/spellcheck">View source</a></li>
-		</ul>
+	<footer class="[][][ footer ]">
+		<div class="[ center stack-sm ][][ measure ]">
+			<h2 class="[][][ footer__heading ]">{{ metadata.site.title }}</h2>
+			<ul class="[ stack-sm ][][ footer__links ]">
+				<li><a class="[][ no-underline ][]" href="https://twitter.com/ashur">Report an issue</a></li>
+				<li><a class="[][ no-underline ][]" href="https://github.com/ashur/spellcheck">View source</a></li>
+			</ul>
+		</div>
 	</footer>
 </div>

@@ -13,6 +13,19 @@
 	max-width: var( --container-size );
 }
 
+.inset > * {
+	margin-left: var(--inset-size);
+	margin-right: var(--inset-size);
+}
+	.inset > *.full-bleed {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.inset.measure {
+		max-width: calc( var(--measure) + 2 * var(--inset-size) );
+	}
+
 .stack-xs > * + * {
 	margin-top: var( --stack-xs-size );
 }
