@@ -1,0 +1,7 @@
+.nav__title {
+	font-family: var(--font-heading);
+	font-size: var(--font-size-1);
+	font-weight: normal;
+	letter-spacing: -1px;
+	line-height: 1;
+}

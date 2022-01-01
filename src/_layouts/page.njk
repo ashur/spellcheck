@@ -4,12 +4,19 @@ layout: base.njk
 <div class="[ container stack-lg ][][]">
 	<header class="[ center inset stack ][ measure ][ header ]">
 		<div class="[ stack-sm ][][]">
-			<p class="[][][ header__category ]">A bookmarklet</p>
-			{% set titleTag = "h1" if page.url === "/" else "p" -%}
-			<{{ titleTag }} class="[][][ header__title ]">
-				<a class="[][ no-underline ][]" href="/">{{ metadata.site.title }}</a>
-			</{{ titleTag }}>
-			<p class="[][][ header__heading ]">Check your progress in the <span class="[][ nowrap ][]">New York Times</span> <a href="https://nytimes.com/puzzles/spelling-bee" class="[][ nowrap ][]">Spelling Bee</a> without leaving the puzzle.</p>
+			{% if page.url === "/" %}
+				<p class="[][][ header__category ]">A bookmarklet</p>
+				<h1 class="[][][ header__title ]">
+					<a class="[][ no-underline ][]" href="/">{{ metadata.site.title }}</a>
+				</h1>
+				<p class="[][][ header__heading ]">Check your progress in the <span class="[][ nowrap ][]">New York Times</span> <a href="https://nytimes.com/puzzles/spelling-bee" class="[][ nowrap ][]">Spelling Bee</a> without leaving the puzzle.</p>
+			{% else %}
+				<nav>
+					<p class="[][][ nav__title ]">
+						<a class="[][ no-underline ][]" href="/">{{ metadata.site.title }}</a>
+					</p>
+				</nav>
+			{% endif %}
 		</div>
 	</header>
 
