@@ -45,15 +45,26 @@
 	--font-size-sm: var(--size-0);
 	--font-size: var(--size-0);
 	--font-size-md: clamp(
-		calc( var( --size-0 ) * 1.125 ),
+		calc( var( --size-0 ) ),
 		calc( var( --size--2 ) + 1vw ),
 		var( --size-1 )
 	);
 	--font-size-lg: clamp(
 		var( --size-3 ),
 		calc( var( --size-2 ) + 5vw ),
-		calc( var( --size-3 ) * 1.5 )
+		calc( var( --size-3 ) * 1.375 )
 	);
+
+	--font-size-base: clamp(
+		var(--size-0),
+		calc( var(--size--1) + 1.25vw ),
+		calc( var(--size-0) * 1.25 )
+	);
+
+	--font-size-1: calc( var(--font-size-base) * var(--ratio) );
+	--font-size-2: calc( var(--font-size-1) * var(--ratio) );
+	--font-size-2: calc( var(--font-size-1) * var(--ratio) );
+	--font-size-3: calc( var(--font-size-2) * var(--ratio) );
 
 	/* Colors */
 	--color-black: #000;
