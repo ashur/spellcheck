@@ -1,6 +1,7 @@
 ---
 permalink: /index.html
 ---
+{%- from "components/bookmarklet.njk" import bookmarklet with context -%}
 {%- from "components/picture.njk" import picture -%}
 
 <div class="[ stack ][][]">
@@ -107,33 +108,12 @@ permalink: /index.html
 					class="[ stack-sm ][][ install__content ]"
 					id="install-android"
 				>
-					<ol class="[ stack-xs ][][ install__steps ]">
-						<li>Copy the bookmarklet below</li>
-						<li>Tap Chrome’s overflow button, located on the right side of the toolbar</li>
-						<li>Tap the star icon to create a new bookmark</li>
-						<li>Tap <strong>Edit</strong> in the “Bookmarked” alert that briefly appears above Chrome’s toolbar</li>
-						<li>Delete the original URL</li>
-						<li>Paste the bookmarklet from step 1</li>
-						<li>Tap the back button to save your changes</li>
-					</ol>
+					<p>For step-by-step instructions on installing {{ metadata.site.title }}, please see the instructions for <a href="/android">Chrome on Android</a>.</p>
 
-					<div class="[ stack-sm ][][]">
-						<h4>Using bookmarklets in Chrome</h4>
+					<div class="[ stack-sm ][][ install__callout ]">
+						<p>If you’re familiar with installing bookmarklets on Android, use this snippet:</p>
 
-						<ol class="[ stack-xs ][][ install__steps ]">
-							<li>Tap Chrome’s URL bar</li>
-							<li>Begin typing “spellcheck”</li>
-							<li>Tap the bookmarklet in the search results</li>
-						</ol>
-
-						{{ picture(
-							{
-								alt: "The Chrome URL bar with 'spell check' partially entered, and the bookmarklet visible in the results",
-								src: "/images/android@2x.jpg",
-								height: 543,
-								width: 1170
-							}
-						) }}
+						{{ bookmarklet() }}
 					</div>
 				</div>
 			</li>
@@ -155,7 +135,7 @@ permalink: /index.html
 				>
 					<ol class="[ stack-xs ][][ install__steps ]">
 						<li>Open your browser’s bookmarks toolbar</li>
-						<li>Click and drag this <a class="[][][ install__bookmarklet ]" href="{{ bookmarklet | safe }}">{{ metadata.site.title }}</a> to the toolbar</li>
+						<li>Click and drag <a class="[][][ install__bookmarklet-desktop ]" href="{{ bookmarklet | safe }}">{{ metadata.site.title }}</a> to the toolbar</li>
 					</ol>
 				</div>
 			</li>
@@ -172,23 +152,44 @@ permalink: /index.html
 				</h3>
 				<div
 					aria-hidden="true"
+					class="[ stack-sm ][][ install__content ]"
 					id="install-ios"
-					class="[ stack ][][ install__content ]"
 				>
-					<ol class="[ stack-xs ][][ install__steps ]">
-						<li>Copy the bookmarklet below</li>
-						<li>Tap the Share icon in Safari’s toolbar</li>
-						<li>Tap <strong>Add Bookmark</strong></li>
-						<li>Tap <strong>Save</strong></li>
-						<li>Tap the Bookmarks icon in Safari’s toolbar</li>
-						<li>Tap <strong>Edit</strong></li>
-						<li>Tap the <strong>Spell Check</strong> bookmark</li>
-						<li>Delete the original URL</li>
-						<li>Paste the bookmarklet from step 1</li>
-						<li>Tap <strong>Done</strong> three times to save your changes</li>
-					</ol>
+					<p>For step-by-step instructions on installing {{ metadata.site.title }}, please see the instructions for <a href="/ios">Safari on iOS</a>.</p>
+
+					<div class="[ stack-sm ][][ install__callout ]">
+						<p>If you’re familiar with installing bookmarklets on iOS, use this snippet:</p>
+
+						{{ bookmarklet() }}
+					</div>
 				</div>
 			</li>
 		</ul>
 	</section>
 </div>
+
+<script>
+	(() =>
+	{
+		document.querySelectorAll( ".accordion [aria-controls]" )
+			.forEach( button =>
+			{
+				button.addEventListener( "click", () =>
+				{
+					let isExpanded = button.getAttribute( "aria-expanded" ) === "true";
+					let content = document.getElementById( button.getAttribute("aria-controls") );
+
+					if( isExpanded )
+					{
+						content.setAttribute( "aria-hidden", "true" );
+						button.setAttribute( "aria-expanded", "false" );
+					}
+					else
+					{
+						content.setAttribute( "aria-hidden", "false" );
+						button.setAttribute( "aria-expanded", "true" );
+					}
+				});
+			});
+	})();
+</script>
