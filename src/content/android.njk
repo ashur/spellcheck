@@ -1,0 +1,55 @@
+---
+title: Installing on Android
+---
+{%- from "components/bookmarklet.njk" import bookmarklet with context -%}
+{%- from "components/picture.njk" import picture -%}
+<section
+	class="[ center inset stack ][ measure ][ section ]"
+	id="usage"
+>
+	<header class="[ stack-sm ][][]">
+		<h1 class="[][][ section__heading ]">{{ title }}</h1>
+	</header>
+
+	<div>
+		<ol class="[ stack ][][ install__steps ]">
+			<li class="[ stack-sm ][][]">
+				<p>Copy the bookmarklet below</p>
+				{{ bookmarklet() }}
+			</li>
+			<li>Tap Chrome’s overflow button, located on the right side of the toolbar</li>
+			<li>Tap the star icon to create a new bookmark</li>
+			<li>Tap <strong>Edit</strong> in the “Bookmarked” alert that briefly appears above Chrome’s toolbar</li>
+			<li>Delete the original URL</li>
+			<li>Paste the bookmarklet from step 1</li>
+			<li>Tap the back button to save your changes</li>
+		</ol>
+	</div>
+</section>
+
+<section
+	class="[ center inset stack ][ measure ][ section ]"
+	id="usage"
+>
+	<header class="[ stack-xs ][][]">
+		<h2 class="[][][ section__subheading ]">Using bookmarklets in Chrome</h2>
+		<p>Bookmarklets are invoked a little differently in mobile Chrome than on the desktop.</p>
+	</header>
+
+	<div>
+		<ol class="[ stack ][][ install__steps ]">
+			<li>Tap Chrome’s URL bar</li>
+			<li>Begin typing “spellcheck”</li>
+			<li>Tap the bookmarklet in the search results</li>
+		</ol>
+	</div>
+
+	{{ picture(
+		{
+			alt: "The Chrome URL bar with 'spell check' partially entered, and the bookmarklet visible in the results",
+			src: "/images/android@2x.jpg",
+			height: 543,
+			width: 1170
+		}
+	) }}
+</section>
