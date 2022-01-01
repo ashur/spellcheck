@@ -1,17 +1,3 @@
-.header__caption {
-	color: var(--color-gray-dark);
-	line-height: 1.25;
-	padding-left: var(--stack-sm-size);
-	padding-right: var(--stack-sm-size);
-}
-
-@media (min-width: 526px) {
-	.header__caption {
-		padding-left: 0;
-		padding-right: 0;
-	}
-}
-
 .header__category {
 	color: var(--color-category);
 	font-family: var(--font-category);
@@ -23,12 +9,12 @@
 }
 
 .header__heading {
-	font-size: var(--font-size-md);
+	font-size: var(--font-size-base);
 }
 
 .header__title {
 	font-family: var(--font-heading);
-	font-size: var(--font-size-lg);
+	font-size: var(--font-size-3);
 	letter-spacing: -2px;
 	line-height: 1;
 }
