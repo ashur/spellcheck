@@ -1,4 +1,19 @@
 .install__bookmarklet {
+	-webkit-appearance: none;
+	border: solid var(--color-black) 1px;
+	border-radius: 0;
+	color: var(--color-gray-dark);
+	font-family: var(--font-mono);
+	font-size: var(--font-size-sm);
+	padding: var(--size--3) var(--size--1);
+	width: 100%;
+}
+.install__bookmarklet:focus-visible {
+	box-shadow: 0 0 0 4px var(--color-green);
+	outline: none;
+}
+
+.install__bookmarklet-desktop {
 	background-color: var(--color-button);
 	border-radius: var(--border-radius);
 	cursor: grab;
@@ -7,7 +22,7 @@
 	padding: var(--size--4) var(--size--2);
 	text-decoration: none;
 }
-	.install__bookmarklet:hover {
+	.install__bookmarklet-desktop:hover {
 		text-decoration: none;
 	}
 
@@ -55,6 +70,11 @@
 		content: "–";
 	}
 
+.install__callout {
+	background-color: #eee;
+	padding: var(--size-0);
+}
+
 .install__category {
 	--padding-x: 1.125em;
 	--padding-y: 1.125em;
@@ -100,9 +120,13 @@
 }
 
 .install__steps {
-	padding-left: calc( var( --padding-x ) + 0.5em );
+	padding-left: calc( var(--font-size) * var(--ratio-0) );
 }
 
 .install__steps li::marker {
 	font-weight: bold;
+}
+
+.install__steps li picture {
+	margin-top: var(--stack-sm-size);
 }
