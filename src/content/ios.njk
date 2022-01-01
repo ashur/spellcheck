@@ -1,0 +1,94 @@
+---
+title: Install on iOS
+---
+{%- from "components/bookmarklet.njk" import bookmarklet with context -%}
+{%- from "components/picture.njk" import picture -%}
+<article
+	class="[ center inset stack ][ measure ][ section ]"
+	id="usage"
+>
+	<h1 class="[][][ section__heading ]">{{ title }}</h1>
+
+	<ol class="[ stack ][][ install__steps ]">
+		<li class="[ stack-sm ][][]">
+			<p>Copy the bookmarklet below</p>
+			{{ bookmarklet() }}
+		</li>
+
+		<li class="[ stack-sm ][][]">
+			<p>Tap the Share icon in Safari’s toolbar</p>
+			{{ picture(
+				{
+					alt: "",
+					src: "/images/ios/ios-2.jpg",
+					height: 337,
+					width: 1170
+				}
+			) }}
+		</li>
+
+		<li class="[ stack-sm ][][]">
+			<p>Tap <strong>Add Bookmark</strong></p>
+			{{ picture(
+				{
+					alt: "",
+					src: "/images/ios/ios-3.jpg",
+					height: 658,
+					width: 1170
+				}
+			) }}
+		</li>
+
+		<li class="[ stack-sm ][][]">
+			<p>Tap <strong>Save</strong></p>
+			{{ picture(
+				{
+					alt: "",
+					src: "/images/ios/ios-4.jpg",
+					height: 658,
+					width: 1170
+				}
+			) }}
+		</li>
+
+		<li class="[ stack-sm ][][]">
+			<p>Tap the Bookmarks icon in Safari’s toolbar</p>
+			{{ picture(
+				{
+					alt: "",
+					src: "/images/ios/ios-5.jpg",
+					height: 337,
+					width: 1170
+				}
+			) }}
+		</li>
+
+		<li class="[ stack-sm ][][]">
+			<p>Tap <strong>Edit</strong>, then tap the “Spell Check” bookmark</p>
+			{{ picture(
+				{
+					alt: "",
+					src: "/images/ios/ios-6.jpg",
+					height: 658,
+					width: 1170
+				}
+			) }}
+		</li>
+
+		<li class="[ stack-sm ][][]">
+			<p>Delete the original URL, then paste the bookmarklet copied in step 1</p>
+			{{ picture(
+				{
+					alt: "",
+					src: "/images/ios/ios-7.jpg",
+					height: 658,
+					width: 1170
+				}
+			) }}
+		</li>
+
+		<li class="[ stack-sm ][][]">
+			<p>Tap <strong>Done</strong> three times to save your changes</p>
+		</li>
+	</ol>
+</article>
