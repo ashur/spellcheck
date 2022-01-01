@@ -1,6 +1,7 @@
 {#
  # @param {Object} props
  # @prop {string} alt
+ # @prop {boolean} loading
  # @prop {string} src
  # @prop {number} height
  # @prop {number} width
@@ -18,6 +19,7 @@
 	<img
 		alt="{{ props.alt }}"
 		height="{{ props.height }}"
+		loading="{{ props.loading if props.loading else "lazy" }}"
 		src="{{ props.src }}"
 		width="{{ props.width }}"
 	/>
