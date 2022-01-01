@@ -23,6 +23,7 @@
 }
 	.no-underline:hover {
 		text-decoration: underline;
+		text-decoration-thickness: min( calc( 1em / 16 ), 2px );
 	}
 
 .nowrap {
