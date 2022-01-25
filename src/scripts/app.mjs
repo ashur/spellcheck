@@ -118,6 +118,10 @@ class App
 			wordLengths: 0,
 		};
 
+		// Clean up whitespace (fixes parsing issue encountered 2022-01-25)
+		// ex., "2 Σ:" → "2Σ:"
+		gridString = gridString.replace( /\s([A-ZΣ]:)/g, "$1" )
+
 		// Insert newlines if they're missing — ex., when fetched with `fetch()`
 		if( !gridString.includes( "\n" ) )
 		{

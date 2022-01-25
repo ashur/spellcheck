@@ -121,5 +121,19 @@ E:	  -	  1	  2	  1	  -	  -	  -	  4`
 			assert.hasAllKeys( parseResult, ["wordLengths", "distributions"] );
 			assert.hasAllKeys( parseResult.distributions, ["A", "G", "L", "M", "R"] );
 		});
+
+		it( "should support the grid that broke parsing on 2022-01-25", () =>
+		{
+			// This grid definition has an unexpected extra space
+			// "2 Σ:" is usually "2Σ:"
+
+			let gridString = "          4\t  5\t  6\t  8\t  ΣB:\t  7\t  3\t  4\t  -\t 14E:\t  1\t  1\t  -\t  -\t  2H:\t  1\t  2\t  2\t  2\t  7N:\t  1\t  1\t  -\t  -\t  2O:\t  2\t  -\t  -\t  -\t  2 Σ:\t 12\t  7\t  6\t  2\t 27";
+
+			let parseResult = App.parseGrid( gridString );
+
+			assert.isObject( parseResult );
+			assert.hasAllKeys( parseResult, ["wordLengths", "distributions"] );
+			assert.hasAllKeys( parseResult.distributions, ["B", "E", "H", "N", "O"] );
+		});
 	});
 });
