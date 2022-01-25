@@ -135,5 +135,26 @@ E:	  -	  1	  2	  1	  -	  -	  -	  4`
 			assert.hasAllKeys( parseResult, ["wordLengths", "distributions"] );
 			assert.hasAllKeys( parseResult.distributions, ["B", "E", "H", "N", "O"] );
 		});
+
+		it( "should support the grid that broke parsing on 2022-01-25 in Safari", () =>
+		{
+			// Apparently Safari preserves newlines in .innerText, so the
+			// fix for 2022-01-25 requires special handling
+
+			let gridString = "          4	  5	  6	  8	  Σ\n"
+				+ "B:	  7	  3	  4	  -	 14\n"
+				+ "E:	  1	  1	  -	  -	  2\n"
+				+ "H:	  1	  2	  2	  2	  7\n"
+				+ "N:	  1	  1	  -	  -	  2\n"
+				+ "O:	  2	  -	  -	  -	  2 \n"
+				+ "Σ:	 12	  7	  6	  2	 27"
+			;
+
+			let parseResult = App.parseGrid( gridString );
+
+			assert.isObject( parseResult );
+			assert.hasAllKeys( parseResult, ["wordLengths", "distributions"] );
+			assert.hasAllKeys( parseResult.distributions, ["B", "E", "H", "N", "O"] );
+		});
 	});
 });
