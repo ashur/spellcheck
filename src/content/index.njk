@@ -5,7 +5,10 @@ permalink: /index.html
 {%- from "components/picture.njk" import picture -%}
 
 <div class="[ stack ][][]">
-	<picture class="[][][ hero__image ]">
+	<picture
+		class="[][][ hero__image ]"
+		style="--aspect-ratio-landscape-x: 1800; --aspect-ratio-landscape-y: 1013; --aspect-ratio-portrait-x: 780; --aspect-ratio-portrait-y: 1034;"
+	>
 		<source
 			srcset="/images/desktop@2x.avif"
 			media="(orientation:landscape)"

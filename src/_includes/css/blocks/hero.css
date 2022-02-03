@@ -3,6 +3,50 @@
 	margin-right: var(--inset-size);
 }
 
+@supports not (aspect-ratio: 1 / 1) {
+	.hero__image {
+		border-radius: var(--border-radius);
+		box-shadow: 0 0 0 1px var(--color-border);
+		height: 0;
+		overflow: hidden;
+		position: relative;
+	}
+
+	.hero__image img {
+		height: auto;
+		left: 0;
+		min-width: 100%;
+		position: absolute;
+		top: 0;
+	}
+
+	@media (orientation: landscape) {
+		.hero__image {
+			padding-top: calc( var(--aspect-ratio-landscape-y) / var(--aspect-ratio-landscape-x) * 100% );
+		}
+	}
+
+	@media (orientation: portrait) {
+		.hero__image {
+			padding-top: calc( var(--aspect-ratio-portrait-x) / var(--aspect-ratio-portrait-y) * 100% );
+		}
+	}
+}
+
+@supports (aspect-ratio: 1 / 1) {
+	@media (orientation: landscape) {
+		.hero__image img {
+			aspect-ratio: var(--aspect-ratio-landscape-x) / var(--aspect-ratio-landscape-y);
+		}
+	}
+
+	@media (orientation: portrait) {
+		.hero__image img {
+			aspect-ratio: var(--aspect-ratio-portrait-x) / var(--aspect-ratio-portrait-y);
+		}
+	}
+}
+
 @media (min-width: 902px) {
 	.hero__image {
 		margin-left: 0;
