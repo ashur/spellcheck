@@ -25,7 +25,7 @@
 	--page-margin: clamp( var( --size-0 ), 8vw, var( --size-4 ) );
 
 	--box-padding: var( --page-margin );
-	--container-size: 96ch;
+	--container-size: 56em;
 
 	--inset-size: var(--page-margin);
 
