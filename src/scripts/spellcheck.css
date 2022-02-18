@@ -1,0 +1,79 @@
+.spellcheck {
+	--color-gray: #dcdcdc;
+	--color-green: #009340;
+
+	--border-color: var(--color-gray);
+	--checkmark-color: var(--color-green);
+
+	--grid-size: 2em;
+	--text-size-sm: 0.875em;
+	--text-size-lg: 1.125em;
+
+	--border: solid var(--border-color) 1px;
+	--border-radius: 6px;
+}
+
+
+
+
+/* ----------------- */
+/* GRID              */
+/* ----------------- */
+.spellcheck__grid td,
+.spellcheck__grid th {
+	height: var(--grid-size);
+	text-align: center;
+	vertical-align: middle;
+}
+.spellcheck__grid tr + tr {
+	border-top: var(--border);
+}
+.spellcheck__grid th {
+	font-weight: bold;
+	min-width: var(--grid-size);
+}
+.spellcheck__grid td {
+	font-size: var(--text-size-lg);
+}
+
+
+
+
+.spellcheck__item--checked {
+	border: solid var(--checkmark-color);
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	height: 17px;
+	margin-top: 10px;
+	transform: rotate(45deg) translate(-3px, -3px);
+	width: 8.5px;
+}
+
+
+
+
+.spellcheck a.spellcheck__link {
+	text-decoration: underline;
+}
+
+
+
+
+.spellcheck__reminder {
+	border: var(--border);
+	border-radius: var(--border-radius);
+	font-size: var(--text-size-sm);
+	margin-top: 3em;
+	padding: 1em;
+}
+
+
+
+
+.spellcheck__error-details {
+	font-size: var(--text-size-sm);
+}
+
+.spellcheck__error-details-contents {
+	font-family: monospace;
+}

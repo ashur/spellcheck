@@ -189,11 +189,11 @@ class App
 			.map( line => `<p class="sb-modal-message">${line}</p>` )
 			.join( "\n" );
 
-		body += `<p class="sb-modal-message">Please click or tap the Spell Check bookmarklet to try again, or <a href="https://twitter.com/ashur">report the issue</a>.</p>`;
+		body += `<p class="sb-modal-message">Please click or tap the Spell Check bookmarklet to try again, or <a class="spellcheck__link" href="https://twitter.com/ashur">report the issue</a>.</p>`;
 
 		if( details )
 		{
-			body += `<details class=""><summary>More details</summary><span class="sc-details">${details}</span></details>`;
+			body += `<details class="spellcheck__error-details"><summary>More details</summary><p class="spellcheck__error-details-contents">${details}</p></details>`;
 		}
 
 		UI.showModal({
@@ -245,7 +245,7 @@ class App
 						}
 						else
 						{
-							currentValue = '<span class="checked"><span class="visually-hidden">0</span></span>';
+							currentValue = '<span class="spellcheck__item--checked"><span class="visually-hidden">0</span></span>';
 						}
 					}
 
@@ -259,7 +259,7 @@ class App
 			.join( "\n" );
 
 		let body = `
-			<table class="sb-modal-table">
+			<table class="spellcheck__grid">
 				<tbody>
 					${wordLengthRow}
 					${distributionRows}
