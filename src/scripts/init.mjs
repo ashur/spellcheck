@@ -7,7 +7,7 @@ import UI from "./ui.mjs";
 	{
 		try
 		{
-			UI.addStyles();
+			UI.addStyles( SPELLCHECK_URL, SPELLCHECK_DEBUG === "true" );
 
 			let hintsLink = document.querySelector( ".pz-toolbar-button__hints" )
 				|| document.querySelector( ".pz-dropdown__menu-item[href]" )

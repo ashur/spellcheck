@@ -15,7 +15,11 @@ let hideModal = () =>
 };
 
 let UI = {
-	addStyles: () =>
+	/**
+	 * @param {string} url
+	 * @param {boolean} debug
+	 */
+	addStyles: (url, debug) =>
 	{
 		let styles = `
 		.spellcheck .sb-modal-table td,
