@@ -10,7 +10,7 @@
     "serve": "eleventy --serve",
     "test:integration": "cypress open",
     "test:unit": "mocha test",
-    "watch:js": "DEBUG=true onchange -i 'src/scripts/*.mjs' -- npm run build:js",
+    "watch:js": "DEBUG=true onchange -i 'src/scripts/*.*' -- npm run build:js",
     "watch:test": "onchange -i 'src/scripts/*.mjs' 'test/**/*.mjs' -- npm run test:unit"
   },
   "keywords": [],

@@ -1,3 +1,5 @@
+import "./spellcheck.css";
+
 let handleKeydown = (event) =>
 {
 	if( event.key === "Escape" )
