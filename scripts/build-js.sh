@@ -9,4 +9,4 @@ npx esbuild src/scripts/init.mjs --bundle --outfile=dist/init.js --define:SPELLC
 
 echo
 echo "☕️ Building minified script..."
-npx esbuild src/scripts/init.mjs --bundle --minify --sourcemap --outfile=dist/init.min.js
+npx esbuild src/scripts/init.mjs --bundle --minify --sourcemap --outfile=dist/init.min.js --define:SPELLCHECK_URL="\"$URL\"" --define:SPELLCHECK_DEBUG="\"$DEBUG\""
