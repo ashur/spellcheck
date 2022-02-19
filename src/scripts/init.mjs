@@ -3,7 +3,7 @@ import UI from "./ui.mjs";
 
 (async () =>
 {
-	if( !window.spellcheck )
+	if( !window.spellcheckApp )
 	{
 		try
 		{
