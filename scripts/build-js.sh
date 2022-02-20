@@ -10,19 +10,19 @@ elif [ -z "$URL" ]; then
 	exit 1
 fi
 
+ESBUILD_MINIFY=""
+if [ "$NODE_ENV" = "production" ]; then
+	ESBUILD_MINIFY="--minify"
+fi
+
 echo "⚙️  Build settings..."
 echo
+echo "  ESBUILD_MINIFY=$ESBUILD_MINIFY"
 echo "  SPELLCHECK_DEBUG=$SPELLCHECK_DEBUG"
 echo "  SPELLCHECK_URL=$SPELLCHECK_URL"
 
 echo
 echo "☕️ Building script..."
-npx esbuild src/scripts/init.mjs --bundle --outfile=dist/init.js \
-	--define:SPELLCHECK_DEBUG="\"$SPELLCHECK_DEBUG\"" \
-	--define:SPELLCHECK_URL="\"$SPELLCHECK_URL\""
-
-echo
-echo "☕️ Building minified script..."
-npx esbuild src/scripts/init.mjs --bundle --minify --sourcemap --outfile=dist/init.min.js \
+npx esbuild src/scripts/init.mjs --bundle $ESBUILD_MINIFY --outfile=dist/init.js \
 	--define:SPELLCHECK_DEBUG="\"$SPELLCHECK_DEBUG\"" \
 	--define:SPELLCHECK_URL="\"$SPELLCHECK_URL\""
