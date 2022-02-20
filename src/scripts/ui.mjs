@@ -23,7 +23,7 @@ let UI = {
 	 */
 	addStyles: (url, debug) =>
 	{
-		let stylesheetUrl = url + "/init.min.css";
+		let stylesheetUrl = url + "/init.css";
 		if( debug ) {
 			stylesheetUrl += `?${Date.now()}`;
 		}
