@@ -21,20 +21,32 @@ let UI = {
 	 * @param {string} url
 	 * @param {boolean} debug
 	 */
-	addStyles: (url, debug) =>
+	addStyles: async (url, debug) =>
 	{
-		let stylesheetUrl = url + "/init.css";
-		if( debug ) {
-			stylesheetUrl += `?${Date.now()}`;
-		}
+		return new Promise( (resolve, reject) =>
+		{
+			let stylesheetUrl = url + "/init.css";
+			if( debug ) {
+				stylesheetUrl += `?${Date.now()}`;
+			}
 
-		let stylesheet = document.createElement( "link" );
-		stylesheet.rel = "stylesheet";
-		stylesheet.type = "text/css";
-		stylesheet.href = stylesheetUrl;
+			let linkElement = document.createElement( "link" );
 
-		console.log( "🎨 Spell Check: Adding styles" );
-		document.head.appendChild( stylesheet );
+			linkElement.rel = "stylesheet";
+			linkElement.type = "text/css";
+			linkElement.href = stylesheetUrl;
+
+			linkElement.onload = () => {
+				console.log( "🎨 Spell Check: Stylesheet loaded" );
+				resolve();
+			}
+
+			linkElement.onerror = () => {
+				reject( new Error( `Failed to load Spell Check stylesheet (${stylesheetUrl})` ) );
+			}
+
+			document.head.appendChild( linkElement );
+		})
 	},
 
 	showModal: ({title, subtitle, body} = {}) =>
