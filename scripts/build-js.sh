@@ -1,14 +1,11 @@
 SPELLCHECK_DEBUG=$DEBUG
+SPELLCHECK_URL=$URL
 
 if [ -n "$BRANCH" ]; then
 	if [ $BRANCH != "main" ]; then
 		SPELLCHECK_URL=$DEPLOY_PRIME_URL
-	else
-		SPELLCHECK_URL=$URL
 	fi
-elif [ -n "$DEV_URL" ]; then
-	SPELLCHECK_URL=$DEV_URL
-else
+elif [ -z "$URL" ]; then
 	echo "💥 Missing URL\n"
 	exit 1
 fi
