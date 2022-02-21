@@ -12,7 +12,7 @@ fi
 
 ESBUILD_MINIFY=""
 if [ "$NODE_ENV" = "production" ]; then
-	ESBUILD_MINIFY="--minify"
+	ESBUILD_MINIFY="--minify --sourcemap"
 fi
 
 echo "⚙️  Build settings..."
