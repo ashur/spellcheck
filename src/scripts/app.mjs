@@ -12,6 +12,14 @@ class App
 	}
 
 	/**
+	 *
+	 */
+	clearLocalData( data )
+	{
+		localStorage.removeItem( "spellcheck" );
+	}
+
+	/**
 	 * @param {string} url
 	 * @return {Object}
 	 */

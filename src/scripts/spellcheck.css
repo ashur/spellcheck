@@ -1,4 +1,5 @@
 .spellcheck {
+	--color-blue: #477aaa;
 	--color-gray: #dcdcdc;
 	--color-green: #009340;
 
@@ -65,6 +66,15 @@
 	font-size: var(--text-size-sm);
 	margin-top: 3em;
 	padding: 1em;
+}
+
+
+
+
+.spellcheck__action {
+	color: var(--color-blue);
+	cursor: pointer;
+	text-decoration: underline;
 }
 
 

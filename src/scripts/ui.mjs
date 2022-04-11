@@ -49,6 +49,10 @@ let UI = {
 		})
 	},
 
+	hideModal: () => {
+		hideModal();
+	},
+
 	showModal: ({title, subtitle, body} = {}) =>
 	{
 		if( !document.querySelector( "#js-hook-pz-moment__game.on-stage" ) )
@@ -75,7 +79,11 @@ let UI = {
 				<div class="sb-modal-body">
 					${body}
 
-					<p class="sb-modal-message spellcheck__reminder">Just a reminder, <a class="spellcheck__link" href="https://spellcheck.fun">Spell Check</a> isn’t affiliated with or endorsed by the <span style="white-space: nowrap">New York Times</span>.</p>
+					<div class="sb-modal-message spellcheck__reminder">
+						<!-- <p>Just a reminder, <a class="spellcheck__link" href="https://spellcheck.fun">Spell Check</a> isn’t affiliated with or endorsed by the <span style="white-space: nowrap">New York Times</span>.</p> -->
+
+						<p>Seeing letters that don’t match today’s puzzle? <span class="spellcheck__action" role="button" onclick="window.spellcheckApp.clearLocalData(); window.spellcheckUi.hideModal();">Reload today’s grid</span>, then refresh the Spelling Bee page.</p>
+					</div>
 				</div>
 			</div>
 		</div>`
