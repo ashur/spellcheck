@@ -21,7 +21,8 @@ import UI from "./ui.mjs";
 			let remoteGrid = await App.fetchGrid( hintsLink.href );
 
 			window.spellcheckApp = new App({
-				grid: remoteGrid
+				flags: SPELLCHECK_FLAGS,
+				grid: remoteGrid,
 			});
 
 			window.spellcheckApp.showGridModal();

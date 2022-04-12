@@ -14,6 +14,22 @@ V:	  3	  -	  -	  -	  -	  -	  -	 3
 Z:	  3	  -	  -	  -	  -	  -	  -	  3
 Σ:	 12	  6	  6	  4	  1	  3	  1	 33`;
 
+	describe( ".flags", () =>
+	{
+		it( "should be set by constructor", () =>
+		{
+			let flags = 'REMINDER=true,GRID_RESET=true';
+			let app = new App( { flags: flags } );
+
+			assert.isObject( app.flags );
+			assert.deepEqual( app.flags, {
+				REMINDER: 'true',
+				GRID_RESET: 'true',
+			} );
+		});
+	});
+
+
 	describe( ".grid", () =>
 	{
 		it( "should be set by constructor", () =>

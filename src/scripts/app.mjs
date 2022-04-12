@@ -4,10 +4,18 @@ class App
 {
 	/**
 	 * @param {Object} [options]
+	 * @param {string} [options.flags]
 	 * @param {Object} [options.grid]
 	 */
-	constructor({ grid } = {})
+	constructor({ flags='', grid } = {})
 	{
+		this.flags = {};
+
+		flags.split(",").forEach( flag => {
+			const [key, value] = flag.split('=');
+			this.flags[key] = value;
+		});
+
 		this.grid = grid;
 	}
 

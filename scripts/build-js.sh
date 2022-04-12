@@ -20,9 +20,11 @@ echo
 echo "  ESBUILD_MINIFY=$ESBUILD_MINIFY"
 echo "  SPELLCHECK_DEBUG=$SPELLCHECK_DEBUG"
 echo "  SPELLCHECK_URL=$SPELLCHECK_URL"
+echo "  SPELLCHECK_FLAGS=$SPELLCHECK_FLAGS"
 
 echo
 echo "☕️ Building script..."
 npx esbuild src/scripts/init.mjs --bundle $ESBUILD_MINIFY --outfile=dist/init.js \
 	--define:SPELLCHECK_DEBUG="\"$SPELLCHECK_DEBUG\"" \
-	--define:SPELLCHECK_URL="\"$SPELLCHECK_URL\""
+	--define:SPELLCHECK_URL="\"$SPELLCHECK_URL\"" \
+	--define:SPELLCHECK_FLAGS="\"$SPELLCHECK_FLAGS\""
