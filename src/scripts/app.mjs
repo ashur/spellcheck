@@ -287,6 +287,7 @@ class App
 			title: "Spell Check",
 			subtitle: "Words remaining in today’s puzzle.",
 			body: body,
+			flags: this.flags || {},
 		});
 	}
 }

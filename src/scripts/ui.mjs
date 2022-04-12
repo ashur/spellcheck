@@ -53,7 +53,13 @@ let UI = {
 		hideModal();
 	},
 
-	showModal: ({title, subtitle, body} = {}) =>
+	/**
+	 * @param {string} title
+	 * @param {string} subtitle
+	 * @param {string} body
+	 * @param {Object} flags
+	 */
+	showModal: ({title, subtitle, body, flags={}} = {}) =>
 	{
 		if( !document.querySelector( "#js-hook-pz-moment__game.on-stage" ) )
 		{
@@ -67,6 +73,16 @@ let UI = {
 			modalHeader += `<h4 class="sb-modal-subtitle spellcheck__subheading">${subtitle}</h4>`;
 		}
 
+		let message;
+		if( flags.REMINDER === "true" )
+		{
+			message = `<p>Just a reminder, <a class="spellcheck__link" href="https://spellcheck.fun">Spell Check</a> isn’t affiliated with or endorsed by the <span style="white-space: nowrap">New York Times</span>.</p>`;
+		}
+		if( flags.GRID_RESET === "true" )
+		{
+			message = `<p>Seeing letters that don’t match today’s puzzle? <span class="spellcheck__action" role="button" onclick="window.spellcheckApp.clearLocalData(); window.spellcheckUi.hideModal();">Reload today’s grid</span>, then refresh the Spelling Bee page.</p>`;
+		}
+
 		let modalWrapper = `<div role="button" class="sb-modal-frame help">
 			<div class="sb-modal-top">
 				<div role="button" class="sb-modal-close">×</div>
@@ -78,12 +94,7 @@ let UI = {
 				</div>
 				<div class="sb-modal-body">
 					${body}
-
-					<div class="sb-modal-message spellcheck__reminder">
-						<!-- <p>Just a reminder, <a class="spellcheck__link" href="https://spellcheck.fun">Spell Check</a> isn’t affiliated with or endorsed by the <span style="white-space: nowrap">New York Times</span>.</p> -->
-
-						<p>Seeing letters that don’t match today’s puzzle? <span class="spellcheck__action" role="button" onclick="window.spellcheckApp.clearLocalData(); window.spellcheckUi.hideModal();">Reload today’s grid</span>, then refresh the Spelling Bee page.</p>
-					</div>
+					${ message ? `<div class="sb-modal-message spellcheck__reminder">${ message }</div>` : '' }
 				</div>
 			</div>
 		</div>`
