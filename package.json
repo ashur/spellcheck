@@ -30,6 +30,7 @@
     "@11ty/eleventy": "^1.0.0",
     "clean-css": "^5.2.2",
     "esbuild": "^0.14.8",
+    "html-minifier": "^4.0.0",
     "rollup": "^2.62.0"
   }
 }
