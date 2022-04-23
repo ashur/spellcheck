@@ -9,12 +9,11 @@
     "build:js": "./scripts/build-js.sh",
     "dev": "concurrently \"npm:watch:*\"",
     "lint:bookmarklet": "eslint -c ./src/bookmarklet/.eslintrc.js ./build/*.js",
-    "prebuild:js": "npm run lint:bookmarklet",
     "prelint:bookmarklet": "npm run build:bookmarklet",
     "serve": "eleventy --config=./src/_eleventy/config/.eleventy-site.js --serve",
     "test:integration": "cypress open",
     "test:unit": "mocha test",
-    "watch:bookmarklet": "onchange -i './src/bookmarklet/**/*' -- npm run build:js",
+    "watch:bookmarklet": "onchange -i './src/bookmarklet/**/*' -- npm run lint:bookmarklet && npm run build:js",
     "watch:js": "DEBUG=true onchange -i 'src/scripts/*.*' -- npm run build:js",
     "watch:test": "onchange -i 'src/scripts/*.mjs' 'test/**/*.mjs' -- npm run test:unit"
   },
