@@ -5,6 +5,8 @@ module.exports = eleventyConfig =>
 		"src/static": "/"
 	});
 
+	eleventyConfig.ignores.add( "src/bookmarklet/**/*.njk" );
+
 	/* Filters */
 	eleventyConfig.addFilter( "cssmin", require( "./src/_eleventy/filters/cssmin" ) );
 
