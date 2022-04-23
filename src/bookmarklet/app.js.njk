@@ -234,7 +234,7 @@ class App
 		let gridRemaining = this.gridRemaining( words || [] );
 
 		// Table headings showing word lengths for each letter
-		let wordLengths = this.grid.wordLengths.map( wordLength => `<th>${wordLength}</th>` );
+		let wordLengths = this.grid.wordLengths.map( wordLength => `<th>${wordLength}</th>` ).join("");
 
 		let distributionRows = Object.keys( gridRemaining.distributions )
 			.map( letter =>
@@ -260,7 +260,7 @@ class App
 					return `<td>${currentValue}</td>`;
 				});
 
-				return `<tr><th>${ distributionCells.join(" ")}</th></tr>`;
+				return `<tr><th>${ letter }</th>${ distributionCells.join(" ") }</tr>`;
 			})
 			.join( "\n" );
 
