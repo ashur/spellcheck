@@ -1,0 +1,48 @@
+import App from "./app.js";
+import UI from "./ui.js";
+
+(async () =>
+{
+	if( !window.spellcheckApp )
+	{
+		try
+		{
+			UI.addStyles();
+
+			let hintsLink = document.querySelector( ".pz-toolbar-button__hints" )
+				|| document.querySelector( ".pz-dropdown__menu-item[href]" );
+
+			if( !hintsLink || !hintsLink.href )
+			{
+				window.spellcheckApp.showErrorModal( "Spell Check was unable to locate today’s grid.", "Could not locate “Today’s Hints” menu item" );
+			}
+
+			console.log( "⬇️ Spell Check: Fetching today’s grid" );
+			let remoteGrid = await App.fetchGrid( hintsLink.href );
+
+			/* eslint-disable quotes */
+			window.spellcheckApp = new App({
+				flags: "{{ env.SPELLCHECK_URL }}",
+				grid: remoteGrid,
+			});
+			/* eslint-enable quotes */
+
+			window.spellcheckApp.showGridModal();
+		}
+		catch( error )
+		{
+			console.log( error );
+
+			App.showErrorModal( "Spell Check was unable to fetch today’s grid.", error.message );
+		}
+	}
+	else
+	{
+		window.spellcheckApp.showGridModal();
+	}
+
+	if( !window.spellcheckUi )
+	{
+		window.spellcheckUi = UI;
+	}
+})();

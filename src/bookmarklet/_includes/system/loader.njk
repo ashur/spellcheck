@@ -1,0 +1,13 @@
+{#
+ # Convenience macro for loading and minifying a template partial
+ # @example
+ # {{ partial('partial-name') }}
+ # @param {string} name
+ # @param {boolean} [minify=true]
+ # @return {string}
+ #}
+{% macro partial( name, minify=true ) -%}
+	{%- set content %}{%- include 'partials/' + name -%}{% endset -%}
+	{%- if minify %}{% set content = (content | replace('\n', '') | replace('\t', '') | replace('  ', '')) %}{% endif -%}
+	{{- content | safe -}}
+{%- endmacro %}

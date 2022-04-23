@@ -1,0 +1,16 @@
+<div role="button" class="sb-modal-frame help">
+	<div class="sb-modal-top">
+		<div role="button" class="sb-modal-close">×</div>
+	</div>
+
+	<div class="sb-modal-content">
+		<div class="sb-modal-header">
+			${modalHeading}
+			${modalSubheading ? modalSubheading : ""}
+		</div>
+		<div class="sb-modal-body">
+			${body}
+			${message ? `<div class="sb-modal-message spellcheck__reminder">${ message }</div>` : ""}
+		</div>
+	</div>
+</div>
