@@ -11,7 +11,7 @@ module.exports = css =>
 		console.log( "🗜 Minifying CSS" );
 
 		return new CleanCSS( {} )
-			.minify( css ).styles;
+			.minify( css.val || css ).styles;
 	}
 
 	return css;
