@@ -8,7 +8,7 @@ module.exports = eleventyConfig =>
 	eleventyConfig.ignores.add( "src/bookmarklet/**/*.njk" );
 
 	/* Filters */
-	eleventyConfig.addFilter( "cssmin", require( "./src/_eleventy/filters/cssmin" ) );
+	eleventyConfig.addFilter( "cssmin", require( "../filters/cssmin" ) );
 
 	return {
 		dir: {
