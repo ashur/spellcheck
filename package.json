@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "eleventy && npm run build:js",
+    "build": "eleventy --config=./src/_eleventy/config/.eleventy-site.js && npm run build:js",
     "build:js": "./scripts/build-js.sh",
     "dev": "concurrently \"npm:watch:*\"",
-    "serve": "eleventy --serve",
+    "serve": "eleventy --config=./src/_eleventy/config/.eleventy-site.js --serve",
     "test:integration": "cypress open",
     "test:unit": "mocha test",
     "watch:js": "DEBUG=true onchange -i 'src/scripts/*.*' -- npm run build:js",
