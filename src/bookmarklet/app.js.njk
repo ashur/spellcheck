@@ -1,3 +1,4 @@
+/* {% from "system/loader.njk" import partial %} */
 import UI from "./ui.js";
 
 class App
@@ -205,11 +206,13 @@ class App
 			.map( line => `<p class="sb-modal-message">${line}</p>` )
 			.join( "\n" );
 
-		body += "<p class=\"sb-modal-message\">Please click or tap the Spell Check bookmarklet to try again, or <a class=\"spellcheck__link\" href=\"https://twitter.com/ashur\">report the issue</a>.</p>";
+		/* eslint-disable quotes */
+		body += `{{- partial('modal/error-instructions.njk') -}}`; /* eslint-enable quotes */
 
 		if( details )
 		{
-			body += `<details class="spellcheck__error-details"><summary>More details</summary><p class="spellcheck__error-details-contents">${details}</p></details>`;
+			/* eslint-disable quotes */
+			body += `{{- partial('modal/error-details.njk') -}}`; /* eslint-enable quotes */
 		}
 
 		UI.showModal({
@@ -224,32 +227,20 @@ class App
 	 */
 	showGridModal()
 	{
+		/* {# */
+		/* eslint-disable no-unused-vars */
+		/* #} */
 		let {words} = JSON.parse( localStorage.getItem( "sb-today" ) || "{}" );
 		let gridRemaining = this.gridRemaining( words || [] );
 
-		let wordLengths = this.grid.wordLengths
-			.map( wordLength =>
-			{
-				return `<th>${wordLength}</th>`;
-			})
-			.join( "\n" );
-
-		let wordLengthRow = `
-			<tr>
-				<th></th>
-				${wordLengths}
-			</tr>`;
+		// Table headings showing word lengths for each letter
+		let wordLengths = this.grid.wordLengths.map( wordLength => `<th>${wordLength}</th>` );
 
 		let distributionRows = Object.keys( gridRemaining.distributions )
 			.map( letter =>
 			{
-				let distributionRow = `
-				<tr>
-					<th>${letter}</th>`;
-
-				Object.keys( gridRemaining.distributions[letter] ).forEach( wordLength =>
+				let distributionCells = Object.keys( gridRemaining.distributions[letter] ).map( wordLength =>
 				{
-					let classList = [];
 					let originalValue = this.grid.distributions[letter][wordLength];
 					let currentValue = gridRemaining.distributions[letter][wordLength];
 
@@ -261,27 +252,20 @@ class App
 						}
 						else
 						{
-							currentValue = "<span class=\"spellcheck__item--checked\"><span class=\"visually-hidden\">0</span></span>";
+							/* eslint-disable quotes */
+							currentValue = `{{- partial('grid/checked-item.njk') -}}`; /* eslint-enable quotes */
 						}
 					}
 
-					distributionRow += `<td class="${classList.join( " " )}">${currentValue}</td>`;
+					return `<td>${currentValue}</td>`;
 				});
 
-				distributionRow += "</tr>";
-
-				return distributionRow;
+				return `<tr><th>${ distributionCells.join(" ")}</th></tr>`;
 			})
 			.join( "\n" );
 
-		let body = `
-			<table class="spellcheck__grid">
-				<tbody>
-					${wordLengthRow}
-					${distributionRows}
-				</tbody>
-			</table>
-		`;
+		/* eslint-disable quotes */
+		let body = `{{- partial('grid/table.njk') -}}`; /* eslint-enable quotes */
 
 		UI.showModal({
 			title: "Spell Check",
@@ -289,6 +273,10 @@ class App
 			body: body,
 			flags: this.flags || {},
 		});
+
+		/* {# */
+		/* eslint-enable no-unused-vars */
+		/* #} */
 	}
 }
 
