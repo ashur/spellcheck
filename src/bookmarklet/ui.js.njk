@@ -79,6 +79,12 @@ const UI = {
 		document.querySelector( ".sb-modal-close" ).addEventListener( "click", hideModal );
 
 		document.addEventListener( "keydown", handleKeydown );
+
+		/* eslint-disable quotes */
+		/* {%- if env.SPELLCHECK_TIMER %} */
+		console.timeEnd(`{{ env.SPELLCHECK_TIMER }}`);
+		/* {%- endif %} */
+		/* eslint-enable quotes */
 	},
 
 	/* {# */
