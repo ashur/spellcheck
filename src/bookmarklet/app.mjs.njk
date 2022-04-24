@@ -102,6 +102,30 @@ class App
 	}
 
 	/**
+	 * Return only words that contain 7 unique letters
+	 * @param {string[]} words
+	 * @returns {number}
+	 */
+	static getPangrams( words )
+	{
+		return words.filter( (word) =>
+		{
+			let uniqueLetters = word.split("").reduce( (uniqueLetters, currentLetter) =>
+			{
+				if( !uniqueLetters.includes( currentLetter ) )
+				{
+					uniqueLetters.push( currentLetter );
+				}
+
+				return uniqueLetters;
+
+			}, []);
+
+			return uniqueLetters.length === 7;
+		});
+	}
+
+	/**
 	 * @param {Array} [words=[]}
 	 */
 	gridRemaining( words=[] )

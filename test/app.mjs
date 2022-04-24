@@ -29,6 +29,16 @@ Z:	  3	  -	  -	  -	  -	  -	  -	  3
 		});
 	});
 
+	describe( ".getPangrams()", () =>
+	{
+		it( "should return only words that contain 7 unique letters", () =>
+		{
+			const words = ["abcdefg", "abcd", "abcdef", "gfedcba"];
+			const pangrams = App.getPangrams( words );
+
+			assert.deepEqual( pangrams, [words[0], words[3]] );
+		});
+	});
 
 	describe( ".grid", () =>
 	{
