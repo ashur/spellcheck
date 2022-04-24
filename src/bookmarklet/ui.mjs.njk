@@ -39,12 +39,12 @@ const UI = {
 	/* #} */
 
 	/**
-	 * @param {string} title
-	 * @param {string} subtitle
 	 * @param {string} body
 	 * @param {Object} flags
+	 * @param {string} name
+	 * @param {string} [subtitle]
 	 */
-	showModal: ({title, subtitle, body, flags={}} = {}) =>
+	showModal: ({body, flags={}, name, subtitle} = {}) =>
 	{
 		if( !document.querySelector( "#js-hook-pz-moment__game.on-stage" ) )
 		{
@@ -53,14 +53,6 @@ const UI = {
 		}
 
 		/* eslint-disable quotes */
-		const modalHeading = `{{- partial('modal/heading.njk') -}}`;
-
-		let modalSubheading;
-		if( subtitle )
-		{
-			modalSubheading = `{{- partial('modal/subheading.njk') -}}`;
-		}
-
 		let message;
 		if( flags.REMINDER === "true" )
 		{
@@ -71,11 +63,11 @@ const UI = {
 			message = `{{- partial('messages/reset.njk') -}}`;
 		}
 
-		let modalWrapper = `{{- partial('modal/wrapper.njk') -}}`;
+		const spellcheck = `{{- partial('spellcheck.njk') -}}`;
 		/* eslint-enable quotes */
 
 		document.querySelector( ".sb-modal-system" ).classList.add( "sb-modal-open", "spellcheck" );
-		document.querySelector( ".sb-modal-wrapper" ).innerHTML = modalWrapper;
+		document.querySelector( ".sb-modal-wrapper" ).innerHTML = spellcheck;
 		document.querySelector( ".sb-modal-close" ).addEventListener( "click", hideModal );
 
 		document.addEventListener( "keydown", handleKeydown );
