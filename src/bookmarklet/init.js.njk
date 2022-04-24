@@ -3,11 +3,16 @@ import UI from "./ui.js";
 
 (async () =>
 {
+	if( !window.spellcheckUi )
+	{
+		window.spellcheckUi = UI;
+	}
+
 	if( !window.spellcheckApp )
 	{
 		try
 		{
-			UI.addStyles();
+			window.spellcheckUi.addStyles();
 
 			let hintsLink = document.querySelector( ".pz-toolbar-button__hints" )
 				|| document.querySelector( ".pz-dropdown__menu-item[href]" );
@@ -39,10 +44,5 @@ import UI from "./ui.js";
 	else
 	{
 		window.spellcheckApp.showGridModal();
-	}
-
-	if( !window.spellcheckUi )
-	{
-		window.spellcheckUi = UI;
 	}
 })();

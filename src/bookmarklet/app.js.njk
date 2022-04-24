@@ -1,5 +1,4 @@
 /* {% from "system/loader.njk" import partial %} */
-import UI from "./ui.js";
 
 class App
 {
@@ -215,7 +214,7 @@ class App
 			body += `{{- partial('modal/error-details.njk') -}}`; /* eslint-enable quotes */
 		}
 
-		UI.showModal({
+		window.spellcheckUi.showModal({
 			title: "Spell Check",
 			subtitle: "An unexpected problem occurred.",
 			body: body,
@@ -267,7 +266,7 @@ class App
 		/* eslint-disable quotes */
 		let body = `{{- partial('grid/table.njk') -}}`; /* eslint-enable quotes */
 
-		UI.showModal({
+		window.spellcheckUi.showModal({
 			title: "Spell Check",
 			subtitle: "Words remaining in today’s puzzle.",
 			body: body,
