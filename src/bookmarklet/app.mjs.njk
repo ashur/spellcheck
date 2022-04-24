@@ -106,7 +106,7 @@ class App
 	 * @param {string[]} words
 	 * @returns {number}
 	 */
-	static getPangrams( words )
+	static getPangrams( words=[] )
 	{
 		return words.filter( (word) =>
 		{
@@ -339,6 +339,18 @@ class App
 	 */
 	showMainModal()
 	{
+		const {metadata={}} = App.getLocalData();
+		const {words=[]} = JSON.parse( localStorage.getItem( "sb-today" ) || "{}" );
+
+		/*
+		 * Pangrams
+		 */
+		/* eslint-disable no-unused-vars */
+		const pangrams = {
+			total: metadata.pangrams || 0,
+			found: App.getPangrams( words ).length,
+		};  /* eslint-enable no-unused-vars */
+
 		/* eslint-disable quotes */
 		const body = `{{- partial('modals/main.njk') -}}`; /* eslint-enable quotes */
 

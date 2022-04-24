@@ -87,3 +87,30 @@
 .spellcheck__error-details-contents {
 	font-family: monospace;
 }
+
+
+
+
+.spellcheck__pangrams {
+	display: grid;
+	justify-content: center;
+}
+
+.spellcheck__pangram-list {
+	column-gap: 1em;
+	display: flex;
+}
+
+.spellcheck__pangram-item {
+	border: solid var(--border-color) 2px;
+	border-radius: 50%;
+	display: block;
+	height: 1em;
+	width: 1em;
+}
+
+.spellcheck__pangram-item--found {
+	background-color: black;
+	border: none;
+}
+
