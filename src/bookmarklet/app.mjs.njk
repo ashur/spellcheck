@@ -102,30 +102,6 @@ class App
 	}
 
 	/**
-	 * Return only words that contain 7 unique letters
-	 * @param {string[]} words
-	 * @returns {number}
-	 */
-	static getPangrams( words=[] )
-	{
-		return words.filter( (word) =>
-		{
-			let uniqueLetters = word.split("").reduce( (uniqueLetters, currentLetter) =>
-			{
-				if( !uniqueLetters.includes( currentLetter ) )
-				{
-					uniqueLetters.push( currentLetter );
-				}
-
-				return uniqueLetters;
-
-			}, []);
-
-			return uniqueLetters.length === 7;
-		});
-	}
-
-	/**
 	 * @param {Array} [words=[]}
 	 */
 	gridRemaining( words=[] )
@@ -285,17 +261,7 @@ class App
 	 */
 	showMainModal()
 	{
-		const {metadata={}} = App.getLocalData();
 		const {words=[]} = JSON.parse( localStorage.getItem( "sb-today" ) || "{}" );
-
-		/*
-		 * Pangrams
-		 */
-		/* eslint-disable no-unused-vars */
-		const pangrams = {
-			total: metadata.pangrams || 0,
-			found: App.getPangrams( words ).length,
-		}; /* eslint-enable no-unused-vars */
 
 		/*
 		 * Grid
