@@ -173,4 +173,23 @@ E:	  -	  1	  2	  1	  -	  -	  -	  4`
 			assert.hasAllKeys( parseResult.distributions, ["B", "E", "H", "N", "O"] );
 		});
 	});
+
+	describe( ".parseMetadata()", () =>
+	{
+		it( "should return the number of pangrams", () =>
+		{
+			const metadataString = "WORDS: 30, POINTS: 115, PANGRAMS: 1 (1 Perfect)";
+			const parseResult = App.parseMetadata( metadataString );
+
+			assert.deepEqual( parseResult, { pangrams: 1 } );
+		});
+
+		it( "should return 'pangrams: 0' if metadata string is improperly formattted", () =>
+		{
+			const metadataString = "";
+			const parseResult = App.parseMetadata( metadataString );
+
+			assert.deepEqual( parseResult, { pangrams: 0 } );
+		});
+	});
 });
