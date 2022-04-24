@@ -24,4 +24,4 @@ echo "  SPELLCHECK_FLAGS=$SPELLCHECK_FLAGS"
 
 echo
 echo "☕️ Building script..."
-npx esbuild build/init.js --bundle $ESBUILD_MINIFY --outfile=dist/init.js
+npx esbuild build/init.mjs --bundle $ESBUILD_MINIFY --outfile=dist/init.js
