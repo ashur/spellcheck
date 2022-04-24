@@ -7,7 +7,11 @@
 	--checkmark-color: var(--color-green);
 
 	--grid-size: 2em;
+	--space-1: 1rem;
+	--space-2: 2rem;
+	--space-3: 4rem;
 	--text-size-sm: 0.875em;
+	--text-size: 1rem;
 	--text-size-lg: 1.125em;
 
 	--border: solid var(--border-color) 1px;
@@ -15,6 +19,18 @@
 }
 
 
+
+
+/* ----------------- */
+/* Layout            */
+/* ----------------- */
+.spellcheck .spellcheck__body {
+	margin-top: var(--space-2);
+}
+
+.spellcheck .spellcheck__header {
+	margin-bottom: 0;
+}
 
 
 /* ----------------- */
