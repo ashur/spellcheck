@@ -278,60 +278,6 @@ class App
 	showGridModal()
 	{
 		return this.showMainModal();
-		/* eslint-disable */
-
-		/* {# */
-		/* eslint-disable no-unused-vars */
-		/* #} */
-		let {words} = JSON.parse( localStorage.getItem( "sb-today" ) || "{}" );
-		let gridRemaining = this.gridRemaining( words || [] );
-
-		// Table headings showing word lengths for each letter
-		let wordLengths = this.grid.wordLengths.map( wordLength => `<th>${wordLength}</th>` ).join("");
-
-		let distributionRows = Object.keys( gridRemaining.distributions )
-			.map( letter =>
-			{
-				let distributionCells = Object.keys( gridRemaining.distributions[letter] ).map( wordLength =>
-				{
-					let originalValue = this.grid.distributions[letter][wordLength];
-					let currentValue = gridRemaining.distributions[letter][wordLength];
-
-					if( currentValue === 0 )
-					{
-						if( originalValue === 0 )
-						{
-							currentValue = "-";
-						}
-						else
-						{
-							/* eslint-disable quotes */
-							currentValue = `{{- partial('grid/checked-item.njk') -}}`; /* eslint-enable quotes */
-						}
-					}
-
-					return `<td>${currentValue}</td>`;
-				});
-
-				return `<tr><th>${ letter }</th>${ distributionCells.join(" ") }</tr>`;
-			})
-			.join( "\n" );
-
-		/* eslint-disable quotes */
-		let body = `{{- partial('grid/grid.njk') -}}`; /* eslint-enable quotes */
-
-		window.spellcheckUi.showModal({
-			title: "Spell Check",
-			subtitle: "Words remaining in today’s puzzle.",
-			body: body,
-			flags: this.flags || {},
-		});
-
-		/* {# */
-		/* eslint-enable no-unused-vars */
-		/* #} */
-
-		/* eslint-enable */
 	}
 
 	/**
@@ -349,7 +295,45 @@ class App
 		const pangrams = {
 			total: metadata.pangrams || 0,
 			found: App.getPangrams( words ).length,
-		};  /* eslint-enable no-unused-vars */
+		}; /* eslint-enable no-unused-vars */
+
+		/*
+		 * Grid
+		 */
+		const gridRemaining = this.gridRemaining( words || [] );
+		const distributions = Object.keys( gridRemaining.distributions )
+			.map( (letter) =>
+			{
+				return {
+					letter: letter,
+					remaining: Object.keys( gridRemaining.distributions[letter] ).map( wordLength =>
+					{
+						let originalValue = this.grid.distributions[letter][wordLength];
+						let currentValue = gridRemaining.distributions[letter][wordLength];
+
+						if( currentValue === 0 )
+						{
+							if( originalValue === 0 )
+							{
+								currentValue = "-";
+							}
+							else
+							{
+								/* eslint-disable quotes */
+								currentValue = `{{- partial('grid/checked-item.njk') -}}`; /* eslint-enable quotes */
+							}
+						}
+
+						return currentValue;
+					}),
+				};
+			});
+
+		/* eslint-disable no-unused-vars */
+		const grid = {
+			distributions: distributions,
+			wordLengths: this.grid.wordLengths,
+		}; /* eslint-enable no-unused-vars */
 
 		/* eslint-disable quotes */
 		const body = `{{- partial('modals/main.njk') -}}`; /* eslint-enable quotes */
