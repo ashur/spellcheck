@@ -1,6 +1,6 @@
 /* global describe, it */
 import {assert} from "chai";
-import App from "../src/scripts/app.mjs";
+import App from "../build/app.mjs";
 
 describe( "App", () =>
 {
