@@ -277,6 +277,9 @@ class App
 	 */
 	showGridModal()
 	{
+		return this.showMainModal();
+		/* eslint-disable */
+
 		/* {# */
 		/* eslint-disable no-unused-vars */
 		/* #} */
@@ -327,6 +330,23 @@ class App
 		/* {# */
 		/* eslint-enable no-unused-vars */
 		/* #} */
+
+		/* eslint-enable */
+	}
+
+	/**
+	 * Show the main Spell Check modal
+	 */
+	showMainModal()
+	{
+		/* eslint-disable quotes */
+		const body = `{{- partial('modals/main.njk') -}}`; /* eslint-enable quotes */
+
+		window.spellcheckUi.showModal({
+			body: body,
+			flags: this.flags || {},
+			name: "main",
+		});
 	}
 }
 
