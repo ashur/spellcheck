@@ -222,29 +222,24 @@ class App
 	}
 
 	/**
-	 * @param {string} errorMessage
+	 * @param {string} message
 	 * @param {string} [details] - ex., .message from a thrown Error
 	 */
-	static showErrorModal( errorMessage, details )
+	static showErrorModal( message, details )
 	{
-		let body = errorMessage
-			.split( "\n" )
-			.map( line => `<p class="sb-modal-message">${line}</p>` )
-			.join( "\n" );
+		/* eslint-disable no-unused-vars */
+		const error = {
+			details: details,
+			message: message,
+		}; /* eslint-enable no-unused-vars */
 
 		/* eslint-disable quotes */
-		body += `{{- partial('modal/error-instructions.njk') -}}`; /* eslint-enable quotes */
-
-		if( details )
-		{
-			/* eslint-disable quotes */
-			body += `{{- partial('modal/error-details.njk') -}}`; /* eslint-enable quotes */
-		}
+		const body = `{{- partial('modals/error.njk') -}}`; /* eslint-enable quotes */
 
 		window.spellcheckUi.showModal({
-			title: "Spell Check",
-			subtitle: "An unexpected problem occurred.",
 			body: body,
+			name: "error",
+			subtitle: "An unexpected problem occurred.",
 		});
 	}
 

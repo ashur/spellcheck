@@ -1,0 +1,18 @@
+${ (() => (
+	error.message.split( "\n" )
+		.map( line => `<p class="sb-modal-message">${line}</p>` )
+		.join( "\n" )
+))() }
+
+<p class="sb-modal-message">
+	Please click or tap the Spell Check bookmarklet to try again, or <a class="spellcheck__link" href="https://twitter.com/ashur">report the issue</a>.
+</p>
+
+${ (() => (
+	error.details ?
+	`<details class="spellcheck__error-details">
+		<summary>More details</summary>
+		<p class="spellcheck__error-details-contents">${ error.details }</p>
+	</details>`
+	: ''
+))() }
