@@ -53,16 +53,6 @@ const UI = {
 		}
 
 		/* eslint-disable quotes */
-		let message;
-		if( flags.REMINDER === "true" )
-		{
-			message = `{{- partial('messages/reminder.njk') -}}`;
-		}
-		if( flags.GRID_RESET === "true" )
-		{
-			message = `{{- partial('messages/reset.njk') -}}`;
-		}
-
 		const spellcheck = `{{- partial('spellcheck.njk') -}}`;
 		/* eslint-enable quotes */
 
