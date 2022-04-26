@@ -20,7 +20,7 @@ const UI = {
 	addStyles: () =>
 	{
 		/* eslint-disable quotes */
-		const styles = `{{- partial('spellcheck.css', false) | cssmin -}}`;
+		const styles = `{{- partial('spellcheck.css', false) | cssmin | safe -}}`;
 		/* eslint-enable quotes */
 
 		const styleElement = document.createElement( "style" );
