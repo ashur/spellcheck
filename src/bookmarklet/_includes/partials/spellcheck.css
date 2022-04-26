@@ -6,7 +6,10 @@
 	--border-color: var(--color-gray);
 	--checkmark-color: var(--color-green);
 
-	--grid-size: 2em;
+	--grid-size: 2.25em;
+	--space--2: 0.125rem;
+	--space--1: 0.25rem;
+	--space-0: 0.5rem;
 	--space-1: 1rem;
 	--space-2: 2rem;
 	--space-3: 4rem;
@@ -28,14 +31,56 @@
 	margin-top: var(--space-2);
 }
 
+.spellcheck .spellcheck__body > * {
+	margin-bottom: 0 !important;
+}
+
+.spellcheck .spellcheck__body > * + * {
+	margin-top: var(--space-2) !important;
+}
+
+.spellcheck__heading {
+	font-weight: bold;
+}
+
+.spellcheck__heading + * {
+	margin-top: var(--space-0);
+}
+
+
+
+.spellcheck-carousel {
+	column-gap: var(--space-2);
+	display: grid;
+	grid-template-columns: 100% 100%;
+	overflow-x: scroll;
+	scroll-snap-type: x mandatory;
+}
+
+.spellcheck-carousel > * {
+	scroll-snap-align: start;
+}
+
+.spellcheck-card {
+	border: var(--border);
+	border-radius: var(--border-radius);
+	padding: var(--space-1);
+}
+
 .spellcheck .spellcheck__header {
 	margin-bottom: 0;
 }
 
 
+
+
 /* ----------------- */
-/* GRID              */
+/* Grid              */
 /* ----------------- */
+.spellcheck__grid table {
+	width: 100%;
+}
+
 .spellcheck__grid td,
 .spellcheck__grid th {
 	height: var(--grid-size);
@@ -48,6 +93,10 @@
 .spellcheck__grid th {
 	font-weight: bold;
 	min-width: var(--grid-size);
+}
+.spellcheck__grid th:first-child {
+	padding-left: var(--space-0);
+	text-align: left;
 }
 .spellcheck__grid td {
 	font-size: var(--text-size-lg);
