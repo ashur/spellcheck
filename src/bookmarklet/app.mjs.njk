@@ -256,6 +256,7 @@ class App
 	 */
 	showMainModal()
 	{
+		const flags = this.flags || {};
 		const {words=[]} = JSON.parse( localStorage.getItem( "sb-today" ) || "{}" );
 
 		/*
@@ -301,7 +302,7 @@ class App
 
 		window.spellcheckUi.showModal({
 			body: body,
-			flags: this.flags || {},
+			flags: flags,
 			name: "main",
 		});
 	}

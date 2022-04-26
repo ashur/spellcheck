@@ -1,21 +1,28 @@
-<table class="spellcheck__grid">
-	<tbody>
-		<tr>
-			<th></th>
-			${ (() => (
-				grid.wordLengths.map( wordLength => (
-					`<th>${wordLength}</th>`
-				) ).join("")
-			))() }
-		</tr>
 
-		${ (() => (
-			grid.distributions.map( ({letter, remaining}) => {
-				const rowCells = remaining.map( (count) => `<td>${ count }</td>` )
-					.join("");
+<article class="spellcheck__grid">
+	<h3 class="spellcheck__heading">Today’s Grid</h3>
 
-				return `<tr><th>${ letter }</th>${ rowCells }</tr>`;
-			} ).join("")
-		))() }
-	</tbody>
-</table>
+	<div class="spellcheck-card">
+		<table>
+			<tbody>
+				<tr>
+					<th></th>
+					${ (() => (
+						grid.wordLengths.map( wordLength => (
+							`<th>${wordLength}</th>`
+						) ).join("")
+					))() }
+				</tr>
+	
+				${ (() => (
+					grid.distributions.map( ({letter, remaining}) => {
+						const rowCells = remaining.map( (count) => `<td>${ count }</td>` )
+							.join("");
+	
+						return `<tr><th>${ letter }</th>${ rowCells }</tr>`;
+					} ).join("")
+				))() }
+			</tbody>
+		</table>
+	</div>
+</article>
