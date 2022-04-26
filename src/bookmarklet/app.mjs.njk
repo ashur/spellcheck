@@ -193,27 +193,6 @@ class App
 	}
 
 	/**
-	 * @param {string} metadataString
-	 * @returns {Object}
-	 */
-	static parseMetadata( metadataString )
-	{
-		const metadata = {
-			pangrams: 0,
-		};
-
-		const normalizedString = metadataString.toLowerCase();
-		const pattern = /pangrams:\s(\d+)/;
-
-		const matches = normalizedString.match(pattern);
-		if( matches ) {
-			metadata.pangrams = parseInt(matches[1]);
-		}
-
-		return metadata;
-	}
-
-	/**
 	 * @param {Object} data
 	 */
 	static setLocalData( data )

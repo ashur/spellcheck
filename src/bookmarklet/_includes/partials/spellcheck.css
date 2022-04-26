@@ -76,13 +76,6 @@
 
 
 
-.spellcheck__reminder {
-	border: var(--border);
-	border-radius: var(--border-radius);
-	font-size: var(--text-size-sm);
-	margin-top: 3em;
-	padding: 1em;
-}
 
 
 
