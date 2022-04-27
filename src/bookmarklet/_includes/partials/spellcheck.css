@@ -94,10 +94,6 @@
 	font-weight: bold;
 	min-width: var(--grid-size);
 }
-.spellcheck__grid th:first-child {
-	padding-left: var(--space-0);
-	text-align: left;
-}
 .spellcheck__grid td {
 	font-size: var(--text-size-lg);
 }
