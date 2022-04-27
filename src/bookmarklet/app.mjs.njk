@@ -53,12 +53,6 @@ class App
 			let div = document.createElement( "html" );
 			div.innerHTML = await response.text();
 
-			let metadataElement = div.querySelector( ".StoryBodyCompanionColumn p:nth-child(4)" );
-			if( metadataElement )
-			{
-				localData.metadata = App.parseMetadata( metadataElement.innerText );
-			}
-
 			let gridElement = div.querySelector( ".StoryBodyCompanionColumn p:nth-child(5)" );
 			if( gridElement )
 			{
