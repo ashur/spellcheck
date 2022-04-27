@@ -114,26 +114,6 @@
 
 
 
-.spellcheck a.spellcheck__link {
-	text-decoration: underline;
-}
-
-
-
-
-
-
-
-
-.spellcheck__action {
-	color: var(--color-blue);
-	cursor: pointer;
-	text-decoration: underline;
-}
-
-
-
-
 .spellcheck__error-details {
 	font-size: var(--text-size-sm);
 }
