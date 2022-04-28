@@ -24,9 +24,9 @@
 
 
 
-/* ----------------- */
-/* Layout            */
-/* ----------------- */
+/* --------------------------------------------------
+   Spellcheck
+   -------------------------------------------------- */
 .spellcheck .spellcheck__body {
 	margin-top: var(--space-2);
 }
@@ -49,6 +49,10 @@
 
 
 
+
+/* --------------------------------------------------
+   Carousel
+   -------------------------------------------------- */
 .spellcheck-carousel {
 	column-gap: var(--space-2);
 	display: grid;
@@ -61,47 +65,29 @@
 	scroll-snap-align: start;
 }
 
+
+
+
+/* --------------------------------------------------
+   Card
+   -------------------------------------------------- */
 .spellcheck-card {
 	border: var(--border);
 	border-radius: var(--border-radius);
 	padding: var(--space-1);
 }
 
-.spellcheck .spellcheck__header {
+.spellcheck .spellcheck-card__header {
 	margin-bottom: 0;
 }
 
 
 
 
-/* ----------------- */
-/* Grid              */
-/* ----------------- */
-.spellcheck__grid table {
-	width: 100%;
-}
-
-.spellcheck__grid td,
-.spellcheck__grid th {
-	height: var(--grid-size);
-	text-align: center;
-	vertical-align: middle;
-}
-.spellcheck__grid tr + tr {
-	border-top: var(--border);
-}
-.spellcheck__grid th {
-	font-weight: bold;
-	min-width: var(--grid-size);
-}
-.spellcheck__grid td {
-	font-size: var(--text-size-lg);
-}
-
-
-
-
-.spellcheck__item--checked {
+/* --------------------------------------------------
+   Checkmark
+   -------------------------------------------------- */
+.spellcheck-checkmark {
 	border: solid var(--checkmark-color);
 	border-width: 0 3px 3px 0;
 	display: inline-block;
@@ -114,10 +100,40 @@
 
 
 
-.spellcheck__error-details {
+/* --------------------------------------------------
+   Error
+   -------------------------------------------------- */
+.spellcheck-error__details {
 	font-size: var(--text-size-sm);
 }
 
-.spellcheck__error-details-contents {
+.spellcheck-error__details-contents {
 	font-family: monospace;
+}
+
+
+
+
+/* --------------------------------------------------
+   Grid
+   -------------------------------------------------- */
+.spellcheck-grid table {
+	width: 100%;
+}
+
+.spellcheck-grid td,
+.spellcheck-grid th {
+	height: var(--grid-size);
+	text-align: center;
+	vertical-align: middle;
+}
+.spellcheck-grid tr + tr {
+	border-top: var(--border);
+}
+.spellcheck-grid th {
+	font-weight: bold;
+	min-width: var(--grid-size);
+}
+.spellcheck-grid td {
+	font-size: var(--text-size-lg);
 }

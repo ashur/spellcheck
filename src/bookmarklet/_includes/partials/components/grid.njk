@@ -1,5 +1,5 @@
 
-<article class="spellcheck__grid">
+<article class="spellcheck-grid">
 	<h3 class="spellcheck__heading">Today’s Grid</h3>
 
 	<div class="spellcheck-card">
@@ -13,12 +13,12 @@
 						) ).join("")
 					))() }
 				</tr>
-	
+
 				${ (() => (
 					grid.distributions.map( ({letter, remaining}) => {
 						const rowCells = remaining.map( (count) => `<td>${ count }</td>` )
 							.join("");
-	
+
 						return `<tr><th>${ letter }</th>${ rowCells }</tr>`;
 					} ).join("")
 				))() }
