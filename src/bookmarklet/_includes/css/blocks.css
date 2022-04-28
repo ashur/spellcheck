@@ -1,0 +1,86 @@
+/* --------------------------------------------------
+   Spellcheck
+   -------------------------------------------------- */
+.spellcheck .spellcheck__body {
+	margin-top: var(--space-2);
+}
+
+.spellcheck .spellcheck__body > * {
+	margin-bottom: 0 !important;
+}
+
+.spellcheck .spellcheck__body > * + * {
+	margin-top: var(--space-2) !important;
+}
+
+.spellcheck__heading {
+	font-weight: bold;
+}
+
+.spellcheck__heading + * {
+	margin-top: var(--space-0);
+}
+
+
+
+
+/* --------------------------------------------------
+   Carousel
+   -------------------------------------------------- */
+.spellcheck-carousel {
+	column-gap: var(--space-2);
+	display: grid;
+	grid-template-columns: 100% 100%;
+	overflow-x: scroll;
+	scroll-snap-type: x mandatory;
+}
+
+.spellcheck-carousel > * {
+	scroll-snap-align: start;
+}
+
+
+
+
+/* --------------------------------------------------
+   Card
+   -------------------------------------------------- */
+.spellcheck-card {
+	border: var(--border);
+	border-radius: var(--border-radius);
+	padding: var(--space-1);
+}
+
+.spellcheck .spellcheck-card__header {
+	margin-bottom: 0;
+}
+
+
+
+
+/* --------------------------------------------------
+   Checkmark
+   -------------------------------------------------- */
+.spellcheck-checkmark {
+	border: solid var(--checkmark-color);
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	height: 17px;
+	margin-top: 10px;
+	transform: rotate(45deg) translate(-3px, -3px);
+	width: 8.5px;
+}
+
+
+
+
+/* --------------------------------------------------
+   Error
+   -------------------------------------------------- */
+.spellcheck-error__details {
+	font-size: var(--text-size-sm);
+}
+
+.spellcheck-error__details-contents {
+	font-family: monospace;
+}

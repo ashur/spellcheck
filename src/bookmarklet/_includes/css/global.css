@@ -1,0 +1,22 @@
+.spellcheck {
+	--color-blue: #477aaa;
+	--color-gray: #dcdcdc;
+	--color-green: #009340;
+
+	--border-color: var(--color-gray);
+	--checkmark-color: var(--color-green);
+
+	--grid-size: 2.25em;
+	--space--2: 0.125rem;
+	--space--1: 0.25rem;
+	--space-0: 0.5rem;
+	--space-1: 1rem;
+	--space-2: 2rem;
+	--space-3: 4rem;
+	--text-size-sm: 0.875em;
+	--text-size: 1rem;
+	--text-size-lg: 1.125em;
+
+	--border: solid var(--border-color) 1px;
+	--border-radius: 6px;
+}

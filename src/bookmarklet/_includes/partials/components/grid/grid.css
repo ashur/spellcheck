@@ -1,0 +1,23 @@
+/* --------------------------------------------------
+   Grid
+   -------------------------------------------------- */
+.spellcheck-grid table {
+	width: 100%;
+}
+
+.spellcheck-grid td,
+.spellcheck-grid th {
+	height: var(--grid-size);
+	text-align: center;
+	vertical-align: middle;
+}
+.spellcheck-grid tr + tr {
+	border-top: var(--border);
+}
+.spellcheck-grid th {
+	font-weight: bold;
+	min-width: var(--grid-size);
+}
+.spellcheck-grid td {
+	font-size: var(--text-size-lg);
+}
