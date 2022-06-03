@@ -15,7 +15,7 @@
     "test:unit": "mocha test",
     "watch:bookmarklet": "onchange -i './src/bookmarklet/**/*' -- run-s lint:bookmarklet build:bookmarklet:js",
     "watch:js": "DEBUG=true onchange -i 'src/scripts/*.*' -- npm run build:bookmarklet:js",
-    "watch:test": "onchange -i 'src/scripts/*.mjs' 'test/**/*.mjs' -- npm run test:unit"
+    "watch:test": "onchange -i --await-write-finish 750 'src/bookmarklet/*.mjs.njk' 'test/**/*.mjs' -- npm run test:unit"
   },
   "keywords": [],
   "author": "",
