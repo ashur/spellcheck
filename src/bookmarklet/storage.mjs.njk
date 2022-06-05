@@ -1,0 +1,78 @@
+export default class Storage
+{
+	/**
+	 * @param {Storage} storage
+	 */
+	constructor( storage )
+	{
+		this.scope = "spellcheck";
+		this.storage = storage;
+	}
+
+	/**
+	 * Return the localStorage item "spellcheck", parsed from JSON
+	 * @return {Object}
+	 */
+	getScopedData()
+	{
+		return JSON.parse( this.storage.getItem( this.scope ) || "{}" );
+	}
+
+	/**
+	 * Return any localStorage item, parsed from JSON
+	 * @param {string} key
+	 * @return {Object}
+	 */
+	getUnscopedData( key )
+	{
+		const item = this.storage.getItem( key );
+		try
+		{
+			return JSON.parse( item );
+		}
+		catch (error)
+		{
+			return item;
+		}
+	}
+
+	/**
+	 * @param {string} key
+	 */
+	getItem( key )
+	{
+		const data = this.getScopedData();
+		return data[key];
+	}
+
+	/**
+	 *
+	 */
+	removeAllItems()
+	{
+		this.storage.setItem( this.scope, "{}" );
+	}
+
+	/**
+	 * @param {string} key
+	 */
+	removeItem( key )
+	{
+		const data = this.getScopedData();
+		delete data[key];
+
+		this.storage.setItem( this.scope, JSON.stringify( data ) );
+	}
+
+	/**
+	 * @param {string} key
+	 * @param {any} value
+	 */
+	setItem( key, value )
+	{
+		const data = this.getScopedData();
+		data[key] = value;
+
+		this.storage.setItem( this.scope, JSON.stringify( data ) );
+	}
+}
