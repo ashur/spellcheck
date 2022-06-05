@@ -1,14 +1,20 @@
 /* {% from "system/loader.njk" import partial %} */
+import Grid from "./grid.mjs";
+import Storage from "./storage.mjs";
 
-class App
+export const APP_VERSION = "{{ pkg.version }}";
+
+export default class App
 {
 	/**
 	 * @param {Object} [options]
 	 * @param {Object} [options.grid]
+	 * @param {Object} [options.storage]
 	 */
-	constructor({ grid } = {})
+	constructor({ grid, storage } = {})
 	{
 		this.grid = grid;
+		this.storage = storage;
 	}
 
 	/**
@@ -17,6 +23,99 @@ class App
 	clearLocalData()
 	{
 		localStorage.removeItem( "spellcheck" );
+	}
+
+	/**
+	 * @param {string} hintsUrl
+	 * @param {string} date - ex., "2022-06-05"
+	 * @return {Object}
+	 * @throws Will throw an error if hints cannot be parsed from the given URL
+	 */
+	static async fetchHints( hintsUrl, date )
+	{
+		const hints = {};
+
+		const response = await fetch( hintsUrl );
+		const div = document.createElement( "html" );
+		div.innerHTML = await response.text();
+
+		const gridElement = div.querySelector( ".StoryBodyCompanionColumn p:nth-child(5)" );
+		if( gridElement )
+		{
+			hints.grid = new Grid( gridElement.innerText, date );
+		}
+		else
+		{
+			throw new Error( "Could not locate grid element on hints page" );
+		}
+
+		return hints;
+	}
+
+	/**
+	 * Return a new instance of App populated with today's grid. Called the
+	 * first time the bookmarklet is invoked after page load.
+	 *
+	 * @param {string} hintsUrl
+	 * @param {Storage} [storageSource]
+	 * @return {App}
+	 */
+	static async getInstance( hintsUrl, storageSource )
+	{
+		const {pathname: urlPathname} = new URL( hintsUrl );
+		const date = urlPathname
+			.split( "/" )
+			.slice( 1, 4 )
+			.join( "-" );
+
+		/*
+		 * Storage
+		 *
+		 * If the version in storage doesn't match the current version let's
+		 * go ahead and refetch hints, in case the data structure has changed.
+		 */
+		const storage = new Storage(
+			storageSource || window.localStorage,
+			APP_VERSION,
+		);
+
+		let shouldFetchHints = APP_VERSION !== storage.getItem( "version" );
+
+		/*
+		 * Grid
+		 *
+		 * Use grid from localStorage if today's grid has already been parsed
+		 * and stored.
+		 */
+		let grid = storage.getItem( "grid" );
+		shouldFetchHints = shouldFetchHints
+			|| grid === undefined
+			|| grid.date !== date;
+
+		/*
+		 * Fetch remote hints
+		 *
+		 * If app data isn't defined locally or is out of date, fetch and parse
+		 * today's hints, and then store them.
+		 */
+		if( shouldFetchHints )
+		{
+			console.log( `Fetching remote hints for '${date}'...` );
+
+			const {grid: latestGrid} = await App.fetchHints( hintsUrl, date );
+			storage.setItem( "grid", latestGrid );
+
+			grid = latestGrid;
+		}
+		else
+		{
+			console.log( `Using hints from storage for '${date}'` );
+		}
+
+		return new App({
+			grid,
+			storage,
+		});
 	}
 
 	/**
@@ -129,5 +228,3 @@ class App
 		});
 	}
 }
-
-export default App;
