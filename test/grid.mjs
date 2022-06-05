@@ -16,6 +16,17 @@ export const gridWithoutNewlines = () => gridWithNewlines().replace(/\n/g, "");
 
 describe( "Grid", () =>
 {
+	describe( ".date", () =>
+	{
+		it( "should be set by constructor", () =>
+		{
+			const date = "2022-06-05";
+			const grid = new Grid( gridWithNewlines(), date );
+
+			assert.equal( grid.date, date );
+		});
+	});
+
 	describe( ".distributions", () =>
 	{
 		it( "should be set by constructor", () =>
