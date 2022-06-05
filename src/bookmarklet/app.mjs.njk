@@ -92,7 +92,7 @@ export default class App
 		 */
 		if( shouldFetchHints )
 		{
-			console.log( `Fetching remote hints for '${date}'...` );
+			// console.log( `Fetching remote hints for '${date}'...` );
 
 			const {grid: latestGrid} = await App.fetchHints( hintsUrl, date );
 			storage.setItem( "grid", latestGrid );
@@ -101,7 +101,7 @@ export default class App
 		}
 		else
 		{
-			console.log( `Using hints from storage for '${date}'` );
+			// console.log( `Using hints from storage for '${date}'` );
 		}
 
 		return new App({
@@ -109,6 +109,7 @@ export default class App
 			storage,
 		});
 	}
+
 	/**
 	 * @param {string} message
 	 * @param {string} [details] - ex., .message from a thrown Error
@@ -136,9 +137,7 @@ export default class App
 	 */
 	showGridModal()
 	{
-		console.log( "Using bookmarklet shim" );
-
-		// return this.showMainModal();
+		return this.showMainModal();
 	}
 
 	/**

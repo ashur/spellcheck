@@ -125,7 +125,7 @@ describe( "Storage", () =>
 	});
 });
 
-const MockLocalStorage = () => ({
+export const MockLocalStorage = () => ({
 
 	data: {},
 
