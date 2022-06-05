@@ -18,14 +18,6 @@ export default class App
 	}
 
 	/**
-	 *
-	 */
-	clearLocalData()
-	{
-		localStorage.removeItem( "spellcheck" );
-	}
-
-	/**
 	 * @param {string} hintsUrl
 	 * @param {string} date - ex., "2022-06-05"
 	 * @return {Object}
@@ -117,31 +109,6 @@ export default class App
 			storage,
 		});
 	}
-
-	/**
-	 * @returns {Object}
-	 */
-	static getLocalData()
-	{
-		let localData = localStorage.getItem( "spellcheck" );
-		if( localData )
-		{
-			return JSON.parse( localData );
-		}
-		else
-		{
-			return {};
-		}
-	}
-
-	/**
-	 * @param {Object} data
-	 */
-	static setLocalData( data )
-	{
-		localStorage.setItem( "spellcheck", JSON.stringify( data ) );
-	}
-
 	/**
 	 * @param {string} message
 	 * @param {string} [details] - ex., .message from a thrown Error
@@ -165,11 +132,13 @@ export default class App
 	}
 
 	/**
-	 * Show the grid modal
+	 * Shim for bookmarklet
 	 */
 	showGridModal()
 	{
-		return this.showMainModal();
+		console.log( "Using bookmarklet shim" );
+
+		// return this.showMainModal();
 	}
 
 	/**
