@@ -110,6 +110,18 @@ describe( "Storage", () =>
 			assert.equal( red, "apple" );
 			assert.equal( green, "grape" );
 		});
+
+		it( "should set version automatically", () =>
+		{
+			const version = "1.2.3.";
+			const mockStorage = MockLocalStorage();
+			const storage = new Storage( mockStorage, version );
+
+			storage.setItem( "red", "apple" );
+
+			assert.equal( storage.getItem( "red" ), "apple" );
+			assert.equal( storage.getItem( "version" ), version );
+		});
 	});
 });
 

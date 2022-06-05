@@ -2,11 +2,13 @@ export default class Storage
 {
 	/**
 	 * @param {Storage} storage
+	 * @param {string} version
 	 */
-	constructor( storage )
+	constructor( storage, version )
 	{
 		this.scope = "spellcheck";
 		this.storage = storage;
+		this.version = version;
 	}
 
 	/**
@@ -71,6 +73,7 @@ export default class Storage
 	setItem( key, value )
 	{
 		const data = this.getScopedData();
+		data["version"] = this.version;
 		data[key] = value;
 
 		this.storage.setItem( this.scope, JSON.stringify( data ) );
