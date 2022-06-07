@@ -1,6 +1,7 @@
 /* {% from "system/loader.njk" import partial %} */
 import Grid from "./grid.mjs";
 import Storage from "./storage.mjs";
+import UI from "./ui.mjs";
 
 export const APP_VERSION = "{{ pkg.version }}";
 
@@ -122,19 +123,16 @@ export default class App
 	 */
 	static showErrorModal( message, details )
 	{
-		/* eslint-disable no-unused-vars */
-		const error = {
-			details: details,
-			message: message,
-		}; /* eslint-enable no-unused-vars */
-
-		/* eslint-disable quotes */
-		const body = `{{- partial('modals/error.njk') -}}`; /* eslint-enable quotes */
-
-		window.spellcheckUi.showModal({
-			body: body,
+		UI.showModal({
+			context: {
+				error: {
+					details: details,
+					message: message,
+				},
+			},
 			name: "error",
 			subtitle: "An unexpected problem occurred.",
+			template: "error",
 		});
 	}
 
@@ -151,54 +149,15 @@ export default class App
 	 */
 	showMainModal()
 	{
-		const flags = this.flags || {};
-		const {words=[]} = JSON.parse( localStorage.getItem( "sb-today" ) || "{}" );
+		const {words=[]} = this.storage.getUnscopedData( "sb-today" ) || {};
 
-		/*
-		 * Grid
-		 */
-		const gridRemaining = this.gridRemaining( words || [] );
-		const distributions = Object.keys( gridRemaining.distributions )
-			.map( (letter) =>
-			{
-				return {
-					letter: letter,
-					remaining: Object.keys( gridRemaining.distributions[letter] ).map( wordLength =>
-					{
-						let originalValue = this.grid.distributions[letter][wordLength];
-						let currentValue = gridRemaining.distributions[letter][wordLength];
-
-						if( currentValue === 0 )
-						{
-							if( originalValue === 0 )
-							{
-								currentValue = "-";
-							}
-							else
-							{
-								/* eslint-disable quotes */
-								currentValue = `{{- partial('components/checked-item.njk') -}}`; /* eslint-enable quotes */
-							}
-						}
-
-						return currentValue;
-					}),
-				};
-			});
-
-		/* eslint-disable no-unused-vars */
-		const grid = {
-			distributions: distributions,
-			wordLengths: this.grid.wordLengths,
-		}; /* eslint-enable no-unused-vars */
-
-		/* eslint-disable quotes */
-		const body = `{{- partial('modals/main.njk') -}}`; /* eslint-enable quotes */
-
-		window.spellcheckUi.showModal({
-			body: body,
-			flags: flags,
+		UI.showModal({
+			context: {
+				grid: this.grid,
+				words,
+			},
 			name: "main",
+			template: "main",
 		});
 	}
 }

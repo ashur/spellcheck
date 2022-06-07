@@ -68,18 +68,21 @@ const UI = {
 	/* #} */
 
 	/**
-	 * @param {string} body
-	 * @param {Object} flags
+	 * @param {Object} context
 	 * @param {string} name
 	 * @param {string} [subtitle]
+	 * @param {string} template
 	 */
-	showModal: ({body, flags={}, name, subtitle} = {}) =>
+	showModal: ({context={}, name, subtitle, template} = {}) =>
 	{
 		if( !document.querySelector( "#js-hook-pz-moment__game.on-stage" ) )
 		{
 			console.log( "🙈 Spell Check: Puzzle is not currently visible" );
 			return;
 		}
+
+		const renderModal = UI.getModalRenderer( template );
+		const body = renderModal( context );
 
 		/* eslint-disable quotes */
 		const spellcheck = `{{- partial('spellcheck.njk') -}}`;
