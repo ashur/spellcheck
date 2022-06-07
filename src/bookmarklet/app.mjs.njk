@@ -34,7 +34,10 @@ export default class App
 		const gridElement = div.querySelector( ".StoryBodyCompanionColumn p:nth-child(5)" );
 		if( gridElement )
 		{
-			hints.grid = new Grid( gridElement.innerText, date );
+			hints.grid = new Grid({
+				gridText: gridElement.innerText,
+				date,
+			});
 		}
 		else
 		{
