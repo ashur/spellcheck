@@ -30,6 +30,26 @@ const UI = {
 		console.log( "🎨 Spell Check: Stylesheet loaded" );
 	},
 
+	/**
+	 * @param {string} template - name of template
+	 * @return {Object}
+	 */
+	getModalRenderer: (template) =>
+	{
+		const modalTemplates = {
+
+			/**
+			 * @param {Object} context
+			 * @param {Error} context.error
+			 */
+			error: ({ error } = {}) => (
+				`{{- partial('modals/error.njk') -}}`
+			),
+		};
+
+		return modalTemplates[template];
+	},
+
 	hideModal: () => {
 		hideModal();
 	},

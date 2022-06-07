@@ -1,18 +1,22 @@
-${ (() => (
-	error.message.split( "\n" )
-		.map( line => `<p class="sb-modal-message">${line}</p>` )
-		.join( "\n" )
-))() }
+<div class="spellcheck-error">
+	<div class="spellcheck-error__message">
+		${ (() => (
+			error.message.split( "\n" )
+				.map( line => `<p class="sb-modal-message">${line}</p>` )
+				.join( "\n" )
+		))() }
+	</div>
 
-<p class="sb-modal-message">
-	Please click or tap the Spell Check bookmarklet to try again, or <a class="spellcheck__link" href="https://twitter.com/ashur">report the issue</a>.
-</p>
+	<p class="sb-modal-message">
+		Please click or tap the Spell Check bookmarklet to try again, or <a class="spellcheck__link" href="https://twitter.com/ashur">report the issue</a>.
+	</p>
 
-${ (() => (
-	error.details ?
-	`<details class="spellcheck-error__details">
-		<summary>More details</summary>
-		<p class="spellcheck-error__details-contents">${ error.details }</p>
-	</details>`
-	: ''
-))() }
+	${ (() => (
+		error.details ?
+		`<details class="spellcheck-error__details">
+			<summary>More details</summary>
+			<p class="spellcheck-error__details-contents">${ error.details }</p>
+		</details>`
+		: ''
+	))() }
+</div>
