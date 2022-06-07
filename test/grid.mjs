@@ -18,10 +18,13 @@ describe( "Grid", () =>
 {
 	describe( ".date", () =>
 	{
-		it( "should be set by constructor", () =>
+		it( "should be set from constructor options", () =>
 		{
 			const date = "2022-06-05";
-			const grid = new Grid( gridWithNewlines(), date );
+			const grid = new Grid({
+				gridText: gridWithNewlines(),
+				date,
+			});
 
 			assert.equal( grid.date, date );
 		});
@@ -29,9 +32,23 @@ describe( "Grid", () =>
 
 	describe( ".distributions", () =>
 	{
-		it( "should be set by constructor", () =>
+		it( "should be set from constructor options if defined", () =>
 		{
-			const grid = new Grid( gridWithNewlines() );
+			const {distributions} = Grid.parseText( gridWithNewlines() );
+
+			const grid = new Grid({
+				distributions,
+			});
+
+			assert.isObject( grid.distributions );
+			assert.hasAllKeys( grid.distributions, ["C", "E", "I", "N", "T", "V", "Z"] );
+		});
+
+		it( "should be set from parsed gridText by constructor if defined", () =>
+		{
+			const grid = new Grid({
+				gridText: gridWithNewlines(),
+			});
 
 			assert.isObject( grid.distributions );
 			assert.hasAllKeys( grid.distributions, ["C", "E", "I", "N", "T", "V", "Z"] );
@@ -40,9 +57,24 @@ describe( "Grid", () =>
 
 	describe( ".wordLengths", () =>
 	{
-		it( "should be set by constructor", () =>
+		it( "should be set from constructor options if defined", () =>
 		{
-			const grid = new Grid( gridWithNewlines() );
+			const {wordLengths} = Grid.parseText( gridWithNewlines() );
+
+			const grid = new Grid({
+				wordLengths,
+			});
+
+			assert.isArray( grid.wordLengths );
+			assert.deepEqual( grid.wordLengths, [4, 5, 6, 7, 8, 9, 11] );
+		});
+
+
+		it( "should be set from parsed gridText by constructor if defined", () =>
+		{
+			const grid = new Grid({
+				gridText: gridWithNewlines(),
+			});
 
 			assert.isArray( grid.wordLengths );
 			assert.deepEqual( grid.wordLengths, [4, 5, 6, 7, 8, 9, 11] );
@@ -53,7 +85,9 @@ describe( "Grid", () =>
 	{
 		it( "should return an object identical to .grid if words array is empty", () =>
 		{
-			const grid = new Grid( gridWithNewlines() );
+			const grid = new Grid({
+				gridText: gridWithNewlines()
+			});
 			const remaining = grid.remaining([]);
 
 			assert.isObject( remaining );
@@ -66,7 +100,9 @@ describe( "Grid", () =>
 
 		it( "should subtract from distribution totals for each word length", () =>
 		{
-			const grid = new Grid( gridWithNewlines() );
+			const grid = new Grid({
+				gridText: gridWithNewlines()
+			});
 			const remaining = grid.remaining([
 				"cart",
 				"tort",

@@ -1,12 +1,21 @@
 export default class Grid
 {
 	/**
-	 * @param {string} gridText
-	 * @param {string} date - Used to determine if values are accurate or should be updated
+	 * @param {Object} options
+	 * @param {string} options.date - Used to determine if values are accurate or should be updated
+	 * @param {Object} [options.distributions]
+	 * @param {string} options.gridText
+	 * @param {Array} [options.wordLengths]
 	 */
-	constructor( gridText, date )
+	constructor({ date, distributions, gridText, wordLengths } = {})
 	{
-		const {distributions, wordLengths} = Grid.parseText( gridText );
+		if( gridText )
+		{
+			const parsed = Grid.parseText( gridText );
+
+			distributions = parsed.distributions;
+			wordLengths = parsed.wordLengths;
+		}
 
 		this.date = date;
 		this.distributions = distributions;
