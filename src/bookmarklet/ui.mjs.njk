@@ -45,6 +45,15 @@ const UI = {
 			error: ({ error } = {}) => (
 				`{{- partial('modals/error.njk') -}}`
 			),
+
+			/**
+			 * @param {Object} context
+			 * @param {Grid} context.grid
+			 * @param {Array} [context.words=[]]
+			 */
+			main: ({ grid, words=[] } = {}) => (
+				`{{- partial('modals/main.njk') -}}`
+			),
 		};
 
 		return modalTemplates[template];

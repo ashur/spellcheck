@@ -9,17 +9,38 @@
 					${ (() => (
 						grid.wordLengths.map( wordLength => (
 							`<th>${wordLength}</th>`
-						) ).join("")
+						) ).join( "" )
 					))() }
 				</tr>
 
 				${ (() => (
-					grid.distributions.map( ({letter, remaining}) => {
-						const rowCells = remaining.map( (count) => `<td>${ count }</td>` )
-							.join("");
+					Object.entries( grid.remaining( words ).distributions ).map( ([letter, distribution]) => {
+						const tdElements = Object.entries( distribution )
+							.map( ([length, count]) => {
+								let value = count;
 
-						return `<tr><th>${ letter }</th>${ rowCells }</tr>`;
-					} ).join("")
+								if( count === 0 )
+								{
+									if( grid.distributions[letter][length] === 0 )
+									{
+										value = "-";
+									}
+									else
+									{
+										value = `{% include "partials/components/checked-item.njk" %}`;
+									}
+								}
+
+								return `<td>${ value }</td>`;
+							})
+							.join( "" );
+
+						return `
+						<tr>
+							<th>${ letter }</th>
+							${ tdElements }
+						</tr>`;
+					}).join( "" )
 				))() }
 			</tbody>
 		</table>

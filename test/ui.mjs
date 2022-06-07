@@ -76,6 +76,88 @@ describe( "UI", () =>
 				);
 			});
 		});
+
+		describe( "#main", () =>
+		{
+			it( "should render the main modal template", () =>
+			{
+				const context = {
+					grid: new Grid({
+						gridText: gridWithoutNewlines(),
+					}),
+				};
+
+				const render = UI.getModalRenderer( "main" );
+				const dom = new JSDOM( render( context ) );
+				const {document} = dom.window;
+
+				const elCarousel = document.querySelector(".spellcheck-carousel");
+				assert.equal( elCarousel.childElementCount, 1, "Carousel child element count" );
+			});
+
+			it( "should render grid word lengths as table column headings", () =>
+			{
+				const context = {
+					grid: new Grid({
+						gridText: gridWithoutNewlines(),
+					}),
+				};
+
+				const render = UI.getModalRenderer( "main" );
+				const dom = new JSDOM( render( context ) );
+				const {document} = dom.window;
+
+				const elFirstTableRow = document.querySelector( ".spellcheck-carousel .spellcheck-grid .spellcheck-card tr:first-of-type" );
+				assert.equal( elFirstTableRow.childElementCount, context.grid.wordLengths.length + 1 )
+
+				elFirstTableRow.childNodes.forEach( (childNode, index) =>
+				{
+					assert.equal( childNode.tagName, "TH" );
+
+					if( index > 0 )
+					{
+						assert.equal( childNode.innerHTML, context.grid.wordLengths[index - 1] );
+					}
+					else
+					{
+						assert.equal( childNode.innerHTML, "", "First column heading should be empty" );
+					}
+				});
+			});
+
+			it( "should render table rows for each grid distribution", () =>
+			{
+				const words = ['cite', 'certain'];
+				const context = {
+					grid: new Grid({
+						distributions: {
+							C: {
+								'4': 2, // remaining = 1
+								'6': 0, // remaining = 0
+								'7': 1, // remaining = 0
+							}
+						},
+
+						wordLengths: [4, 7],
+					}),
+
+					words,
+				};
+
+				const render = UI.getModalRenderer( "main" );
+				const dom = new JSDOM( render( context ) );
+				const {document} = dom.window;
+
+				const elTableRow = document.querySelector( ".spellcheck-carousel .spellcheck-grid .spellcheck-card tr:nth-of-type(2)" )
+
+				assert.equal( elTableRow.childNodes[0]?.innerHTML, "C", "Row heading" );
+				assert.equal( elTableRow.childNodes[1]?.innerHTML, 1, "Number of 4-letter C words remaining" );
+				assert.equal( elTableRow.childNodes[2]?.innerHTML, "-", "No 6-letter C words possible" );
+				assert.isTrue(
+					elTableRow.childNodes[3]?.childNodes[0]?.classList?.contains( "spellcheck-checkmark" ),
+					"Completed item contains checkmark"
+				);
+			});
 		});
 	});
 });
