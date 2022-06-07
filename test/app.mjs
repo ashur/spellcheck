@@ -1,6 +1,7 @@
 /* global describe, it */
 import {assert} from "chai";
 import App, {APP_VERSION} from "../build/app.mjs";
+import Grid from "../build/grid.mjs";
 import {MockLocalStorage} from "./storage.mjs";
 
 const hintsUrl = "https://www.nytimes.com/2022/06/05/crosswords/spelling-bee-forum.html";
@@ -16,6 +17,7 @@ describe( "App", () =>
 
 			const app = await App.getInstance( hintsUrl, mockStorage );
 			assert.instanceOf( app, App );
+			assert.instanceOf( app.grid, Grid );
 		});
 
 		it( "should not fetch hints if app version and grid date match storage", async () =>
