@@ -92,7 +92,11 @@ describe( "UI", () =>
 				const {document} = dom.window;
 
 				const elCarousel = document.querySelector(".spellcheck-carousel");
-				assert.equal( elCarousel.childElementCount, 1, "Carousel child element count" );
+				const elCarouselCards = elCarousel.querySelector(".spellcheck-carousel__cards");
+				const elCarouselDots = elCarousel.querySelector(".spellcheck-carousel__dots");
+
+				assert.equal( elCarouselCards.childElementCount, 1, "Number of carousel cards" );
+				assert.equal( elCarouselDots.constructor.name, "HTMLDivElement" );
 			});
 
 			it( "should render grid word lengths as table column headings", () =>
