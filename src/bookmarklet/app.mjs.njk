@@ -9,10 +9,10 @@ export const APP_VERSION = "{{ pkg.version }}";
 export default class App
 {
 	/**
-	 * @param {Object} [options]
-	 * @param {Grid} [options.grid]
-	 * @param {Object} [options.storage]
-	 * @param {TLL} [options.tll]
+	 * @param {Object} options
+	 * @param {Grid} [options.grid
+	 * @param {Object} options.storage
+	 * @param {TLL} options.tll
 	 */
 	constructor({ grid, storage, tll } = {})
 	{
@@ -35,12 +35,15 @@ export default class App
 		const div = document.createElement( "html" );
 		div.innerHTML = await response.text();
 
+		/*
+		 * Grid
+		 */
 		const gridElement = div.querySelector( ".StoryBodyCompanionColumn p:nth-child(5)" );
 		if( gridElement )
 		{
-			hints.grid = new Grid({
-				gridText: gridElement.innerText,
+			hints.grid = Grid.getInstance({
 				date,
+				gridText: gridElement.innerText,
 			});
 		}
 		else
@@ -102,10 +105,20 @@ export default class App
 		 * Use grid from localStorage if today's grid has already been parsed
 		 * and stored.
 		 */
-		let grid = storage.getItem( "grid" );
-		shouldFetchHints = shouldFetchHints
-			|| grid === undefined
-			|| grid.date !== date;
+		let grid;
+
+		const gridData = storage.getItem( "grid" );
+		if( gridData )
+		{
+			grid = Grid.getInstance( gridData );
+
+			shouldFetchHints = shouldFetchHints
+				|| grid.date !== date;
+		}
+		else
+		{
+			shouldFetchHints = true;
+		}
 
 		/*
 		 * Two-Letter List
@@ -153,11 +166,7 @@ export default class App
 		}
 
 		return new App({
-			grid: new Grid({
-				date: grid.date,
-				distributions: grid.distributions,
-				wordLengths: grid.wordLengths,
-			}),
+			grid: grid,
 			storage,
 			tll: tll,
 		});

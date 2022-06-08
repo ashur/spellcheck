@@ -21,12 +21,27 @@ describe( "Grid", () =>
 		it( "should be set from constructor options", () =>
 		{
 			const date = "2022-06-05";
+			const {distributions, wordLengths} = Grid.parseText( gridWithNewlines() );
+
 			const grid = new Grid({
-				gridText: gridWithNewlines(),
 				date,
+				distributions,
+				wordLengths,
 			});
 
 			assert.equal( grid.date, date );
+		});
+
+		it( "should throw Error if undefined", () =>
+		{
+			const {distributions, wordLengths} = Grid.parseText( gridWithNewlines() );
+
+			const fn = () => new Grid({
+				distributions,
+				wordLengths,
+			});
+
+			assert.throws( fn, "Required property 'date' is undefined" );
 		});
 	});
 
@@ -34,24 +49,61 @@ describe( "Grid", () =>
 	{
 		it( "should be set from constructor options if defined", () =>
 		{
-			const {distributions} = Grid.parseText( gridWithNewlines() );
+			const {distributions, wordLengths} = Grid.parseText( gridWithNewlines() );
 
 			const grid = new Grid({
+				date: "2022-06-05",
 				distributions,
+				wordLengths,
 			});
 
-			assert.isObject( grid.distributions );
-			assert.hasAllKeys( grid.distributions, ["C", "E", "I", "N", "T", "V", "Z"] );
+			assert.deepEqual( grid.distributions, distributions );
 		});
 
-		it( "should be set from parsed gridText by constructor if defined", () =>
+		it( "should throw Error if undefined", () =>
 		{
-			const grid = new Grid({
-				gridText: gridWithNewlines(),
+			const {wordLengths} = Grid.parseText( gridWithNewlines() );
+
+			const fn = () => new Grid({
+				date: "2022-06-05",
+				wordLengths,
 			});
 
-			assert.isObject( grid.distributions );
-			assert.hasAllKeys( grid.distributions, ["C", "E", "I", "N", "T", "V", "Z"] );
+			assert.throws( fn, "Required property 'distributions' is undefined" );
+		});
+	});
+
+	describe( ".getInstance()", () =>
+	{
+		it( "should parse gridText if defined", () =>
+		{
+			const date = "2022-06-05"
+			const {distributions, wordLengths} = Grid.parseText( gridWithoutNewlines() );
+
+			const grid = Grid.getInstance({
+				date,
+				gridText: gridWithoutNewlines(),
+			});
+
+			assert.equal( grid.date, date );
+			assert.deepEqual( grid.distributions, distributions );
+			assert.deepEqual( grid.wordLengths, wordLengths );
+		});
+
+		it( "should use distributions, wordLengths values if gridText is undefined", () =>
+		{
+			const date = "2022-06-05"
+			const {distributions, wordLengths} = Grid.parseText( gridWithoutNewlines() );
+
+			const grid = Grid.getInstance({
+				date,
+				distributions,
+				wordLengths,
+			});
+
+			assert.equal( grid.date, date );
+			assert.deepEqual( grid.distributions, distributions );
+			assert.deepEqual( grid.wordLengths, wordLengths );
 		});
 	});
 
@@ -59,25 +111,27 @@ describe( "Grid", () =>
 	{
 		it( "should be set from constructor options if defined", () =>
 		{
-			const {wordLengths} = Grid.parseText( gridWithNewlines() );
+			const {distributions, wordLengths} = Grid.parseText( gridWithNewlines() );
 
 			const grid = new Grid({
+				date: "2022-06-05",
+				distributions,
 				wordLengths,
 			});
 
-			assert.isArray( grid.wordLengths );
-			assert.deepEqual( grid.wordLengths, [4, 5, 6, 7, 8, 9, 11] );
+			assert.deepEqual( grid.wordLengths, wordLengths );
 		});
 
-
-		it( "should be set from parsed gridText by constructor if defined", () =>
+		it( "should throw Error if undefined", () =>
 		{
-			const grid = new Grid({
-				gridText: gridWithNewlines(),
+			const {distributions} = Grid.parseText( gridWithNewlines() );
+
+			const fn = () => new Grid({
+				date: "2022-06-05",
+				distributions,
 			});
 
-			assert.isArray( grid.wordLengths );
-			assert.deepEqual( grid.wordLengths, [4, 5, 6, 7, 8, 9, 11] );
+			assert.throws( fn, "Required property 'wordLengths' is undefined" );
 		});
 	});
 
@@ -85,8 +139,9 @@ describe( "Grid", () =>
 	{
 		it( "should return an object identical to .grid if words array is empty", () =>
 		{
-			const grid = new Grid({
-				gridText: gridWithNewlines()
+			const grid = Grid.getInstance({
+				date: "2022-06-05",
+				gridText: gridWithNewlines(),
 			});
 			const remaining = grid.remaining([]);
 
@@ -100,8 +155,9 @@ describe( "Grid", () =>
 
 		it( "should subtract from distribution totals for each word length", () =>
 		{
-			const grid = new Grid({
-				gridText: gridWithNewlines()
+			const grid = Grid.getInstance({
+				date: "2022-06-05",
+				gridText: gridWithNewlines(),
 			});
 			const remaining = grid.remaining([
 				"cart",

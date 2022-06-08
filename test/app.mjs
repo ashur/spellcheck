@@ -2,6 +2,7 @@
 import {assert} from "chai";
 import App, {APP_VERSION} from "../build/app.mjs";
 import Grid from "../build/grid.mjs";
+import {gridWithoutNewlines} from "./grid.mjs";
 import {MockLocalStorage} from "./storage.mjs";
 import TLL from "../build/tll.mjs";
 import {tllWithoutNewlines} from "./tll.mjs";
@@ -16,6 +17,19 @@ describe( "App", () =>
 		{
 			App.fetchHints = mockFetchHints();
 			const mockStorage = MockLocalStorage();
+			mockStorage.setItem( "spellcheck", JSON.stringify(
+				{
+					grid: Grid.getInstance({
+						date: "2022-06-05",
+						gridText: gridWithoutNewlines(),
+					}),
+					tll: {
+						counts: TLL.parseText( tllWithoutNewlines() ).counts,
+						date: "2022-06-05",
+					},
+					version: APP_VERSION,
+				}
+			));
 
 			const app = await App.getInstance( hintsUrl, mockStorage );
 			assert.instanceOf( app, App );
@@ -35,9 +49,10 @@ describe( "App", () =>
 			const mockStorage = MockLocalStorage();
 			mockStorage.setItem( "spellcheck", JSON.stringify(
 				{
-					grid: {
+					grid: Grid.getInstance({
 						date: "2022-06-05",
-					},
+						gridText: gridWithoutNewlines(),
+					}),
 					tll: {
 						counts: TLL.parseText( tllWithoutNewlines() ).counts,
 						date: "2022-06-05",
@@ -65,9 +80,14 @@ describe( "App", () =>
 			const mockStorage = MockLocalStorage();
 			mockStorage.setItem( "spellcheck", JSON.stringify(
 				{
-					grid: {
+					grid: Grid.getInstance({
 						date: "2022-06-05",
-					},
+						gridText: gridWithoutNewlines(),
+					}),
+					tll: TLL.getInstance({
+						date: "2022-06-05",
+						tllText: tllWithoutNewlines(),
+					}),
 					version: "0.1.23",
 				}
 			));
@@ -89,9 +109,10 @@ describe( "App", () =>
 			const mockStorage = MockLocalStorage();
 			mockStorage.setItem( "spellcheck", JSON.stringify(
 				{
-					grid: {
+					grid: Grid.getInstance({
 						date: "2022-06-04",
-					},
+						gridText: gridWithoutNewlines(),
+					}),
 					tll: {
 						counts: TLL.parseText( tllWithoutNewlines() ).counts,
 						date: "2022-06-05",
@@ -117,9 +138,10 @@ describe( "App", () =>
 			const mockStorage = MockLocalStorage();
 			mockStorage.setItem( "spellcheck", JSON.stringify(
 				{
-					grid: {
-						date: "2022-06-05",
-					},
+					grid: Grid.getInstance({
+						date: "2022-06-04",
+						gridText: gridWithoutNewlines(),
+					}),
 					tll: {
 						counts: TLL.parseText( tllWithoutNewlines() ).counts,
 						date: "2022-06-04",
@@ -131,6 +153,9 @@ describe( "App", () =>
 			const app = await App.getInstance( hintsUrl, mockStorage );
 
 			assert.isTrue( didFetch );
+
+			assert.instanceOf( app.grid, Grid );
+			assert.equal( app.grid.date, "2022-06-05" );
 
 			assert.instanceOf( app.tll, TLL );
 			assert.equal( app.tll.date, "2022-06-05" );
@@ -146,9 +171,10 @@ describe( "App", () =>
 			const mockStorage = MockLocalStorage();
 			mockStorage.setItem( "spellcheck", JSON.stringify(
 				{
-					grid: {
+					grid: Grid.getInstance({
 						date: "2022-06-04",
-					},
+						gridText: gridWithoutNewlines(),
+					}),
 					version: APP_VERSION,
 				}
 			));
@@ -173,9 +199,10 @@ describe( "App", () =>
 			const mockStorage = MockLocalStorage();
 			mockStorage.setItem( "spellcheck", JSON.stringify(
 				{
-					grid: {
+					grid: Grid.getInstance({
 						date: "2022-06-04",
-					},
+						gridText: gridWithoutNewlines(),
+					}),
 					tll: {
 						counts: TLL.parseText( tllWithoutNewlines() ).counts,
 						date: "2022-06-04",
@@ -198,7 +225,7 @@ describe( "App", () =>
  * @param {Object} [tll]
  * @return {Function}
  */
-function mockFetchHints( callback, grid = {}, tll )
+function mockFetchHints( callback, grid, tll )
 {
 	return () => {
 		if( callback )
@@ -207,7 +234,10 @@ function mockFetchHints( callback, grid = {}, tll )
 		}
 
 		return {
-			grid: grid,
+			grid: grid || Grid.getInstance({
+				date: "2022-06-05",
+				gridText: gridWithoutNewlines(),
+			}),
 			tll: tll || new TLL({
 				counts: TLL.parseText( tllWithoutNewlines() ).counts,
 				date: "2022-06-05",

@@ -3,11 +3,38 @@ export default class Grid
 	/**
 	 * @param {Object} options
 	 * @param {string} options.date - Used to determine if values are accurate or should be updated
-	 * @param {Object} [options.distributions]
-	 * @param {string} options.gridText
-	 * @param {Array} [options.wordLengths]
+	 * @param {Object} options.distributions
+	 * @param {Array} options.wordLengths
 	 */
-	constructor({ date, distributions, gridText, wordLengths } = {})
+	constructor({ date, distributions, wordLengths } = {})
+	{
+		if( date === undefined )
+		{
+			throw new Error( "Required property 'date' is undefined" );
+		}
+		if( distributions === undefined )
+		{
+			throw new Error( "Required property 'distributions' is undefined" );
+		}
+		if( wordLengths === undefined )
+		{
+			throw new Error( "Required property 'wordLengths' is undefined" );
+		}
+
+		this.date = date;
+		this.distributions = distributions;
+		this.wordLengths = wordLengths;
+	}
+
+	/**
+	 * @param {Object} options
+	 * @param {string} options.date
+	 * @param {Object} [options.distributions]
+	 * @param {string} [options.gridText]
+	 * @param {Array} [options.wordLengths]
+	 * @return {Grid}
+	 */
+	static getInstance({ date, distributions, gridText, wordLengths } = {})
 	{
 		if( gridText )
 		{
@@ -17,9 +44,11 @@ export default class Grid
 			wordLengths = parsed.wordLengths;
 		}
 
-		this.date = date;
-		this.distributions = distributions;
-		this.wordLengths = wordLengths;
+		return new Grid({
+			date,
+			distributions,
+			wordLengths,
+		});
 	}
 
 	/**

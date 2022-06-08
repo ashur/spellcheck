@@ -82,7 +82,8 @@ describe( "UI", () =>
 			it( "should render the main modal template", () =>
 			{
 				const context = {
-					grid: new Grid({
+					grid: Grid.getInstance({
+						date: "2022-06-05",
 						gridText: gridWithoutNewlines(),
 					}),
 				};
@@ -102,7 +103,8 @@ describe( "UI", () =>
 			it( "should render grid word lengths as table column headings", () =>
 			{
 				const context = {
-					grid: new Grid({
+					grid: Grid.getInstance({
+						date: "2022-06-05",
 						gridText: gridWithoutNewlines(),
 					}),
 				};
@@ -134,6 +136,8 @@ describe( "UI", () =>
 				const words = ['cite', 'certain'];
 				const context = {
 					grid: new Grid({
+						date: "2022-06-05",
+
 						distributions: {
 							C: {
 								'4': 2, // remaining = 1
