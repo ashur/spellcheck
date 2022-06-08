@@ -1,6 +1,7 @@
 /* {% from "system/loader.njk" import partial %} */
 import Grid from "./grid.mjs";
 import Storage from "./storage.mjs";
+import TLL from "./tll.mjs";
 import UI from "./ui.mjs";
 
 export const APP_VERSION = "{{ pkg.version }}";
@@ -9,13 +10,15 @@ export default class App
 {
 	/**
 	 * @param {Object} [options]
-	 * @param {Object} [options.grid]
+	 * @param {Grid} [options.grid]
 	 * @param {Object} [options.storage]
+	 * @param {TLL} [options.tll]
 	 */
-	constructor({ grid, storage } = {})
+	constructor({ grid, storage, tll } = {})
 	{
 		this.grid = grid;
 		this.storage = storage;
+		this.tll = tll;
 	}
 
 	/**
@@ -43,6 +46,22 @@ export default class App
 		else
 		{
 			throw new Error( "Could not locate grid element on hints page" );
+		}
+
+		/*
+		 * Two-Letter List
+		 */
+		const tllElement = div.querySelector( ".StoryBodyCompanionColumn p:nth-child(7)" );
+		if( tllElement )
+		{
+			hints.tll = TLL.getInstance({
+				date,
+				tllText: tllElement.innerText,
+			});
+		}
+		else
+		{
+			throw new Error( "Could not locate two-letter list element on hints page" );
 		}
 
 		return hints;
@@ -89,6 +108,28 @@ export default class App
 			|| grid.date !== date;
 
 		/*
+		 * Two-Letter List
+		 *
+		 * Use TLL from localStorage if today's TLL has already been parsed
+		 * and stored.
+		 */
+		let tll;
+
+		const tllData = storage.getItem( "tll" );
+		if( tllData )
+		{
+			tll = TLL.getInstance( tllData );
+
+			shouldFetchHints = shouldFetchHints
+				|| tll.date !== date;
+		}
+		else
+		{
+			shouldFetchHints = true;
+		}
+
+
+		/*
 		 * Fetch remote hints
 		 *
 		 * If app data isn't defined locally or is out of date, fetch and parse
@@ -98,10 +139,13 @@ export default class App
 		{
 			// console.log( `Fetching remote hints for '${date}'...` );
 
-			const {grid: latestGrid} = await App.fetchHints( hintsUrl, date );
-			storage.setItem( "grid", latestGrid );
+			const {grid: latestGrid, tll: latestTLL} = await App.fetchHints( hintsUrl, date );
 
 			grid = latestGrid;
+			tll = latestTLL;
+
+			storage.setItem( "grid", grid );
+			storage.setItem( "tll", tll );
 		}
 		else
 		{
@@ -115,6 +159,7 @@ export default class App
 				wordLengths: grid.wordLengths,
 			}),
 			storage,
+			tll: tll,
 		});
 	}
 
