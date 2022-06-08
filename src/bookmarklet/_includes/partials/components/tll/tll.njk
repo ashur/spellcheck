@@ -1,0 +1,50 @@
+<article id="spellcheck-tll" class="spellcheck-tll">
+	<h3 class="spellcheck__heading">Two-Letter List</h3>
+
+	<div class="spellcheck-card">
+		<dl class="spellcheck-tll__list"
+			style="--tll-columns: ${
+				tll.remaining( words ).reduce( (prev, curr) =>
+				{
+					if( curr.length > prev )
+					{
+						return curr.length;
+					}
+
+					return prev;
+
+				}, 0)
+			}"
+		>
+			${ (() => (
+				tll.remaining( words ).map( (rowItems) => {
+					const cells = rowItems.map( (rowItem) => {
+						const [letters, count] = Object.entries(rowItem)[0];
+
+						return `
+						<div class="spellcheck-tll__list-item ${ count === 0 ? 'spellcheck-tll__list-item--checked' : ''}">
+							<dt class="spellcheck-tll__letters">${letters}</dt>
+							<div aria-hidden="true" class="spellcheck-tll__bullet">&bull;</div>
+							<dd class="spellcheck-tll__count">
+								${ count === 0
+									? `{{- partial('components/checked-item.njk') -}}`
+									: count
+								}
+							</dd>
+						</div>
+						`;
+
+					}).join("\n");
+
+					const rowLetter = Object.keys( rowItems[0] )[0][0];
+
+					return `
+						<div class="spellcheck-tll__list-row">
+							${cells}
+						</div>`
+
+				}).join("\n")
+			))() }
+		</dl>
+	</div>
+</article>

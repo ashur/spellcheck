@@ -7,7 +7,7 @@
 
 .spellcheck-grid td,
 .spellcheck-grid th {
-	height: var(--grid-size);
+	height: var(--grid-row-height);
 	text-align: center;
 	vertical-align: middle;
 }
@@ -16,7 +16,7 @@
 }
 .spellcheck-grid th {
 	font-weight: bold;
-	min-width: var(--grid-size);
+	min-width: var(--grid-col-width);
 }
 .spellcheck-grid td {
 	font-size: var(--text-size-lg);

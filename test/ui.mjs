@@ -4,6 +4,8 @@ import {JSDOM} from "jsdom";
 import {gridWithoutNewlines} from "./grid.mjs";
 import Grid from "../build/grid.mjs";
 import UI from "../build/ui.mjs";
+import TLL from "../build/tll.mjs";
+import {tllWithoutNewlines} from "./tll.mjs";
 
 describe( "UI", () =>
 {
@@ -86,6 +88,10 @@ describe( "UI", () =>
 						date: "2022-06-05",
 						gridText: gridWithoutNewlines(),
 					}),
+					tll: TLL.getInstance({
+						date: "2022-06-05",
+						tllText: tllWithoutNewlines(),
+					}),
 				};
 
 				const render = UI.getModalRenderer( "main" );
@@ -96,7 +102,7 @@ describe( "UI", () =>
 				const elCarouselCards = elCarousel.querySelector(".spellcheck-carousel__cards");
 				const elCarouselDots = elCarousel.querySelector(".spellcheck-carousel__dots");
 
-				assert.equal( elCarouselCards.childElementCount, 1, "Number of carousel cards" );
+				assert.equal( elCarouselCards.childElementCount, 2, "Number of carousel cards" );
 				assert.equal( elCarouselDots.constructor.name, "HTMLDivElement" );
 			});
 
@@ -106,6 +112,10 @@ describe( "UI", () =>
 					grid: Grid.getInstance({
 						date: "2022-06-05",
 						gridText: gridWithoutNewlines(),
+					}),
+					tll: TLL.getInstance({
+						date: "2022-06-05",
+						tllText: tllWithoutNewlines(),
 					}),
 				};
 
@@ -148,7 +158,10 @@ describe( "UI", () =>
 
 						wordLengths: [4, 7],
 					}),
-
+					tll: TLL.getInstance({
+						date: "2022-06-05",
+						tllText: tllWithoutNewlines(),
+					}),
 					words,
 				};
 
@@ -164,6 +177,71 @@ describe( "UI", () =>
 				assert.isTrue(
 					elTableRow.childNodes[3]?.childNodes[0]?.classList?.contains( "spellcheck-checkmark" ),
 					"Completed item contains checkmark"
+				);
+			});
+
+			it( "should render TLL rows for each letter", () =>
+			{
+				const words = ['cite', 'certain'];
+				const context = {
+					grid: new Grid({
+						date: "2022-06-05",
+
+						distributions: {
+							C: {
+								'4': 2, // remaining = 1
+								'6': 0, // remaining = 0
+								'7': 1, // remaining = 0
+							},
+							E: {
+								'4': 2,
+								'6': 0,
+								'7': 1,
+							},
+						},
+
+						wordLengths: [4, 6, 7],
+					}),
+					tll: TLL.getInstance({
+						counts: {
+							"CE": 2, // remaining = 1
+							"CI": 1, // remaining = 0
+
+							"EC": 1, // remaining = 1
+						},
+						date: "2022-06-05",
+					}),
+					words,
+				};
+
+				const render = UI.getModalRenderer( "main" );
+				const dom = new JSDOM( render( context ) );
+				const {document} = dom.window;
+
+				const elList = document.querySelector( ".spellcheck-carousel .spellcheck-tll .spellcheck-tll__list" );
+				assert.equal( elList.childElementCount, context.tll.remaining([]).length );
+
+				const elListItem__CE = elList.childNodes[0].childNodes[0];
+				assert.isFalse(
+					elListItem__CE.classList.contains( "spellcheck-tll__list-item--checked"),
+					"'CE' list item has checked class",
+				);
+				assert.equal(
+					elListItem__CE.querySelector( ".spellcheck-tll__count" ).innerHTML,
+					1,
+				);
+
+				const elListItem__CI = elList.childNodes[0].childNodes[2];
+				assert.isTrue(
+					elListItem__CI.classList.contains( "spellcheck-tll__list-item--checked"),
+					"'CI' list item has checked class",
+				);
+
+				assert.isTrue(
+					elListItem__CI.querySelector( ".spellcheck-tll__count" )
+						.childNodes[0]
+						.classList.contains( "spellcheck-checkmark" ),
+					"'CI' list item has checkmark"
 				);
 			});
 		});

@@ -1,0 +1,77 @@
+/* --------------------------------------------------
+   Bullet
+   -------------------------------------------------- */
+.spellcheck-tll__bullet {
+   color: var(--border-color);
+   font-size: 10px;
+   position: relative;
+   top: 5px;
+}
+
+.spellcheck-tll__list-item--checked .spellcheck-tll__bullet {
+   display: none;
+}
+
+
+
+
+/* --------------------------------------------------
+   Letters
+   -------------------------------------------------- */
+.spellcheck-tll__letters {
+	font-weight: bold;
+}
+
+
+
+
+/* --------------------------------------------------
+   List
+   -------------------------------------------------- */
+.spellcheck-tll__list-item {
+	align-content: center;
+	column-gap: var(--space--1);
+	display: flex;
+	font-size: 16px;
+	grid-column-gap: var(--space--1);
+	justify-self: center;
+}
+
+.spellcheck-tll__list-item--checked {
+	grid-column-gap: var(--space-0);
+}
+
+.spellcheck-tll__list-row {
+	align-content: center;
+	column-gap: var(--space-1);
+	display: grid;
+	grid-template-columns: repeat(var(--tll-columns), 1fr);
+	height: var(--grid-row-height);
+	padding-left: var(--space-0);
+	padding-right: var(--space-0);
+}
+
+.spellcheck-tll__list-row:first-child {
+	padding-top: 0;
+}
+
+.spellcheck-tll__list-row:last-child {
+	padding-bottom: 0;
+}
+
+.spellcheck-tll__list-row + .spellcheck-tll__list-row {
+	border-top: var(--border);
+}
+
+
+
+
+/* --------------------------------------------------
+   Checkmark
+   -------------------------------------------------- */
+.spellcheck-tll .spellcheck-checkmark {
+	margin-left: 4px;
+	margin-top: 0px;
+	position: relative;
+	top: 4px;
+}

@@ -8,12 +8,18 @@
 	--checkmark-color: var(--color-green);
 
 	--grid-size: 1.875em;
+
+	--grid-col-width: 1.875rem;
+	--grid-row-height: 2.375rem;
+
 	--space--2: 0.125rem;
 	--space--1: 0.25rem;
 	--space-0: 0.5rem;
 	--space-1: 1rem;
 	--space-2: 2rem;
 	--space-3: 4rem;
+	--space-outer: 32px;
+
 	--text-size-sm: 0.875em;
 	--text-size: 1rem;
 	--text-size-lg: 1.125em;
