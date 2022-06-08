@@ -14,36 +14,78 @@ export const tllWithoutNewlines = () => tllWithNewlines().replace(/\n/g, "");
 
 describe( "TLL", () =>
 {
+	describe( ".counts", () =>
+	{
+		it( "should be set from constructor options", () =>
+		{
+			const {counts} = TLL.parseText( tllWithoutNewlines() );
+
+			const tll = new TLL({
+				counts,
+				date: "2022-06-05",
+			});
+
+			assert.equal( tll.counts, counts );
+		});
+
+		it( "should throw Error if counts is undefined", () =>
+		{
+			const fn = () => new TLL({
+				date: "2022-06-05"
+			});
+			assert.throws( fn, "Required property 'counts' is undefined" );
+		});
+	});
+
 	describe( ".date", () =>
 	{
 		it( "should be set from constructor options", () =>
 		{
 			const date = "2022-06-05";
 			const tll = new TLL({
+				counts: TLL.parseText( tllWithoutNewlines() ).counts,
 				date,
 			});
 
 			assert.equal( tll.date, date );
 		});
-	});
 
-	describe( ".counts", () =>
-	{
-		it( "should be set from constructor options if defined", () =>
+		it( "should throw Error if date is undefined", () =>
 		{
-			const {counts} = TLL.parseText( tllWithoutNewlines() );
-
-			const tll = new TLL({
-				counts,
+			const fn = () => new TLL({
+				counts: TLL.parseText( tllWithoutNewlines() ).counts,
 			});
 
-			assert.equal( tll.counts, counts );
+			assert.throws( fn, "Required property 'date' is undefined" );
+		});
+	});
+
+	describe( ".getInstance()", () =>
+	{
+		it( "should parse tllText if defined", () =>
+		{
+			const tll = TLL.getInstance({
+				tllText: tllWithoutNewlines(),
+				date: "2022-06-05",
+			});
+
+			assert.isObject( tll.counts );
+			assert.hasAllKeys( tll.counts, [
+				"CO",
+				"EF",
+				"FE", "FI", "FO",
+				"IN",
+				"NO",
+				"OF",
+				"TI", "TO",
+			]);
 		});
 
-		it( "should be set from parsed tllText by constructor if defined", () =>
+		it( "should use counts value if tllText is undefined", () =>
 		{
-			const tll = new TLL({
-				tllText: tllWithoutNewlines(),
+			const tll = TLL.getInstance({
+				counts: TLL.parseText( tllWithoutNewlines() ).counts,
+				date: "2022-06-05",
 			});
 
 			assert.isObject( tll.counts );
@@ -76,7 +118,7 @@ describe( "TLL", () =>
 			});
 		});
 
-		it( "should return empty object if tllString doesn't match expected format", () =>
+		it( "should return empty object if tllText doesn't match expected format", () =>
 		{
 			const invalidTllValues = [
 				"invalid tll format",
@@ -117,7 +159,8 @@ describe( "TLL", () =>
 			];
 
 			const tll = new TLL({
-				tllText: tllWithoutNewlines()
+				counts: TLL.parseText( tllWithoutNewlines() ).counts,
+				date: "2022-06-05",
 			});
 
 			const result = tll.remaining( words );

@@ -4,9 +4,31 @@ export default class TLL
 	 * @param {Object} options
 	 * @param {string} [options.counts]
 	 * @param {string} options.date - Used to determine if values are accurate or should be updated
-	 * @param {string} [options.tllText]
+	 * @throws Will throw an error if required properties are undefined
 	 */
-	constructor({ counts, date, tllText } = {})
+	constructor({ counts, date } = {})
+	{
+		if( counts === undefined )
+		{
+			throw new Error( "Required property 'counts' is undefined" );
+		}
+		if( date === undefined )
+		{
+			throw new Error( "Required property 'date' is undefined" );
+		}
+
+		this.counts = counts;
+		this.date = date;
+	}
+
+	/**
+	 * @param {Object} options
+	 * @param {string} [options.counts]
+	 * @param {string} options.date
+	 * @param {string} [options.tllText]
+	 * @return {TLL}
+	 */
+	static getInstance({ counts, date, tllText } = {})
 	{
 		if( tllText )
 		{
@@ -14,8 +36,10 @@ export default class TLL
 			counts = parsed.counts;
 		}
 
-		this.counts = counts;
-		this.date = date;
+		return new TLL({
+			counts,
+			date,
+		});
 	}
 
 	/**
