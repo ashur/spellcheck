@@ -1,6 +1,13 @@
+let url = process.env.URL;
+if( process.env.BRANCH && process.env.BRANCH !== 'main' )
+{
+	// Use branch deploy URL if we're not on `main`
+	url = process.env.DEPLOY_PRIME_URL;
+}
+
 module.exports = {
 	env: {
-		url: process.env.URL || "http://localhost:8080",
+		url: url || "http://localhost:8080",
 	},
 	site: {
 		title: "Spell Check",
