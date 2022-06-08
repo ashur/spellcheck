@@ -1,0 +1,95 @@
+export default class TLL
+{
+	/**
+	 * @param {Object} options
+	 * @param {string} [options.counts]
+	 * @param {string} options.date - Used to determine if values are accurate or should be updated
+	 * @param {string} [options.tllText]
+	 */
+	constructor({ counts, date, tllText } = {})
+	{
+		if( tllText )
+		{
+			const parsed = TLL.parseText( tllText );
+			counts = parsed.counts;
+		}
+
+		this.counts = counts;
+		this.date = date;
+	}
+
+	/**
+	 * @param {string} tllText
+	 * @return {Object}
+	 */
+	static parseText( tllText )
+	{
+		const result = {
+			counts: {},
+		};
+
+		if( typeof tllText !== 'string' )
+		{
+			return result;
+		}
+
+		// Insert newlines if they're missing - ex., when fetched with `fetch()`
+		if( !tllText.includes( "\n" ) )
+		{
+			tllText = tllText.replace( /(([^\d]+)-)/g, "\n$&" );
+		}
+
+		const definitions = tllText?.split( /[\n\s]+/g );
+
+		definitions?.forEach( (definition) =>
+		{
+			const [letters, count] = definition?.split( "-" );
+
+			if( count !== undefined && letters.length === 2 )
+			{
+				result.counts[letters] = parseInt(count);
+			}
+		});
+
+		return result;
+	}
+
+	/**
+	 * @param {string[]} words
+	 * @return {string[]}
+	 */
+	remaining( words=[] )
+	{
+		const twoLetterRemaining = Object.assign( {}, this.counts );
+		const twoLetterFound = words.map( (word) => word.slice(0, 2).toUpperCase() );
+
+		twoLetterFound.forEach( (letterPair) => {
+			if( twoLetterRemaining[letterPair] ) {
+				twoLetterRemaining[letterPair]--;
+			}
+		});
+
+		// Format for easy consumption by rendering template
+		// @example
+		// [
+		//   [{"CO": 7}],
+		//   [{"EF": 3}],
+		//   [{"FE": 4}, {"FI": 7}, {"FO": 5} ],
+		//   ...
+		// ]
+		const totalsByRow = {};
+		Object.entries( twoLetterRemaining ).forEach( ([letters, count]) =>
+		{
+			if( !totalsByRow[letters.slice(0,1)] )
+			{
+				totalsByRow[letters.slice(0,1)] = [];
+			}
+
+			totalsByRow[letters.slice(0,1)].push({
+				[letters]: count,
+			});
+		});
+
+		return Object.values( totalsByRow );
+	}
+}
