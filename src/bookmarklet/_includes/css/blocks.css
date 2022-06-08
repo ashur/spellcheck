@@ -28,15 +28,48 @@
    Carousel
    -------------------------------------------------- */
 .spellcheck-carousel {
-	column-gap: var(--space-2);
-	display: grid;
-	grid-template-columns: 100% 100%;
-	overflow-x: scroll;
-	scroll-snap-type: x mandatory;
+   margin-left: calc(-1 * var(--space-outer));
+   margin-right: calc(-1 * var(--space-outer));
 }
 
-.spellcheck-carousel > * {
-	scroll-snap-align: start;
+.spellcheck-carousel__cards {
+   column-gap: var(--space-2);
+   display: grid;
+   grid-template-columns: repeat(var(--carousel-columns, 1), 100%);
+   overflow-x: scroll;
+   padding-bottom: var(--space-3);
+   scroll-snap-type: x mandatory;
+   scrollbar-width: none;
+}
+
+.spellcheck-carousel__cards::-webkit-scrollbar {
+   display: none;
+}
+
+.spellcheck-carousel__cards > * {
+   padding-left: var(--space-outer);
+   padding-right: var(--space-outer);
+   scroll-snap-align: start;
+}
+
+.spellcheck-carousel__dots {
+   --dot-size: 8px;
+
+   column-gap: var(--space-1);
+   display: flex;
+   justify-content: center;
+}
+
+.spellcheck-carousel__dot {
+   background-color: var(--color-gray);
+   border-radius: 50%;
+   height: var(--dot-size);
+   transition: background-color 0.25s ease;
+   width: var(--dot-size);
+}
+
+.spellcheck-carousel__dot[data-active="true"] {
+   background-color: var(--color-black);
 }
 
 

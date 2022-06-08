@@ -160,5 +160,49 @@ export default class App
 			name: "main",
 			template: "main",
 		});
+
+		/*
+		 * Carousel dots
+		 */
+		const carouselCards = document.querySelector( ".spellcheck-carousel__cards" );
+		if( carouselCards && carouselCards.childElementCount > 1 )
+		{
+			const ioOptions = {
+				root: document.querySelector( ".spellcheck-carousel" ),
+				rootMargin: '0px',
+				threshold: 0.51,
+			}
+
+			const observer = new IntersectionObserver( (entries, observer) => {
+				const currentCard = entries[0].target;
+				const cards = Array.from( currentCard.parentNode.childNodes );
+				const cardIndex = cards.findIndex( (card) => card === currentCard );
+
+				document.querySelectorAll( ".spellcheck-carousel__dot" ).forEach( (dotElement, dotIndex) =>
+				{
+					if( dotIndex === cardIndex )
+					{
+						dotElement.dataset.active = "true";
+					}
+					else
+					{
+						dotElement.dataset.active = "false";
+					}
+				});
+
+			}, ioOptions);
+
+			carouselCards.style.setProperty( "--carousel-columns", carouselCards.childElementCount );
+
+			const carouselDots = document.querySelector( ".spellcheck-carousel__dots" );
+			document.querySelectorAll( ".spellcheck-carousel__cards > *" ).forEach( (carouselCard, index) =>
+			{
+				observer.observe( carouselCard );
+
+				const carouselDot = document.createElement( "div" );
+				carouselDot.classList.add( "spellcheck-carousel__dot" );
+				carouselDots.appendChild( carouselDot );
+			});
+		}
 	}
 }
