@@ -126,6 +126,35 @@ describe( "App", () =>
 			assert.isTrue( didFetch );
 		});
 
+		it( "should fetch hints if local grid data is missing required properties", async () =>
+		{
+			let didFetch = false;
+			const callback = () => {
+				didFetch = true;
+			};
+
+			App.fetchHints = mockFetchHints( callback );
+
+			const mockStorage = MockLocalStorage();
+			mockStorage.setItem( "spellcheck", JSON.stringify(
+				{
+					grid: {
+						date: "2022-06-05",
+					},
+					tll: {
+						counts: TLL.parseText( tllWithoutNewlines() ).counts,
+						date: "2022-06-05",
+					},
+					version: APP_VERSION,
+				}
+			));
+
+			const app = await App.getInstance( hintsUrl, mockStorage );
+
+			assert.isTrue( didFetch );
+			assert.instanceOf( app.grid, Grid );
+		});
+
 		it( "should fetch hints if TLL date doesn't match URL", async () =>
 		{
 			let didFetch = false;
@@ -139,7 +168,7 @@ describe( "App", () =>
 			mockStorage.setItem( "spellcheck", JSON.stringify(
 				{
 					grid: Grid.getInstance({
-						date: "2022-06-04",
+						date: "2022-06-05",
 						gridText: gridWithoutNewlines(),
 					}),
 					tll: {
@@ -159,6 +188,35 @@ describe( "App", () =>
 
 			assert.instanceOf( app.tll, TLL );
 			assert.equal( app.tll.date, "2022-06-05" );
+		});
+
+		it( "should fetch hints if local TLL data is missing required properties", async () =>
+		{
+			let didFetch = false;
+			const callback = () => {
+				didFetch = true;
+			};
+
+			App.fetchHints = mockFetchHints( callback );
+
+			const mockStorage = MockLocalStorage();
+			mockStorage.setItem( "spellcheck", JSON.stringify(
+				{
+					grid: Grid.getInstance({
+						date: "2022-06-05",
+						gridText: gridWithoutNewlines(),
+					}),
+					tll: {
+						date: "2022-06-05",
+					},
+					version: APP_VERSION,
+				}
+			));
+
+			const app = await App.getInstance( hintsUrl, mockStorage );
+
+			assert.isTrue( didFetch );
+			assert.instanceOf( app.tll, TLL );
 		});
 
 		it( "should write latest grid to storage if fetched", async () =>

@@ -99,48 +99,54 @@ export default class App
 
 		let shouldFetchHints = APP_VERSION !== storage.getItem( "version" );
 
-		/*
-		 * Grid
-		 *
-		 * Use grid from localStorage if today's grid has already been parsed
-		 * and stored.
-		 */
-		let grid;
-
-		const gridData = storage.getItem( "grid" );
-		if( gridData )
+		let grid, tll;
+		if( !shouldFetchHints )
 		{
-			grid = Grid.getInstance( gridData );
+			/*
+			 * Grid
+			 *
+			 * Use grid from localStorage if today's grid has already been parsed
+			 * and stored.
+			 */
+			const gridData = storage.getItem( "grid" );
+			try
+			{
+				grid = Grid.getInstance( gridData );
 
-			shouldFetchHints = shouldFetchHints
-				|| grid.date !== date;
-		}
-		else
-		{
-			shouldFetchHints = true;
-		}
-
-		/*
-		 * Two-Letter List
-		 *
-		 * Use TLL from localStorage if today's TLL has already been parsed
-		 * and stored.
-		 */
-		let tll;
-
-		const tllData = storage.getItem( "tll" );
-		if( tllData )
-		{
-			tll = TLL.getInstance( tllData );
-
-			shouldFetchHints = shouldFetchHints
-				|| tll.date !== date;
-		}
-		else
-		{
-			shouldFetchHints = true;
+				shouldFetchHints = shouldFetchHints
+					|| grid.date !== date;
+			}
+			catch( error )
+			{
+				// If instantiation fails for any reason — ex., missing required
+				// properties — fetch today's data and start over.
+				shouldFetchHints = true;
+			}
 		}
 
+		if( !shouldFetchHints )
+		{
+			/*
+			 * Two-Letter List
+			 *
+			 * Use TLL from localStorage if today's TLL has already been parsed
+			 * and stored.
+			 */
+			const tllData = storage.getItem( "tll" );
+			try
+			{
+				tll = TLL.getInstance( tllData );
+
+				shouldFetchHints = shouldFetchHints
+					|| tll.date !== date;
+			}
+			catch( error )
+			{
+				// If instantiation fails for any reason — ex., missing required
+				// properties — fetch today's data and start over.
+				shouldFetchHints = true;
+			}
+		}
 
 		/*
 		 * Fetch remote hints
