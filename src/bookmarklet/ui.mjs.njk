@@ -1,7 +1,7 @@
 /* {% from "system/loader.njk" import partial %} */
 
 const handlers = {
-	onHide: [],
+	modalhide: [],
 }
 
 let handleKeydown = (event) =>
@@ -19,11 +19,22 @@ let hideModal = () =>
 
 	document.removeEventListener( "keydown", handleKeydown );
 
-	handlers.onHide.forEach( (callback) => callback() );
-	handlers.onHide = [];
+	handlers.modalhide.forEach( (callback) => callback() );
+	handlers.modalhide = [];
 };
 
 const UI = {
+	/**
+	 * @param {string} eventName
+	 * @param {Function} callback
+	 */
+	addEventListener: (eventName, callback) => {
+		if( handlers[eventName] )
+		{
+			handlers[eventName].push( callback );
+		}
+	},
+
 	addStyles: () =>
 	{
 		/* eslint-disable quotes */
@@ -69,10 +80,6 @@ const UI = {
 
 	hideModal: () => {
 		hideModal();
-	},
-
-	onHideModal: (callback) => {
-		handlers.onHide.push( callback );
 	},
 
 	/* {# */

@@ -283,7 +283,7 @@ export default class App
 			nextArrow.addEventListener( "click", showNextCard );
 			document.addEventListener( "keydown", handleKeydown );
 
-			UI.onHideModal( () =>
+			UI.addEventListener( "modalhide", () =>
 			{
 				document.removeEventListener( "keydown", handleKeydown );
 			});
