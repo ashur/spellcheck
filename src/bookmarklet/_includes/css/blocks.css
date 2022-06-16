@@ -72,6 +72,26 @@
    background-color: var(--color-black);
 }
 
+.spellcheck-carousel__nav .sb-bob-arrow {
+   display: none;
+}
+
+@media not all and (pointer: coarse) {
+   .spellcheck-carousel__nav {
+      align-items: center;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      padding-left: var(--space-outer);
+      padding-right: var(--space-outer);
+   }
+
+   .spellcheck-carousel__nav .sb-bob-arrow {
+      display: block;
+      left: 0;
+      position: relative;
+      right: 0;
+   }
+}
 
 
 

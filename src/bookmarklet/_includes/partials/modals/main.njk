@@ -4,5 +4,15 @@
 		{{- partial('components/tll/tll.njk') -}}
 	</div>
 
-	<div class="spellcheck-carousel__dots"></div>
+	<div class="spellcheck-carousel__nav">
+		<button type="button" class="sb-bob-arrow sb-bob-prev">
+			<span class="sb-bob-text">Previous</span>
+		</button>
+
+		<div class="spellcheck-carousel__dots"></div>
+
+		<button type="button" class="sb-bob-arrow sb-bob-next active">
+			<span class="sb-bob-text">Next</span>
+		</button>
+	</div>
 </div>

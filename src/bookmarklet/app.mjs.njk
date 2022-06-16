@@ -223,11 +223,71 @@ export default class App
 		});
 
 		/*
-		 * Carousel dots
+		 * Carousel
 		 */
 		const carouselCards = document.querySelector( ".spellcheck-carousel__cards" );
 		if( carouselCards && carouselCards.childElementCount > 1 )
 		{
+			const carouselState = {
+				currentCard: 0,
+			};
+
+			const prevArrow = document.querySelector( '.spellcheck-carousel__nav .sb-bob-prev' );
+			const nextArrow = document.querySelector( '.spellcheck-carousel__nav .sb-bob-next' );
+
+			const handleKeydown = (event) =>
+			{
+				if( event.key === 'ArrowLeft' )
+				{
+					showPrevCard();
+				}
+				if( event.key === 'ArrowRight' )
+				{
+					showNextCard();
+				}
+			};
+
+			const scrollBehavior = () =>
+			{
+				const motionMediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+				return (!motionMediaQuery || motionMediaQuery.matches) ? "auto" : "smooth";
+			}
+
+			const showPrevCard = () =>
+			{
+				if( carouselState.currentCard > 0 )
+				{
+					const prevCard = carouselCards.childNodes[carouselState.currentCard - 1];
+					prevCard.scrollIntoView( {
+						behavior: scrollBehavior(),
+						block: "nearest",
+						inline: "nearest",
+					} );
+				}
+			}
+
+			const showNextCard = () =>
+			{
+				if( carouselState.currentCard < carouselCards.childElementCount - 1 )
+				{
+					const nextCard = carouselCards.childNodes[carouselState.currentCard + 1];
+					nextCard.scrollIntoView( {
+						behavior: scrollBehavior(),
+						block: "nearest",
+						inline: "nearest",
+					} );
+				}
+			}
+
+			prevArrow.addEventListener( "click", showPrevCard );
+			nextArrow.addEventListener( "click", showNextCard );
+			document.addEventListener( "keydown", handleKeydown );
+
+			UI.addEventListener( "modalhide", () =>
+			{
+				document.removeEventListener( "keydown", handleKeydown );
+			});
+
 			carouselCards.addEventListener( "scroll", (event) =>
 			{
 				const cardIndex = Math.round(
@@ -235,6 +295,8 @@ export default class App
 					event.target.scrollWidth *
 					carouselCards.childElementCount
 				);
+
+				carouselState.currentCard = cardIndex;
 
 				document.querySelectorAll( ".spellcheck-carousel__dot" ).forEach( (dotElement, dotIndex) =>
 				{
@@ -247,6 +309,30 @@ export default class App
 						dotElement.dataset.active = "false";
 					}
 				});
+
+				/*
+				 * Arrows
+				 */
+				const showPrev = cardIndex > 0;
+				const showNext = cardIndex < carouselCards.childElementCount - 1;
+
+				if( showPrev )
+				{
+					prevArrow.classList.add( 'active' );
+				}
+				else
+				{
+					prevArrow.classList.remove( 'active' );
+				}
+
+				if( showNext )
+				{
+					nextArrow.classList.add( 'active' );
+				}
+				else
+				{
+					nextArrow.classList.remove( 'active' );
+				}
 			});
 			carouselCards.style.setProperty( "--carousel-columns", carouselCards.childElementCount );
 

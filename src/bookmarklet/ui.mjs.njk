@@ -1,5 +1,9 @@
 /* {% from "system/loader.njk" import partial %} */
 
+const handlers = {
+	modalhide: [],
+}
+
 let handleKeydown = (event) =>
 {
 	if( event.key === "Escape" )
@@ -14,9 +18,23 @@ let hideModal = () =>
 	document.querySelector( ".sb-modal-wrapper" ).innerHTML = "";
 
 	document.removeEventListener( "keydown", handleKeydown );
+
+	handlers.modalhide.forEach( (callback) => callback() );
+	handlers.modalhide = [];
 };
 
 const UI = {
+	/**
+	 * @param {string} eventName
+	 * @param {Function} callback
+	 */
+	addEventListener: (eventName, callback) => {
+		if( handlers[eventName] )
+		{
+			handlers[eventName].push( callback );
+		}
+	},
+
 	addStyles: () =>
 	{
 		/* eslint-disable quotes */
