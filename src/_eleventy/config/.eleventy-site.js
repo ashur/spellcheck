@@ -17,5 +17,6 @@ module.exports = eleventyConfig =>
 			layouts: "_layouts",
 		},
 		htmlTemplateEngine: "njk",
+		markdownTemplateEngine: "njk",
 	};
 };
