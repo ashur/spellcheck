@@ -39,4 +39,6 @@ sections:
 
       submit:
         value: Send
+        error_message: Unable to send message, please try again.
+        success_message: Message sent. Thank you!
 ---

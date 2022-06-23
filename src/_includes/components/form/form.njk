@@ -9,6 +9,7 @@
 	name,
 	submit
 ) %}
+{%- from "system/component.njk" import component with context -%}
 <form class="stack | form"
 	netlify
 	{{ ('name="' + name + '"') | safe if name }}
@@ -64,6 +65,8 @@
 	{% endif %}
 </form>
 
+{{ component("toast") }}
+
 <script>
 	(() =>
 	{
@@ -81,12 +84,13 @@
 					body: new URLSearchParams( formData ).toString(),
 				});
 
-				console.log('Sent!')
+				showToast(`{{ submit.success_message }}`, 'success');
+				event.reset();
 			}
 			catch (error)
 			{
-				console.log('Error!')
 				console.error(error);
+				showToast(`{{ submit.error_message }}`, 'error')
 			}
 		};
 
