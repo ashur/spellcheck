@@ -1,7 +1,7 @@
 .section--bgc {
 	background-color: var(--bgc);
-	padding-bottom: var( --stack-lg-size );
-	padding-top: var( --stack-lg-size );
+	padding-bottom: var(--page-margin);
+	padding-top: var(--page-margin);
 }
 
 .section__heading {
