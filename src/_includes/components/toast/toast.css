@@ -1,0 +1,31 @@
+.toast-container {
+	display: grid;
+	justify-items: center;
+	left: 0;
+	position: fixed;
+	right: 0;
+	bottom: 5vh;
+}
+
+.toast {
+	background: hsl(0 0% 20% / 97%);
+	border-radius: 8px;
+	color: white;
+	display: inline-block;
+	font-size: 0.875em;
+	max-width: calc(100vw - 2 * var(--page-margin));
+	opacity: 0;
+	padding: var(--size--1) var(--size-0);
+	pointer-events: none;
+	transition: all 0.375s ease;
+	transform: translateY(var(--size--2));
+}
+
+.toast--visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.toast[aria-hidden="true"] {
+	display: none;
+}

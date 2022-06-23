@@ -1,0 +1,8 @@
+{%- from "components/toast/toast.njk" import render as Component -%}
+
+{#
+ # @param {Object} params
+ #}
+{% macro render(params) %}
+	{{ Component() }}
+{% endmacro %}

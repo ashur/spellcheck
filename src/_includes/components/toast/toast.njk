@@ -1,0 +1,39 @@
+{#
+ #}
+{% macro render() %}
+<div class="toast-container">
+	<output
+		aria-hidden="true"
+		class="toast {{ 'toast--visible' if visible }}"
+		role="status"
+	></output>
+</div>
+
+<script>
+	if( !window.showToast )
+	{
+		window.showToast = (text, theme) =>
+		{
+			const toast = document.querySelector('.toast');
+			toast.innerText = text;
+
+			toast.removeAttribute("aria-hidden");
+
+			setTimeout( () => {
+				toast.classList.add("toast--visible");
+
+				setTimeout( () => {
+					toast.classList.remove("toast--visible");
+
+					setTimeout( () => {
+						toast.setAttribute("aria-hidden", "true");
+						toast.innerText = "";
+					}, 500 );
+
+				}, 3500 );
+
+			}, 50 );
+		}
+	}
+</script>
+{% endmacro %}
