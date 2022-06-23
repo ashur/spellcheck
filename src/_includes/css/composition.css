@@ -35,7 +35,7 @@
 }
 
 .stack > * + * {
-	margin-top: var( --stack-size );
+	margin-top: var( --stack-custom-size, var( --stack-size ) );
 }
 
 .stack-lg > * + * {
