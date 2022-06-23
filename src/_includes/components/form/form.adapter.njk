@@ -1,0 +1,12 @@
+{%- from "components/form/form.njk" import render as Component -%}
+
+{#
+ # @param {Object} params
+ #}
+{% macro render(params) %}
+	{{ Component(
+		fields = params.fields,
+		name = params.name,
+		submit = params.submit
+	) }}
+{% endmacro %}
