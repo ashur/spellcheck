@@ -1,0 +1,20 @@
+---
+layout: base.njk
+---
+<div class="[ container stack-lg ][][]">
+	<header class="[ center inset stack ][ measure ][ header ]">
+		<div class="[ stack-sm ][][]">
+			<p class="[][][ header__category ]">A bookmarklet</p>
+			<h1 class="[][][ header__title ]">
+				<a class="[][ no-underline ][]" href="/">{{ metadata.site.title }}</a>
+			</h1>
+			<p class="[][][ header__heading ]">Check your progress in the <span class="[][ nowrap ][]">New York Times</span> <a href="https://nytimes.com/puzzles/spelling-bee" class="[][ nowrap ][]">Spelling Bee</a> without leaving the puzzle.</p>
+		</div>
+	</header>
+
+	<main class="[ stack-lg ][][]">
+		{{ content | safe }}
+	</main>
+
+	{% include "partials/footer.njk" %}
+</div>
