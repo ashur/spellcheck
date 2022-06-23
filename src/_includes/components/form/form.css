@@ -17,7 +17,7 @@
 
 .form__element {
 	-webkit-appearance: none;
-	background: transparent;
+	background: white;
 	border: solid var(--color-gray-light) 1px;
 	border-radius: 2px;
 	color: inherit;
@@ -46,7 +46,7 @@ select.form__element {
 }
 
 textarea.form__element {
-	min-height: 10em;
+	min-height: 11em;
 }
 
 

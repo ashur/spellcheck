@@ -28,7 +28,8 @@ layout: base.njk
 		{% if sections %}
 			{% for section in sections %}
 				<section
-					class="[ center inset stack ][ measure ][ section ]"
+					class="[ center inset stack ][ measure ][ section ] {{ 'section--bgc' if section.backgroundColor }}"
+					style="{{ '--bgc: ' + section.backgroundColor if section.backgroundColor }}"
 				>
 					{% for block in section.blocks %}
 						{{- component( block.type, block ) -}}
