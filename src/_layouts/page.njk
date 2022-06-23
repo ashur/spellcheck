@@ -1,41 +1,44 @@
 ---
 layout: base.njk
 ---
+{%- from "system/component.njk" import component with context -%}
 <div class="[ container stack-lg ][][]">
 	<header class="[ center inset stack ][ measure ][ header ]">
 		<div class="[ stack-sm ][][]">
-			{% if page.url === "/" %}
-				<p class="[][][ header__category ]">A bookmarklet</p>
-				<h1 class="[][][ header__title ]">
+			<nav class="nav">
+				<p class="[][][ nav__title ]">
 					<a class="[][ no-underline ][]" href="/">{{ metadata.site.title }}</a>
-				</h1>
-				<p class="[][][ header__heading ]">Check your progress in the <span class="[][ nowrap ][]">New York Times</span> <a href="https://nytimes.com/puzzles/spelling-bee" class="[][ nowrap ][]">Spelling Bee</a> without leaving the puzzle.</p>
-			{% else %}
-				<nav>
-					<p class="[][][ nav__title ]">
-						<a class="[][ no-underline ][]" href="/">{{ metadata.site.title }}</a>
-					</p>
-				</nav>
-			{% endif %}
+				</p>
+			</nav>
 		</div>
 	</header>
 
 	<main class="[ stack-lg ][][]">
-		{{ content | safe }}
+		<section
+			class="[ center inset stack ][ measure ][ section ]"
+		>
+			<header class="[ stack-sm ][][]">
+				<h1 class="[][][ section__heading ]">{{ title }}</h1>
+				{% if subtitle %}
+					<p>{{ subtitle }}</p>
+				{% endif %}
+			</header>
+		</section>
+
+		{% if sections %}
+			{% for section in sections %}
+				<section
+					class="[ center inset stack ][ measure ][ section ]"
+				>
+					{% for block in section.blocks %}
+						{{- component( block.type, block ) -}}
+					{% endfor %}
+				</section>
+			{% endfor %}
+		{% else %}
+			{{ content | safe }}
+		{% endif %}
 	</main>
 
-	<footer class="[][][ footer ]">
-		<div class="[ center stack-sm ][][ measure ]">
-			<h2 class="[][][ footer__heading ]">
-				<a
-					class="[][ no-underline ][]"
-					href="/"
-				>{{ metadata.site.title }}</a>
-			</h2>
-			<ul class="[ stack-sm ][][ footer__links ]">
-				<li><a class="[][ no-underline ][]" href="https://twitter.com/ashur">Report an issue</a></li>
-				<li><a class="[][ no-underline ][]" href="https://github.com/ashur/spellcheck">View source</a></li>
-			</ul>
-		</div>
-	</footer>
+	{% include "partials/footer.njk" %}
 </div>
