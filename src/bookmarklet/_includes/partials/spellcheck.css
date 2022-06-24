@@ -2,6 +2,7 @@
    Global
    -------------------------------------------------- */
 {% include "css/global.css" %}
+{% include "css/utilities.css" %}
 
 
 
