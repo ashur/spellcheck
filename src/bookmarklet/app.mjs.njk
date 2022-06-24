@@ -341,6 +341,11 @@ export default class App
 			{
 				const carouselDot = document.createElement( "div" );
 				carouselDot.classList.add( "spellcheck-carousel__dot" );
+				if( carouselCard.dataset.dotStyle )
+				{
+					carouselDot.classList.add( `spellcheck-carousel__dot--${carouselCard.dataset.dotStyle}` );
+				}
+
 				if( index === 0 )
 				{
 					carouselDot.dataset.active = "true";
