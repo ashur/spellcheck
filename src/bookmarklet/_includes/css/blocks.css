@@ -144,6 +144,21 @@
 
 
 /* --------------------------------------------------
+   Disclaimer
+   -------------------------------------------------- */
+.spellcheck-disclaimer {
+   --stack-size: var(--space-1);
+
+   border-top: solid var(--color-gray) 1px;
+   color: #595959;
+   font-size: var(--text-size-xs);
+   padding-top: var(--space-0);
+}
+
+
+
+
+/* --------------------------------------------------
    Error
    -------------------------------------------------- */
 .spellcheck-error__details {
