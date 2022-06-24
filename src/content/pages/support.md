@@ -1,6 +1,6 @@
 ---
 title: Support
-subtitle: Have a question? Need to report an issue? Want to request a new feature? Please let me know!
+subtitle: Have a question? Need to report an issue, or want to request a new feature? Please let me know!
 sections:
   - type: section
     backgroundColor: "#f6f6f6"
