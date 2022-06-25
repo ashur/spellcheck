@@ -6,12 +6,28 @@
 	padding-top: var(--size-2);
 }
 
+
+
+
 .footer__heading {
 	font-size: inherit;
 	line-height: 1;
 }
 
+
+
+
 .footer__links {
 	list-style: none;
 	padding: 0;
+}
+
+
+
+
+.footer__sections {
+	column-gap: var(--size-1);
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	row-gap: var(--size-2);
 }
