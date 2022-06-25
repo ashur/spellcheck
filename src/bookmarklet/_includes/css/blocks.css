@@ -76,7 +76,7 @@
 }
 
 .spellcheck-carousel__dot--support::after {
-   --size: 62.5%;
+   --size: 50%;
 
    background-color: white;
    border-radius: 50%;
