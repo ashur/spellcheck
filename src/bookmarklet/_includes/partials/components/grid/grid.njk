@@ -23,7 +23,7 @@
 								{
 									if( grid.distributions[letter][length] === 0 )
 									{
-										value = "-";
+										value = `{% include "partials/components/empty-item.njk" %}`;
 									}
 									else
 									{

@@ -155,6 +155,12 @@
 	width: 8.5px;
 }
 
+.spellcheck-empty-item {
+	color: var(--border-color);
+   font-size: 12px;
+   position: relative;
+}
+
 
 
 
