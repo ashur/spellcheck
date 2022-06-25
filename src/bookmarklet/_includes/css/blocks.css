@@ -155,6 +155,11 @@
    padding-top: var(--space-0);
 }
 
+.spellcheck-disclaimer a {
+   color: inherit;
+   text-decoration: underline;
+}
+
 
 
 
