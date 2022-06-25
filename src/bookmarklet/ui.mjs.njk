@@ -67,10 +67,11 @@ const UI = {
 			/**
 			 * @param {Object} context
 			 * @param {Grid} context.grid
+			 * @param {Object} context.metadata
 			 * @param {TLL} context.tll
 			 * @param {Array} [context.words=[]]
 			 */
-			main: ({ grid, tll, words=[] } = {}) => (
+			main: ({ grid, metadata={}, tll, words=[] } = {}) => (
 				`{{- partial('modals/main.njk') -}}`
 			),
 		};

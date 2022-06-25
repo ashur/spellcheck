@@ -5,6 +5,7 @@ import TLL from "./tll.mjs";
 import UI from "./ui.mjs";
 
 export const APP_VERSION = "{{ pkg.version }}";
+export const METADATA = JSON.parse(`{{ metadata | dump | safe }}`);
 
 export default class App
 {
@@ -215,6 +216,7 @@ export default class App
 		UI.showModal({
 			context: {
 				grid: this.grid,
+				metadata: METADATA,
 				tll: this.tll,
 				words,
 			},
@@ -341,6 +343,11 @@ export default class App
 			{
 				const carouselDot = document.createElement( "div" );
 				carouselDot.classList.add( "spellcheck-carousel__dot" );
+				if( carouselCard.dataset.dotStyle )
+				{
+					carouselDot.classList.add( `spellcheck-carousel__dot--${carouselCard.dataset.dotStyle}` );
+				}
+
 				if( index === 0 )
 				{
 					carouselDot.dataset.active = "true";

@@ -61,15 +61,31 @@
 }
 
 .spellcheck-carousel__dot {
-   background-color: var(--color-gray);
+   --bgc: var(--color-gray);
+
+   background-color: var(--bgc);
    border-radius: 50%;
    height: var(--dot-size);
+   position: relative;
    transition: background-color 0.25s ease;
    width: var(--dot-size);
 }
 
 .spellcheck-carousel__dot[data-active="true"] {
-   background-color: var(--color-black);
+   --bgc: var(--color-black);
+}
+
+.spellcheck-carousel__dot--support::after {
+   --size: 61.803551%;
+
+   background-color: white;
+   border-radius: 50%;
+   content: "";
+   height: var(--size);
+   left: calc((100% - var(--size)) / 2);
+   position: absolute;
+   top: calc((100% - var(--size)) / 2);
+   width: var(--size);
 }
 
 .spellcheck-carousel__nav .sb-bob-arrow {
@@ -122,6 +138,21 @@
 	margin-top: 10px;
 	transform: rotate(45deg) translate(-3px, -3px);
 	width: 8.5px;
+}
+
+
+
+
+/* --------------------------------------------------
+   Disclaimer
+   -------------------------------------------------- */
+.spellcheck-disclaimer {
+   --stack-size: var(--space-1);
+
+   border-top: solid var(--color-gray) 1px;
+   color: #595959;
+   font-size: var(--text-size-xs);
+   padding-top: var(--space-0);
 }
 
 

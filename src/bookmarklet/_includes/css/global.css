@@ -20,10 +20,15 @@
 	--space-3: 4rem;
 	--space-outer: 32px;
 
+	--text-size-xs: 0.75em;
 	--text-size-sm: 0.875em;
 	--text-size: 1rem;
 	--text-size-lg: 1.125em;
 
 	--border: solid var(--border-color) 1px;
 	--border-radius: 6px;
+}
+
+.spellcheck a {
+	color: var(--color-blue);
 }
