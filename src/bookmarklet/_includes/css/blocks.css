@@ -76,7 +76,7 @@
 }
 
 .spellcheck-carousel__dot--support::after {
-   --size: 61.803551%;
+   --size: 50%;
 
    background-color: white;
    border-radius: 50%;
@@ -153,6 +153,11 @@
    color: #595959;
    font-size: var(--text-size-xs);
    padding-top: var(--space-0);
+}
+
+.spellcheck-disclaimer a {
+   color: inherit;
+   text-decoration: underline;
 }
 
 
