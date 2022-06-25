@@ -3,6 +3,7 @@
 {% include "css/blocks/hero.css" %}
 {% include "css/blocks/install.css" %}
 {% include "css/blocks/nav.css" %}
+{% include "css/blocks/page.css" %}
 {% include "css/blocks/reminder.css" %}
 {% include "css/blocks/section.css" %}
 {% include "css/blocks/usage.css" %}

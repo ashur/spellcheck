@@ -2,7 +2,7 @@
 layout: base.njk
 ---
 {%- from "system/component.njk" import component with context -%}
-<div class="[ container stack-lg ][][]">
+<div class="[ container stack-lg ][][ page ]">
 	<header class="[ center inset stack ][ measure ][ header ]">
 		<div class="[ stack-sm ][][]">
 			<nav class="nav">
@@ -18,7 +18,7 @@ layout: base.njk
 			class="[ center inset stack ][ measure ][ section ]"
 		>
 			<header class="[ stack-sm ][][]">
-				<h1 class="[][][ section__heading ]">{{ title }}</h1>
+				<h1 class="[][][ page__title ]">{{ title }}</h1>
 				{% if subtitle %}
 					<p>{{ subtitle }}</p>
 				{% endif %}
