@@ -2,6 +2,7 @@
 {% include "css/blocks/header.css" %}
 {% include "css/blocks/hero.css" %}
 {% include "css/blocks/install.css" %}
+{% include "css/blocks/indicator.css" %}
 {% include "css/blocks/nav.css" %}
 {% include "css/blocks/page.css" %}
 {% include "css/blocks/reminder.css" %}

@@ -68,34 +68,49 @@ permalink: /index.html
 		<p>After <a href="#install">installing</a> the {{ metadata.site.title }} bookmarklet, open the <a href="https://nytimes.com/puzzles/spelling-bee">Spelling Bee</a> in your web browser.</p>
 		<p>Any time you need a hint or want to see your progress, click or tap the bookmarklet. No need to switch tabs to check a different page: {{ metadata.site.title }} will appear right in front of your puzzle.</p>
 
-		<h3 class="[][][ section__subheading section-grid ]">Today’s Grid</h3>
+		<h3 class="[][][ section__subheading section-grid ]" id="todays-grid">Today’s Grid</h3>
 		<p>The main grid shows how many words remain for each letter.</p>
-		<p>For example, a <strong>2</strong> in the <strong>6</strong> column of row <strong>L</strong> means two more 6-letter words that starts with “L” are left.</p>
+		<p>For example, the <strong>2</strong> in row <strong>L</strong>, column <strong>6</strong> means two more 6-letter words that start with “L” are left to be found.</p>
 
-		{{ picture(
-			{
-				alt: "Spell Check grid showing a mostly completed puzzle, with mostly P-words remaining.",
-				src: "/images/grid-highlight@2x.jpg",
-				width: 1200,
-				height: 791
-			}
-		) }}
+		<div class="indicator-container">
+			{{ picture(
+				{
+					alt: "Spell Check grid showing a mostly completed puzzle, with mostly P-words remaining.",
+					src: "/images/grid-highlight@2x.jpg",
+					width: 1200,
+					height: 791
+				}
+			) }}
+
+			<div class="indicator"
+				style="--aspect: 1200/791; --left: 36.15%; --top: 37.85%; --width: 16%;"
+			></div>
+		</div>
 
 		<p class="[][][ usage__check ]">A green checkmark lets you know you’ve found every accepted solution for a given letter and length</p>
 
-		<h3 class="[][][ section__subheading section-tll ]">Two-Letter List</h3>
-		<p>Still feeling stuck? Swipe left to see a breakdown by two-letter prefixes:</p>
+		<h3 class="[][][ section__subheading section-tll ]" id="two-letter-list">Two-Letter List</h3>
+		<p>Still at a loss for words? Swipe left to see a breakdown by two-letter prefixes:</p>
 
-		{{ picture(
-			{
-				alt: "Spell Check two-letter list showing ",
-				src: "/images/tll@2x.jpg",
-				width: 1200,
-				height: 690
-			}
-		) }}
+		<div class="indicator-container">
+			{{ picture(
+				{
+					alt: "Spell Check two-letter list showing ",
+					src: "/images/tll@2x.jpg",
+					width: 1200,
+					height: 690
+				}
+			) }}
+			<div class="indicator"
+				style="--aspect: 1200/690; --left: 7.15%; --top: 29%; --width: 16%;"
+			></div>
+			<div class="indicator"
+				style="--aspect: 1200/690; --left: 53.55%; --top: 29%; --width: 16%;"
+			></div>
+		</div>
 
-		<p>Combined with the information from Today’s Grid, <strong>LA-1</strong> and <strong>LO-1</strong> shows that one of the two remaining 6-letter L words starts with “LA” and the other starts with “LO.”</p>
+
+		<p>We already know from <a href="#todays-grid">Today’s Grid</a> that both remaining “L” words contain six letters. The two-letter list tells us one of them starts with  <strong>LA</strong> and the other with <strong>LO</strong>. (No need to keep hunting around for words that start with <strong>LI</strong>!)</p>
 	</section>
 
 	<section
@@ -104,7 +119,7 @@ permalink: /index.html
 	>
 		<header class="[ stack-xs ][][]">
 			<h2 class="[][][ section__heading ]">Get started</h2>
-			<p>Sound like your cup of tea? {{ metadata.site.title }} is supported by most modern web browsers and operating systems, including those listed below.</p>
+			<p>{{ metadata.site.title }} is supported by most modern web browsers and operating systems, including those listed below.</p>
 		</header>
 
 		<ul

@@ -1,0 +1,42 @@
+.indicator-container {
+	position: relative;
+}
+
+.indicator {
+	background: linear-gradient(white 0, white 30%, transparent 30%, transparent 70%, white 70%);
+	border-radius: 50%;
+	height: calc( var(--width) * var(--aspect) );
+	left: var(--left);
+	position: absolute;
+	top: var(--top);
+	width: var(--width);
+}
+
+.indicator::after {
+	animation-duration: 2.5s;
+	animation-iteration-count: infinite;
+	border-radius: 50%;
+	border: solid var(--color-blue) 3px;
+	bottom: 0;
+	content: "";
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.indicator::after {
+		animation-name: indicator-pulse;
+	}
+}
+
+@keyframes indicator-pulse {
+  from {
+	box-shadow: 0 0 0 0px #477aaa66;
+  }
+
+  to {
+	box-shadow: 0 0 0 12px #477aaa00;
+  }
+}
