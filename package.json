@@ -32,7 +32,7 @@
     "onchange": "^7.1.0"
   },
   "dependencies": {
-    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy": "^1.0.1",
     "clean-css": "^5.2.2",
     "esbuild": "^0.14.8",
     "html-minifier": "^4.0.0",
