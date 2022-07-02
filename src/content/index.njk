@@ -68,20 +68,34 @@ permalink: /index.html
 		<p>After <a href="#install">installing</a> the {{ metadata.site.title }} bookmarklet, open the <a href="https://nytimes.com/puzzles/spelling-bee">Spelling Bee</a> in your web browser.</p>
 		<p>Any time you need a hint or want to see your progress, click or tap the bookmarklet. No need to switch tabs to check a different page: {{ metadata.site.title }} will appear right in front of your puzzle.</p>
 
-		<h3 class="[][][ section__subheading ]">Reading the grid</h3>
-		<p>The {{ metadata.site.title }} grid shows the number of words remaining for each letter.</p>
-		<p>For example, a <strong>1</strong> in the <strong>5</strong> column of row <strong>G</strong> means one more 5-letter word that starts with “G” is left.</p>
+		<h3 class="[][][ section__subheading section-grid ]">Today’s Grid</h3>
+		<p>The main grid shows how many words remain for each letter.</p>
+		<p>For example, a <strong>2</strong> in the <strong>6</strong> column of row <strong>L</strong> means two more 6-letter words that starts with “L” are left.</p>
 
 		{{ picture(
 			{
-				alt: "Spell Check grid showing one remaining 5-letter words that begins with G.",
+				alt: "Spell Check grid showing a mostly completed puzzle, with mostly P-words remaining.",
 				src: "/images/grid-highlight@2x.jpg",
-				height: 368,
-				width: 904
+				width: 1200,
+				height: 791
 			}
 		) }}
 
 		<p class="[][][ usage__check ]">A green checkmark lets you know you’ve found every accepted solution for a given letter and length</p>
+
+		<h3 class="[][][ section__subheading section-tll ]">Two-Letter List</h3>
+		<p>Still feeling stuck? Swipe left to see a breakdown by two-letter prefixes:</p>
+
+		{{ picture(
+			{
+				alt: "Spell Check two-letter list showing ",
+				src: "/images/tll@2x.jpg",
+				width: 1200,
+				height: 690
+			}
+		) }}
+
+		<p>Combined with the information from Today’s Grid, <strong>LA-1</strong> and <strong>LO-1</strong> shows that one of the two remaining 6-letter L words starts with “LA” and the other starts with “LO.”</p>
 	</section>
 
 	<section
@@ -90,7 +104,7 @@ permalink: /index.html
 	>
 		<header class="[ stack-xs ][][]">
 			<h2 class="[][][ section__heading ]">Get started</h2>
-			<p>{{ metadata.site.title }} is supported by most modern web browsers and operating systems, including those listed below.</p>
+			<p>Sound like your cup of tea? {{ metadata.site.title }} is supported by most modern web browsers and operating systems, including those listed below.</p>
 		</header>
 
 		<ul
