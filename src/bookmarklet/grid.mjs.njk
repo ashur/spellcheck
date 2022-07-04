@@ -30,13 +30,21 @@ export default class Grid
 	 * @param {Object} options
 	 * @param {string} options.date
 	 * @param {Object} [options.distributions]
+	 * @param {HTMLElement} [options.gridElement]
 	 * @param {string} [options.gridText]
 	 * @param {Array} [options.wordLengths]
 	 * @return {Grid}
 	 */
-	static getInstance({ date, distributions, gridText, wordLengths } = {})
+	static getInstance({ date, distributions, gridElement, gridText, wordLengths } = {})
 	{
-		if( gridText )
+		if( gridElement )
+		{
+			const parsed = Grid.parseTable( gridElement );
+
+			distributions = parsed.distributions;
+			wordLengths = parsed.wordLengths;
+		}
+		else if( gridText )
 		{
 			const parsed = Grid.parseText( gridText );
 
@@ -49,6 +57,57 @@ export default class Grid
 			distributions,
 			wordLengths,
 		});
+	}
+
+	/**
+	 * Parse Spelling Bee hints grid and return object describing distributions
+	 * and word lengths
+	 *
+	 * @param {HTMLElement} gridTable
+	 * @return {Object}
+	 */
+	static parseTable( gridTable )
+	{
+		const result = {
+			distributions: {},
+			wordLengths: 0,
+		};
+
+		const tableRows = gridTable.querySelectorAll( "tr" );
+		tableRows.forEach( (tableRow, index) =>
+		{
+			const tableRowCells = Array.from( tableRow.querySelectorAll( "td" ) );
+			if( index === 0 )
+			{
+				// Word lengths row
+				result.wordLengths = tableRowCells
+					.slice( 1, tableRowCells.length - 1 )
+					.map( (tableRowCell) => tableRowCell.innerText.trim() )
+			}
+			else if( index <= tableRows.length - 2 )
+			{
+				// Letter distributions
+				const letterDistributions = {};
+
+				tableRowCells
+					.slice( 1, tableRowCells.length - 1 )
+					.forEach( (tableRowCell, index) =>
+					{
+						const wordLength = result.wordLengths[index];
+						const value = tableRowCell.innerText.trim();
+						letterDistributions[wordLength] = value === '-' ? 0 : value;
+					});
+
+				const letter = tableRowCells[0].innerText
+					.trim()
+					.slice( 0, 1 ) // Remove ':'
+					.toUpperCase();
+
+				result.distributions[letter] = letterDistributions;
+			}
+		});
+
+		return result;
 	}
 
 	/**

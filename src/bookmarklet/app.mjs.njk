@@ -36,32 +36,28 @@ export default class App
 		const div = document.createElement( "html" );
 		div.innerHTML = await response.text();
 
-		let gridElement, tllElement;
-		const hintsElements = div.querySelectorAll("[name='articleBody'] .StoryBodyCompanionColumn p");
+		let tllElement;
+		const hintsElements = div.querySelectorAll( "[id^='sb-forum-'] p" );
 
 		hintsElements.forEach( (hintsElement, index) =>
 		{
 			const nextHintsElement = hintsElements[index + 1];
 
-			if( hintsElement.innerText.toLowerCase().startsWith( 'words:' ) )
+			if( hintsElement.innerText.toLowerCase().startsWith( "two letter list:" ) )
 			{
-				gridElement = nextHintsElement;
-			}
-
-			if( hintsElement.innerText.toLowerCase().startsWith( 'two letter list:' ) )
-			{
-				tllElement = nextHintsElement;
+				 tllElement = nextHintsElement;
 			}
 		});
 
 		/*
 		 * Grid
 		 */
+		let gridElement = div.querySelector( "[id^='sb-forum-'] table" );
 		if( gridElement )
 		{
 			hints.grid = Grid.getInstance({
 				date,
-				gridText: gridElement.innerText,
+				gridElement: gridElement,
 			});
 		}
 		else
