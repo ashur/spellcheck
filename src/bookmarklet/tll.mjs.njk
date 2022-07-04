@@ -57,6 +57,9 @@ export default class TLL
 			return result;
 		}
 
+		// Ensure case matches grid distributions
+		tllText = tllText.toUpperCase();
+
 		// Insert newlines if they're missing - ex., when fetched with `fetch()`
 		if( !tllText.includes( "\n" ) )
 		{
