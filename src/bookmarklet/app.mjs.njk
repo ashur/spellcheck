@@ -37,7 +37,7 @@ export default class App
 		div.innerHTML = await response.text();
 
 		let tllElement;
-		const hintsElements = div.querySelectorAll( "[id^='sb-forum-'] p" );
+		const hintsElements = div.querySelectorAll( "[id*='sb-forum-'] p" );
 
 		hintsElements.forEach( (hintsElement, index) =>
 		{
@@ -52,7 +52,7 @@ export default class App
 		/*
 		 * Grid
 		 */
-		let gridElement = div.querySelector( "[id^='sb-forum-'] table" );
+		let gridElement = div.querySelector( "[id*='sb-forum-'] table" );
 		if( gridElement )
 		{
 			hints.grid = Grid.getInstance({
