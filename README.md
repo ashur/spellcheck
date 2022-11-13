@@ -4,7 +4,7 @@ Check your progress in the New York Times [Spelling Bee] without leaving the puz
 
 ## Bookmarklet Source
 
-If you're interested in viewing the source of the bookmarklet itself, please see [init.mjs](https://github.com/ashur/spellcheck/blob/main/src/scripts/init.mjs)
+If you're interested in viewing the source of the bookmarklet itself, please see [init.mjs.njk](https://github.com/ashur/spellcheck/blob/main/src/bookmarklet/init.mjs.njk)
 
 ## Installation
 
