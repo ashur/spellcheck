@@ -1,0 +1,13 @@
+/* --------------------------------------------------
+   Notification
+   -------------------------------------------------- */
+.spellcheck-notification {
+	border: solid 1px var(--border-color);
+	border-radius: var(--border-radius);
+	column-gap: var(--space-0);
+	display: flex;
+	font-size: var(--text-size-xs);
+	padding-block: var(--space-1);
+	padding-inline: var(--space-1);
+	width: 100%;
+}

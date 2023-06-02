@@ -1,0 +1,20 @@
+${ (() => {
+	if( notification?.text )
+	{
+		return `
+		<aside class="spellcheck-notification">
+			${ (() => {
+				if( notification.icon )
+				{
+					return `<p>${ notification.icon }</p>`;
+				}
+			})() }
+
+			<p>${ notification.text.replace(/\n/g, '<br>') }</p>
+		</aside>
+		`;
+	}
+
+	{# Prevent rendering 'undefined' #}
+	return "";
+})() }
