@@ -229,7 +229,10 @@ export default class App
 			context: {
 				grid: this.grid,
 				metadata: METADATA,
-				notification: {},
+				notification: {
+					icon: "⚠️",
+					text: "Spell Check is currently having trouble reporting progress. I’m very sorry for the disruption and hope to have a fix available soon! —Ashur",
+				},
 				tll: this.tll,
 				words,
 			},
