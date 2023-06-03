@@ -225,7 +225,35 @@ export default class App
 	 */
 	showMainModal()
 	{
-		const {answers: words=[]} = this.storage.getUnscopedData( `nytsb/${this.date}/ANON` ) || {};
+		let anonStorageItem, userStorageItem;
+		Object.entries( localStorage ).forEach( ([key, value]) =>
+		{
+			if( key.indexOf(`nytsb/${this.date}`) === 0 )
+			{
+				// Answers can be stored using one of two keys:
+				//   - nytsb/<date>/<userId>
+				//   - nytsb/<date>/ANON
+				// so we need to check both of them.
+				try
+				{
+					if( key.indexOf(`nytsb/${this.date}/ANON`) === 0 )
+					{
+						anonStorageItem = JSON.parse( value );
+					}
+					else
+					{
+						userStorageItem = JSON.parse( value );
+					}
+				}
+				catch( error )
+				{
+					throw new Error( "Could not parse answers from storage" );
+				}
+			}
+		} );
+
+		const storageItem = userStorageItem || anonStorageItem || {};
+		const {answers: words=[]} = storageItem;
 
 		UI.showModal({
 			context: {
