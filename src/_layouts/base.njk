@@ -7,7 +7,7 @@
 	<!-- 🎈🐀 -->
 	<meta name="generator" content="{{ eleventy.generator }}">
 
-	<title>{{ title if title else metadata.site.title }}</title>
+	<title>{{ pageTitle or title or metadata.site.title }}</title>
 
 	<meta name="title" content="{{ metadata.site.title }}">
 	<meta name="description" content="{{ metadata.site.description }}">
