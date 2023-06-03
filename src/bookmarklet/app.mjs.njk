@@ -15,8 +15,9 @@ export default class App
 	 * @param {Object} options.storage
 	 * @param {TLL} options.tll
 	 */
-	constructor({ grid, storage, tll } = {})
+	constructor({ date, grid, storage, tll } = {})
 	{
+		this.date = date;
 		this.grid = grid;
 		this.storage = storage;
 		this.tll = tll;
@@ -185,6 +186,7 @@ export default class App
 		}
 
 		return new App({
+			date,
 			grid: grid,
 			storage,
 			tll: tll,
@@ -223,7 +225,7 @@ export default class App
 	 */
 	showMainModal()
 	{
-		const {words=[]} = this.storage.getUnscopedData( "sb-today" ) || {};
+		const {answers: words=[]} = this.storage.getUnscopedData( `nytsb/${this.date}/ANON` ) || {};
 
 		UI.showModal({
 			context: {
