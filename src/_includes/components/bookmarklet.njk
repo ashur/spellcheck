@@ -1,6 +1,8 @@
-{% macro bookmarklet() %}
+{% macro bookmarklet(
+	platform
+) %}
 <input
-	class="[][][ install__bookmarklet ]"
+	class="[][][ install__bookmarklet ][ plausible-event-name=Install plausible-event-platform={{ platform }} ]"
 	onfocus="this.select()"
 	type="text"
 	value="{{ bookmarkletContent | safe }}"
