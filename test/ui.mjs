@@ -88,6 +88,14 @@ describe( "UI", () =>
 						date: "2022-06-05",
 						gridText: gridWithoutNewlines(),
 					}),
+					metadata: {
+						env: {
+							url: "//"
+						},
+						site: {
+							title: "Spellcheck"
+						},
+					},
 					tll: TLL.getInstance({
 						date: "2022-06-05",
 						tllText: tllWithoutNewlines(),
@@ -102,7 +110,7 @@ describe( "UI", () =>
 				const elCarouselCards = elCarousel.querySelector(".spellcheck-carousel__cards");
 				const elCarouselDots = elCarousel.querySelector(".spellcheck-carousel__dots");
 
-				assert.equal( elCarouselCards.childElementCount, 2, "Number of carousel cards" );
+				assert.equal( elCarouselCards.childElementCount, 3, "Number of carousel cards" );
 				assert.equal( elCarouselDots.constructor.name, "HTMLDivElement" );
 			});
 
@@ -113,6 +121,14 @@ describe( "UI", () =>
 						date: "2022-06-05",
 						gridText: gridWithoutNewlines(),
 					}),
+					metadata: {
+						env: {
+							url: "//"
+						},
+						site: {
+							title: "Spellcheck"
+						},
+					},
 					tll: TLL.getInstance({
 						date: "2022-06-05",
 						tllText: tllWithoutNewlines(),
@@ -158,6 +174,14 @@ describe( "UI", () =>
 
 						wordLengths: [4, 7],
 					}),
+					metadata: {
+						env: {
+							url: "//"
+						},
+						site: {
+							title: "Spellcheck"
+						},
+					},
 					tll: TLL.getInstance({
 						date: "2022-06-05",
 						tllText: tllWithoutNewlines(),
@@ -173,7 +197,7 @@ describe( "UI", () =>
 
 				assert.equal( elTableRow.childNodes[0]?.innerHTML, "C", "Row heading" );
 				assert.equal( elTableRow.childNodes[1]?.innerHTML, 1, "Number of 4-letter C words remaining" );
-				assert.equal( elTableRow.childNodes[2]?.innerHTML, "-", "No 6-letter C words possible" );
+				assert.equal( elTableRow.childNodes[2]?.innerHTML, '<span aria-hidden="true" class="spellcheck-empty-item">•</span>', "No 6-letter C words possible" );
 				assert.isTrue(
 					elTableRow.childNodes[3]?.childNodes[0]?.classList?.contains( "spellcheck-checkmark" ),
 					"Completed item contains checkmark"
@@ -202,6 +226,14 @@ describe( "UI", () =>
 
 						wordLengths: [4, 6, 7],
 					}),
+					metadata: {
+						env: {
+							url: "//"
+						},
+						site: {
+							title: "Spellcheck"
+						},
+					},
 					tll: TLL.getInstance({
 						counts: {
 							"CE": 2, // remaining = 1
