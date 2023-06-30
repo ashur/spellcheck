@@ -8,16 +8,16 @@ import UI from "./ui.mjs";
 		try
 		{
 			// The link element on the SB page is now unrendered until a button
-			// is pressed, so we'll just build it instead.
+			// is pressed, so we'll just build the URL manually instead.
 			//
 			// NOTE: This is a temporary workaround to continue using the daily
 			// hints page until a larger update can be made to use local game
 			// data.
 			const date = gameData?.today?.printDate?.replace(/-/g, '/');
-			const hintsLink = `https://www.nytimes.com/${date}/crosswords/spelling-bee-forum.html`;
 
-			if( hintsLink )
+			if( date )
 			{
+				const hintsLink = `https://www.nytimes.com/${date}/crosswords/spelling-bee-forum.html`;
 				UI.addStyles();
 
 				// Get instance
