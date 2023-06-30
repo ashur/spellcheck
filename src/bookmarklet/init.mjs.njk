@@ -7,16 +7,22 @@ import UI from "./ui.mjs";
 	{
 		try
 		{
-			let hintsLink = document.querySelector( ".pz-toolbar-button__hints" )
-				|| document.querySelector( ".pz-dropdown__menu-item[href]" );
+			// The link element on the SB page is now unrendered until a button
+			// is pressed, so we'll just build it instead.
+			//
+			// NOTE: This is a temporary workaround to continue using the daily
+			// hints page until a larger update can be made to use local game
+			// data.
+			const date = gameData?.today?.printDate?.replace(/-/g, '/');
+			const hintsLink = `https://www.nytimes.com/${date}/crosswords/spelling-bee-forum.html`;
 
-			if( hintsLink && hintsLink.href )
+			if( hintsLink )
 			{
 				UI.addStyles();
 
 				// Get instance
 				window.spellcheckApp = await App.getInstance(
-					hintsLink.href,
+					hintsLink,
 					window.localStorage
 				);
 
