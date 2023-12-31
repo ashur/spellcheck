@@ -1,3 +1,5 @@
+const addRemoteData = require( "@aaashur/eleventy-plugin-add-remote-data" );
+
 module.exports = eleventyConfig =>
 {
 	/* Files */
@@ -9,6 +11,13 @@ module.exports = eleventyConfig =>
 
 	/* Filters */
 	eleventyConfig.addFilter( "cssmin", require( "../filters/cssmin" ) );
+
+	/* Plugins */
+	eleventyConfig.addPlugin( addRemoteData, {
+		data: {
+			robots: "https://api.ashur.cab/robots/v2.json",
+		},
+	} );
 
 	return {
 		dir: {
