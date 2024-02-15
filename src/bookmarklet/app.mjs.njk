@@ -11,14 +11,16 @@ export default class App
 {
 	/**
 	 * @param {Object} options
-	 * @param {Grid} [options.grid
+	 * @param {Grid} options.grid
+	 * @param {Object} options.puzzleId
 	 * @param {Object} options.storage
 	 * @param {TLL} options.tll
 	 */
-	constructor({ date, grid, storage, tll } = {})
+	constructor({ date, grid, puzzleId, storage, tll } = {})
 	{
 		this.date = date;
 		this.grid = grid;
+		this.puzzleId = puzzleId;
 		this.storage = storage;
 		this.tll = tll;
 	}
@@ -89,10 +91,11 @@ export default class App
 	 * first time the bookmarklet is invoked after page load.
 	 *
 	 * @param {string} hintsUrl
+	 * @param {Number} puzzleId
 	 * @param {Storage} [storageSource]
 	 * @return {App}
 	 */
-	static async getInstance( hintsUrl, storageSource )
+	static async getInstance( hintsUrl, puzzleId, storageSource )
 	{
 		const {pathname: urlPathname} = new URL( hintsUrl );
 		const date = urlPathname
@@ -188,6 +191,7 @@ export default class App
 		return new App({
 			date,
 			grid: grid,
+			puzzleId,
 			storage,
 			tll: tll,
 		});
@@ -228,15 +232,15 @@ export default class App
 		let anonStorageItem, userStorageItem;
 		Object.entries( localStorage ).forEach( ([key, value]) =>
 		{
-			if( key.indexOf(`games-state-spelling_bee/${this.date}`) === 0 )
+			if( key.indexOf(`games-state-spelling_bee`) === 0 )
 			{
 				// Answers can be stored using one of two keys:
-				//   - games-state-spelling_bee/<date>/<userId>
-				//   - games-state-spelling_bee/<date>/ANON
+				//   - games-state-spelling_bee/<userId>
+				//   - games-state-spelling_bee/ANON
 				// so we need to check both of them.
 				try
 				{
-					if( key.indexOf(`games-state-spelling_bee/${this.date}/ANON`) === 0 )
+					if( key.indexOf(`games-state-spelling_bee/ANON`) === 0 )
 					{
 						anonStorageItem = JSON.parse( value );
 					}
@@ -252,8 +256,17 @@ export default class App
 			}
 		} );
 
+		/**
+		 * NYTSB currently stores the player's answers in:
+		 *
+		 * 	 [storageItem].states[].data.answers
+		 *
+		 * The state object must be located using today’s puzzleId, which comes
+		 * from window.gameData.today.id
+		 */
 		const storageItem = userStorageItem || anonStorageItem || {};
-		const {answers: words=[]} = storageItem;
+		const state = storageItem?.states?.find((state) => state.puzzleId === this.puzzleId);
+		const words = state?.data.answers || [];
 
 		UI.showModal({
 			context: {

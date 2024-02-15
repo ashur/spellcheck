@@ -13,7 +13,8 @@ import UI from "./ui.mjs";
 			// NOTE: This is a temporary workaround to continue using the daily
 			// hints page until a larger update can be made to use local game
 			// data.
-			const date = gameData?.today?.printDate?.replace(/-/g, '/');
+			const date = window.gameData?.today?.printDate?.replace(/-/g, "/");
+			const puzzleId = window.gameData?.today.id?.toString();
 
 			if( date )
 			{
@@ -23,6 +24,7 @@ import UI from "./ui.mjs";
 				// Get instance
 				window.spellcheckApp = await App.getInstance(
 					hintsLink,
+					puzzleId,
 					window.localStorage
 				);
 
