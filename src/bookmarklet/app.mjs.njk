@@ -228,15 +228,15 @@ export default class App
 		let anonStorageItem, userStorageItem;
 		Object.entries( localStorage ).forEach( ([key, value]) =>
 		{
-			if( key.indexOf(`nytsb/${this.date}`) === 0 )
+			if( key.indexOf(`games-state-spelling_bee/${this.date}`) === 0 )
 			{
 				// Answers can be stored using one of two keys:
-				//   - nytsb/<date>/<userId>
-				//   - nytsb/<date>/ANON
+				//   - games-state-spelling_bee/<date>/<userId>
+				//   - games-state-spelling_bee/<date>/ANON
 				// so we need to check both of them.
 				try
 				{
-					if( key.indexOf(`nytsb/${this.date}/ANON`) === 0 )
+					if( key.indexOf(`games-state-spelling_bee/${this.date}/ANON`) === 0 )
 					{
 						anonStorageItem = JSON.parse( value );
 					}
