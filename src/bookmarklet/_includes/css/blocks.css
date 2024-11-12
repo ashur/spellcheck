@@ -135,14 +135,6 @@
 	padding: var(--space-1);
 }
 
-:where(.spellcheck-grid, .spellcheck-tll) .spellcheck-card {
-   background-color: #fafafa;
-}
-
-:where(.spellcheck-grid, .spellcheck-tll) .spellcheck-card > * {
-   opacity: 0;
-}
-
 .spellcheck .spellcheck-card__header {
 	margin-bottom: 0;
 }
