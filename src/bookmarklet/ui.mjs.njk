@@ -14,8 +14,10 @@ let handleKeydown = (event) =>
 
 let hideModal = () =>
 {
-	document.querySelector( ".sb-modal-system" ).classList.remove( "sb-modal-open", "spellcheck" );
-	document.querySelector( ".sb-modal-wrapper" ).innerHTML = "";
+	const $game = document.querySelector( "#js-hook-pz-moment__game.on-stage" );
+
+	$game.querySelector( ".sb-modal-system" ).classList.remove( "sb-modal-open", "spellcheck" );
+	$game.querySelector( ".sb-modal-wrapper" ).innerHTML = "";
 
 	document.removeEventListener( "keydown", handleKeydown );
 
@@ -97,7 +99,9 @@ const UI = {
 	 */
 	showModal: ({context={}, name, subtitle, template} = {}) =>
 	{
-		if( !document.querySelector( "#js-hook-pz-moment__game.on-stage" ) )
+		const $game = document.querySelector( "#js-hook-pz-moment__game.on-stage" );
+
+		if( !$game )
 		{
 			console.log( "🙈 Spell Check: Puzzle is not currently visible" );
 			return;
@@ -110,9 +114,9 @@ const UI = {
 		const spellcheck = `{{- partial('spellcheck.njk') -}}`;
 		/* eslint-enable quotes */
 
-		document.querySelector( ".sb-modal-system" ).classList.add( "sb-modal-open", "spellcheck" );
-		document.querySelector( ".sb-modal-wrapper" ).innerHTML = spellcheck;
-		document.querySelector( ".sb-modal-close" ).addEventListener( "click", hideModal );
+		$game.querySelector( ".sb-modal-wrapper" ).innerHTML = spellcheck;
+		$game.querySelector( ".sb-modal-system" ).classList.add( "sb-modal-open", "spellcheck" );
+		$game.querySelector( ".sb-modal-close" ).addEventListener( "click", hideModal );
 
 		document.addEventListener( "keydown", handleKeydown );
 
