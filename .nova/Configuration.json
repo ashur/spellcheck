@@ -1,6 +1,7 @@
 {
   "apexskier.eslint.config.eslintConfigPath" : ".eslintrc.js",
   "apexskier.eslint.config.fixOnSave" : "Enable",
+  "com.neelyadav.Stylelint.local.disable" : true,
   "index.ignored_file_patterns" : [
     "package-lock.json"
   ]

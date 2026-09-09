@@ -27,15 +27,26 @@
 	{% set style %}
 		{% include "css/reset.css" %}
 		{% include "css/fonts.css" %}
-		{% include "css/global.css" %}
-		{% include "css/composition.css" %}
 		{% include "css/utilities.css" %}
-		{% include "css/blocks.css" %}
-		{% include "components/form/form.css" %}
-		{% include "components/toast/toast.css" %}
 	{% endset %}
 	<style>
 		{{ style | cssmin | safe }}
+
+		body {
+			background-color: light-dark(#fafafa, #222);
+			color: light-dark(#444, #ddd);
+			display: grid;
+			font-weight: 450;
+			min-height: 100svh;
+			padding: calc(24 / 16 * 1rem);
+			place-content: center;
+			text-align: center;
+		}
+
+		strong {
+			color: light-dark(#222, #fafafa);
+			font-weight: 600;
+		}
 	</style>
 
  	<script defer data-domain="spellcheck.fun" src="/js/script.tagged-events.js"></script>

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "eleventy --config=./src/_eleventy/config/.eleventy-site.js && run-s build:bookmarklet:template build:bookmarklet:js",
+    "build": "eleventy --config=./src/_eleventy/config/.eleventy-site.js",
     "build:bookmarklet:js": "./scripts/build-js.sh",
     "build:bookmarklet:template": "eleventy --config=./src/_eleventy/config/.eleventy-bookmarklet.js",
     "dev": "concurrently \"npm:watch:*\"",

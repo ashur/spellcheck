@@ -1,31 +1,10 @@
-.accordion {
-	list-style: none;
-	padding: 0;
-}
-	.accordion [aria-hidden="true"] {
-		display: none;
-	}
-
-.font-sans {
-	font-family: var(--font-sans);
-}
-
-.font-sm {
-	font-size: var(--font-size-sm);
-}
-
-.measure {
-	max-width: var( --measure );
-}
-
-.no-underline {
-	text-decoration: none;
-}
-	.no-underline:hover {
-		text-decoration: underline;
-		text-decoration-thickness: min( calc( 1em / 16 ), 2px );
-	}
-
-.nowrap {
+.visually-hidden {
+	border: 0;
+	clip-path: inset(50%);
+	height: 1px;
+	margin: 0;
+	overflow: hidden;
+	position: absolute;
 	white-space: nowrap;
+	width: 1px;
 }
